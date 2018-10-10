@@ -1,13 +1,12 @@
 % Goal for next week is to move robot around obstacle field forever without
 % collision and vison cone shown 
 
-% Clear workspace and reinitialize random number generator 
+% Clear workspace, clear plot, reinitialize random number generator 
 clear;
 clf('reset')
 rng('shuffle') 
 
 % User defined variables
-% Optional manual control 
 % Add obstacle size 
 xmax = 180;
 ymax = 120;
