@@ -18,7 +18,6 @@ obstacle_count = 100;
 vision_width = 300; % width = depth 
 vision_depth = 300;
 
-
 % Generate random start location, direction, and init robot vector 
 xinitial = randi([2*offset, xmax-2*offset]);
 yinitial = randi([2*offset, ymax-2*offset]);
