@@ -143,10 +143,10 @@ medObjY = [ medObjInitialY medObjInitialY (medObjInitialY+500) (medObjInitialY+5
 
 patch('XData',medObjX,'YData',medObjY,'FaceColor','blue','Parent',g);
 
-largeObjInitialX = 3200;
-largeObjInitialY = 1600;
-largeObjX = [largeObjInitialX (largeObjInitialX+500) (largeObjInitialX+500) largeObjInitialX   ];
-largeObjY = [largeObjInitialY (largeObjInitialY-200) (largeObjInitialY-500) (largeObjInitialY-500)   ];
+largeObjInitialX = 3200
+largeObjInitialY = 1600
+largeObjX = [largeObjInitialX (largeObjInitialX+500) largeObjectInitialX+];
+largeObjY = [largeObjInitialY (largeObjInitialY - 200);
 patch('XData',largeObjX,'YData',largeObjY,'FaceColor','green','Parent',g);
 
 hold off

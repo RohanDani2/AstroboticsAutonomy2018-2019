@@ -1,37 +1,33 @@
-% TODO 
-% Obstacles of various shapes and sizes 
-% Translate robot and vision matrix
-% Scale robot
-% Rotate robot and vision matrix
-% Calculate collision 
-
 % Clear workspace, clear plot, reinitialize random number generator 
 clear;
 clf('reset')
 %rng('shuffle')
 
 % User defined variables
+% Add obstacle size 
 xmax = 5756;
 ymax = 3691;
 offset = 300;
-%%obstacle_count = 100;
+obstacle_count = 100;
 vision_width = 300; % width = depth 
 vision_depth = 300;
+
 
 % Generate random start location, direction, and init robot vector 
 xinitial = randi([2*offset, xmax-2*offset]);
 yinitial = randi([2*offset, ymax-2*offset]);
 % theta = randi([0, 3]);
 % if theta == 0
+%     arrow = 'r^';
 % elseif theta == 1
-%     theta = pi/2;
+%     arrow = 'rv';
 % elseif theta == 2
-%     theta = pi;
+%     arrow = 'r<';
 % elseif theta == 3
-%     theta = 3*pi/2;  
+%     arrow = 'r>';  
 % end
 xrobot = [xinitial, xinitial-100, xinitial-100, xinitial+100, xinitial+100];
-yrobot = [yinitial+150, yinitial+50, yinitial-150, yinitial-150, yinitial+50];
+yrobot = [yinitial, yinitial-100, yinitial-300, yinitial-300, yinitial-100];
 g = hgtransform;
 
 % Generate vision array 
@@ -46,7 +42,7 @@ for r = 1:vision_depth
 end
 
 partial(:,:,:,1) = partial(:,:,:,1) + xinitial;
-partial(:,:,:,2) = partial(:,:,:,2) + yinitial + 150;
+partial(:,:,:,2) = partial(:,:,:,2) + yinitial;
 
 partial(:,:,1,1) = triu(partial(:,:,1,1));
 partial(:,:,1,2) = triu(partial(:,:,1,2));
@@ -59,12 +55,12 @@ vision(:,:,2) = horzcat(partial(:,:,1,2), partial(:,:,2,2));
 vision(vision == 0) = NaN;
 
 % Generate random x, y coordiantes 
-% xobj = 1:obstacle_count;
-% yobj = 1:obstacle_count;
-% for i = 1:obstacle_count
-%     xobj(i) = randi([0,xmax]);
-%     yobj(i) = randi([0,ymax]);
-% end
+xobj = 1:obstacle_count;
+yobj = 1:obstacle_count;
+for i = 1:obstacle_count
+    xobj(i) = randi([0,xmax]);
+    yobj(i) = randi([0,ymax]);
+end
 
 % Generate virtual limit coordinates
 xmax_new = xmax-offset;
@@ -112,14 +108,15 @@ end
 obj_detected = 1;
 
 % Visualize data 
+% Increase wall thickness 
 hold on
 grid on
 grid minor
 xlim([0 6600])
 ylim([0 4400])
-patch('XData',xrobot,'YData',yrobot,'FaceColor','black','Parent',g)
+patch('XData',xrobot,'YData',yrobot,'FaceColor','black','Parent',g) %plot(xrobot, yrobot, arrow);
 plot(vision(:,:,1), vision(:,:,2), 'y.-');
-%plot(xobj, yobj, 'bs');
+plot(xobj, yobj, 'bs');
 plot(xlimit, ylimit, 'gs-');
 plot(xwall, ywall, 'ks-');
 if obj_detected == 1
@@ -127,26 +124,7 @@ if obj_detected == 1
 else
     plot(6200, 4000, 'g*')
 end
-
-%generate arbitrary obstacles
-smallObjInitialX = 2000; 
-smallObjInitialY = 2000;
-smallObjX = [smallObjInitialX (smallObjInitialX - 200) (smallObjInitialX+200)];
-smallObjY = [smallObjInitialY (smallObjInitialY - 200) (smallObjInitialY-200) ];
-
-patch('XData',smallObjX,'YData',smallObjY,'FaceColor','red','Parent',g);
-
-medObjInitialX = 3500;
-medObjInitialY = 2500;
-medObjX = [ medObjInitialX (medObjInitialX+500) (medObjInitialX + 500) medObjInitialX ];
-medObjY = [ medObjInitialY medObjInitialY (medObjInitialY+500) (medObjInitialY+500) ];
-
-patch('XData',medObjX,'YData',medObjY,'FaceColor','blue','Parent',g);
-
-largeObjInitialX = 3200;
-largeObjInitialY = 1600;
-largeObjX = [largeObjInitialX (largeObjInitialX+500) (largeObjInitialX+500) largeObjInitialX   ];
-largeObjY = [largeObjInitialY (largeObjInitialY-200) (largeObjInitialY-500) (largeObjInitialY-500)   ];
-patch('XData',largeObjX,'YData',largeObjY,'FaceColor','green','Parent',g);
-
 hold off
+
+
+
