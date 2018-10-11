@@ -1,10 +1,16 @@
+% TODO 
+% Obstacles of various shapes and sizes 
+% Translate robot and vision matrix
+% Scale robot
+% Rotate robot and vision matrix
+% Calculate collision 
+
 % Clear workspace, clear plot, reinitialize random number generator 
 clear;
 clf('reset')
 %rng('shuffle')
 
 % User defined variables
-% Add obstacle size 
 xmax = 5756;
 ymax = 3691;
 offset = 300;
@@ -18,16 +24,15 @@ xinitial = randi([2*offset, xmax-2*offset]);
 yinitial = randi([2*offset, ymax-2*offset]);
 % theta = randi([0, 3]);
 % if theta == 0
-%     arrow = 'r^';
 % elseif theta == 1
-%     arrow = 'rv';
+%     theta = pi/2;
 % elseif theta == 2
-%     arrow = 'r<';
+%     theta = pi;
 % elseif theta == 3
-%     arrow = 'r>';  
+%     theta = 3*pi/2;  
 % end
 xrobot = [xinitial, xinitial-100, xinitial-100, xinitial+100, xinitial+100];
-yrobot = [yinitial, yinitial-100, yinitial-300, yinitial-300, yinitial-100];
+yrobot = [yinitial+150, yinitial+50, yinitial-150, yinitial-150, yinitial+50];
 g = hgtransform;
 
 % Generate vision array 
@@ -42,7 +47,7 @@ for r = 1:vision_depth
 end
 
 partial(:,:,:,1) = partial(:,:,:,1) + xinitial;
-partial(:,:,:,2) = partial(:,:,:,2) + yinitial;
+partial(:,:,:,2) = partial(:,:,:,2) + yinitial + 150;
 
 partial(:,:,1,1) = triu(partial(:,:,1,1));
 partial(:,:,1,2) = triu(partial(:,:,1,2));
@@ -108,13 +113,12 @@ end
 obj_detected = 1;
 
 % Visualize data 
-% Increase wall thickness 
 hold on
 grid on
 grid minor
 xlim([0 6600])
 ylim([0 4400])
-patch('XData',xrobot,'YData',yrobot,'FaceColor','black','Parent',g) %plot(xrobot, yrobot, arrow);
+patch('XData',xrobot,'YData',yrobot,'FaceColor','black','Parent',g)
 plot(vision(:,:,1), vision(:,:,2), 'y.-');
 plot(xobj, yobj, 'bs');
 plot(xlimit, ylimit, 'gs-');
