@@ -109,7 +109,8 @@ for i = (2*xmax+ymax+1):(2*(xmax+ymax)-1) %complete bottom, right, top, left
 end
 
 % Detect objects
-obj_detected = 1;
+
+    obj_detected = 1;
 
 % Visualize data 
 hold on
