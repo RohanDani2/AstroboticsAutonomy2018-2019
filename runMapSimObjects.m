@@ -109,8 +109,7 @@ for i = (2*xmax+ymax+1):(2*(xmax+ymax)-1) %complete bottom, right, top, left
 end
 
 % Detect objects
-
-    obj_detected = 1;
+obj_detected = 1;
 
 % Visualize data 
 hold on
@@ -133,7 +132,7 @@ end
 smallObjInitialX = 2000; 
 smallObjInitialY = 2000;
 smallObjX = [smallObjInitialX (smallObjInitialX - 200) (smallObjInitialX+200)];
-smallObjY = [smallObjInitialY (smallObjInitialY - 200) (smallObjInitialY-200) ];
+smallObjY = [smallObjInitialY (smallObjInitialY - 200) (smallObjInitialY-200)];
 
 patch('XData',smallObjX,'YData',smallObjY,'FaceColor','red','Parent',g);
 
