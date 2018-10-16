@@ -1,5 +1,9 @@
-function updateMapSim(allObstacles, command)
-    global xpos ypos
+function [cone, robot, detected] = updateMapSim(allObstacles, command)
+    persistent xpos ypos
+    if isempty(xpos)
+        xpos = 2000;
+        ypos = 2000;
+    end
     
     % Base vision cone 
     line1 = [0,150,0; 300,450,0;];
@@ -29,25 +33,8 @@ function updateMapSim(allObstacles, command)
 
     xrobot = xbase_robot + xpos;
     yrobot = ybase_robot + ypos;
-    
+    robot = fliplr(rot90(vertcat(xrobot,yrobot),3));
+
     % Check if obstacle is in vision cone 
     detected = detectObject(allObstacles, cone); 
-    if detected 
-        lightColor = 'r.-';
-    else
-        lightColor = 'g.-';
-    end
-
-    % Create light to indicate if object is detected 
-    xlight = 6000;
-    ylight = 4000;
-    xlight_v = [xlight, xlight+200, xlight+200, xlight, xlight];
-    ylight_v = [ylight, ylight, ylight+200, ylight+200, ylight];
-    
-    % Visualize data 
-    p1 = plot(cone(:,1), cone(:,2), 'r.-');
-    p2 = plot(xrobot, yrobot, 'k.-');
-    p3 = plot(xlight_v, ylight_v, lightColor);
-    set([p1 p2 p3],'LineWidth',5)
-    drawnow
 end

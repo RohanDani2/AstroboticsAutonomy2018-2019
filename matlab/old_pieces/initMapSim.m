@@ -1,11 +1,8 @@
-function allObstacles = initMapSim
+function [wall, allObstacles] = initMapSim
     % Clear plot
     clf('reset')
     
     % Parameters 
-    global xpos ypos
-    xpos = 2000;
-    ypos = 2000;
     xwall = 5756;
     ywall = 3691;
     distance_from_wall = 300;
@@ -41,14 +38,4 @@ function allObstacles = initMapSim
     
     % Concatinate all objects into one matrix of x, y, z coordinates
     allObstacles = vertcat(limit, obstacle1, obstacle2, obstacle3);
-
-    % Visualize data 
-    hold on
-    grid on
-    grid minor
-    xlim([-800 6600])
-    ylim([-700 4400])
-    plot(wall(:,1), wall(:,2), 'ks-');
-    plot(allObstacles(:,1), allObstacles(:,2), 'bs');
-    drawnow
 end
