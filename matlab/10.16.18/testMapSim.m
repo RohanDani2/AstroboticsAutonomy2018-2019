@@ -8,9 +8,9 @@ masterView(wall, allObstacles);
 while 1
     command = randi([0,4]);
     [cone, robot, detected] = positionThenDetect(allObstacles, command);
-    
     robotView(cone, robot, detected);
 end
+
 
 
 
