@@ -9,17 +9,33 @@ theta = linspace(-pi,pi);
 xc = [r*cos(theta); offset*cos(theta)];
 yc = [-r*sin(theta); -offset*sin(theta)];
 
-for t = 0:5*pi/180:2*pi
-    th = t + asin(depth/r);
-    tl = th - 2*asin(depth/r);
-    x = [offset*cos(t) r*cos(th) r*cos(tl) offset*cos(t)];
-    y = [offset*sin(t) r*sin(th) r*sin(tl) offset*sin(t)];
-    plot(x,y);
+obst = 500;
+px = 1:obst;
+py = 1:obst;
+for i = 1:obst
+    px(i) = randi([-1000,1000]);
+    py(i) = randi([-1000,1000]);
+end
+points = fliplr(rot90(vertcat(px,py,zeros(1, obst)),3));
+
+for t =  0:1*pi/180:2*pi
+    thigh = t + asin(depth/r);
+    tlow = thigh -2*asin(depth/r);
+    x = [offset*cos(t) r*cos(thigh) r*cos(tlow) offset*cos(t)];
+    y = [offset*sin(t) r*sin(thigh) r*sin(tlow) offset*sin(t)];
+    z = zeros(1,4);
+    cone = fliplr(rot90(vertcat(x,y,z),3));
+    detected = detectRotated(points, cone);
+    plot(cone(:,1),cone(:,2));
     hold on
+    grid on 
+    grid minor
+    xlim([-1000 1000])
+    ylim([-1000 1000])
     plot(xc(1,:),yc(1,:));
     plot(xc(2,:),yc(2,:));
-    xlim([-600 600]);
-    ylim([-600 600]);
+    plot(px(detected==1),py(detected==1), 'r*');
+    plot(px(detected==0),py(detected==0), 'k*');
     drawnow
     hold off 
 end
