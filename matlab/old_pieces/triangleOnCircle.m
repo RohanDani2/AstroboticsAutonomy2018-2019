@@ -9,7 +9,7 @@ theta = linspace(-pi,pi);
 xc = [r*cos(theta); offset*cos(theta)];
 yc = [-r*sin(theta); -offset*sin(theta)];
 
-obst = 500;
+obst = 50;
 px = 1:obst;
 py = 1:obst;
 for i = 1:obst
@@ -18,7 +18,7 @@ for i = 1:obst
 end
 points = fliplr(rot90(vertcat(px,py,zeros(1, obst)),3));
 
-for t =  0:1*pi/180:2*pi
+for t =  0:5*pi/180:2*pi
     thigh = t + asin(depth/r);
     tlow = thigh -2*asin(depth/r);
     x = [offset*cos(t) r*cos(thigh) r*cos(tlow) offset*cos(t)];
