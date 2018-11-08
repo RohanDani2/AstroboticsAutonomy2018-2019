@@ -1,20 +1,20 @@
 clear;
 clf('reset');
 
-offset = 150;
-depth = 300;
+offset = 1.5;
+depth = 3;
 
 r = sqrt(offset^2+(2*depth^2)-2*offset*sqrt(2*depth^2)*cos(135*pi/180));
 theta = linspace(-pi,pi);
 xc = [r*cos(theta); offset*cos(theta)];
 yc = [-r*sin(theta); -offset*sin(theta)];
 
-obst = 50;
+obst = 5;
 px = 1:obst;
 py = 1:obst;
 for i = 1:obst
-    px(i) = randi([-1000,1000]);
-    py(i) = randi([-1000,1000]);
+    px(i) = randi([-10,10]);
+    py(i) = randi([-10,10]);
 end
 points = fliplr(rot90(vertcat(px,py,zeros(1, obst)),3));
 
@@ -30,8 +30,8 @@ for t =  0:5*pi/180:2*pi
     hold on
     grid on 
     grid minor
-    xlim([-1000 1000])
-    ylim([-1000 1000])
+    xlim([-10 10])
+    ylim([-10 10])
     plot(xc(1,:),yc(1,:));
     plot(xc(2,:),yc(2,:));
     plot(px(detected==1),py(detected==1), 'r*');
