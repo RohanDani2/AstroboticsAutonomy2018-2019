@@ -13,7 +13,7 @@ obstymax = 25;
 size1 = 1; % obstacles 10 - 30 cm diameter 
 size2 = 2;
 size3 = 3; 
-size4 = 3; % craters up to 30 cm diameter and depth
+size4 = 5; % craters up to 30 cm diameter and depth
 size5 = 5; % circles replaced with interior corners  
 
 % Generate field wall 
