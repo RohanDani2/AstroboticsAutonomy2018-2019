@@ -81,8 +81,8 @@ if (detected ~= 0)
     y = allObstY(detected==1);
     
     % Convert list of x,y coordinates to occupany map 
-    occupancyMapNew = accumarray([y,x],1,[ymax xmax])
-    occupancyMap = occupancyMap | occupancyMapNew
+    occupancyMapNew = accumarray([y,x],1,[ymax xmax]);
+    occupancyMap = occupancyMap | occupancyMapNew;
 end
 
 % Get new path based on last map update 

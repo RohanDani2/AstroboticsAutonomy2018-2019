@@ -5,11 +5,11 @@ function p = updatePath(occupancyMap, goal, xpos, ypos, botRadius)
     % Current location, start of new path 
     start = [xpos, ypos];
     
-%     % Create instance of map
-%     dstar = Dstar(occupancyMap,'inflate', botRadius);
+    % Create instance of map
+     %dstar = Dstar(occupancyMap,'inflate', botRadius);
 % 
 %     % Create costmap and print elapsed time 
-%     dstar.plan(goal);
+    % dstar.plan(goal);
 % 
 %     % Diplay obstacles and cost to goal, store path from start
 %     p = dstar.query(start);
@@ -22,4 +22,4 @@ function p = updatePath(occupancyMap, goal, xpos, ypos, botRadius)
 %     else
 %        p = p(1:steps,:);
 %     end 
-end
+% end
