@@ -1,0 +1,33 @@
+[33mc001efd[m[33m ([m[1;36mHEAD -> [m[1;32malex_branch[m[33m, [m[1;31morigin/alex_branch[m[33m)[m HEAD@{0}: pull: Fast-forward
+[33mde2bdae[m HEAD@{1}: reset: moving to HEAD
+[33mde2bdae[m HEAD@{2}: reset: moving to HEAD@{8}
+[33me8b7e6b[m HEAD@{3}: reset: moving to HEAD@{26}
+[33mc001efd[m[33m ([m[1;36mHEAD -> [m[1;32malex_branch[m[33m, [m[1;31morigin/alex_branch[m[33m)[m HEAD@{4}: pull: Fast-forward
+[33m58db364[m HEAD@{5}: reset: moving to HEAD
+[33m58db364[m HEAD@{6}: pull: Fast-forward
+[33mde2bdae[m HEAD@{7}: reset: moving to HEAD
+[33mde2bdae[m HEAD@{8}: checkout: moving from c99688e8ad44c7093cad90d4ab8184512fff2864 to alex_branch
+[33mc99688e[m HEAD@{9}: checkout: moving from alex_branch to c99688e8ad44c7093cad90d4ab8184512fff2864
+[33mde2bdae[m HEAD@{10}: reset: moving to HEAD
+[33mde2bdae[m HEAD@{11}: pull: Fast-forward
+[33mc99688e[m HEAD@{12}: commit: ayyyy I fixed the problem of the stupid point being right up against the wall
+[33m975687c[m HEAD@{13}: commit: oh please please please please please commit my changes I will forever be thankful to the github gods
+[33m5da6747[m HEAD@{14}: pull: Fast-forward
+[33mcff09f1[m HEAD@{15}: reset: moving to HEAD
+[33mcff09f1[m HEAD@{16}: pull: Fast-forward
+[33m71a11f0[m HEAD@{17}: reset: moving to HEAD
+[33m71a11f0[m HEAD@{18}: checkout: moving from master to alex_branch
+[33m15ff1fc[m[33m ([m[1;32mmaster[m[33m)[m HEAD@{19}: pull: Fast-forward
+[33m14dc029[m HEAD@{20}: pull: Fast-forward
+[33mad7f4c1[m HEAD@{21}: reset: moving to HEAD
+[33mad7f4c1[m HEAD@{22}: checkout: moving from 2ca4ffa35a88e27880f16f1b69efed8c0fa65781 to master
+[33m2ca4ffa[m HEAD@{23}: checkout: moving from master to HEAD~1
+[33mad7f4c1[m HEAD@{24}: reset: moving to HEAD
+[33mad7f4c1[m HEAD@{25}: pull: Fast-forward
+[33mf30e2c5[m HEAD@{26}: commit: You spin me right 'round, baby, right 'round
+[33m1a9e738[m HEAD@{27}: pull: Fast-forward
+[33m17e4ebc[m HEAD@{28}: reset: moving to HEAD
+[33m17e4ebc[m HEAD@{29}: commit: don't hate my work lmao
+[33me8b7e6b[m HEAD@{30}: pull: Fast-forward
+[33mfdc0ab7[m HEAD@{31}: commit: please like this flowchart Dr. Leonessa Rohan made me do this blame him if you don't like it
+[33m19d11ce[m HEAD@{32}: clone: from https://github.com/RohanDani2/Autonomy_Flowchart.git
