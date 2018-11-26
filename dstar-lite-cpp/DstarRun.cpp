@@ -17,7 +17,7 @@ int main()
   int y[steps];
 
   dstar = new Dstar();
-  dstar->init(40,40,100,1);
+  dstar->init(50,10,50,100);
   dstar->replan();
   path = dstar->getPath();
 

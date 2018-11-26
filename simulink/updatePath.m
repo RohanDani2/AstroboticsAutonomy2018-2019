@@ -1,6 +1,6 @@
 function p = updatePath(occupancyMap, goal, xpos, ypos, botRadius)
     steps = 5;
-    p = 10*ones(5,2);
+    p = ones(5,2);
 
     % Current location, start of new path 
     start = [xpos, ypos];
