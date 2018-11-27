@@ -33,4 +33,4 @@ occupancyMap = occupancyMap | occupancyMapNew
         end
     end
  end
-obstList
+obstList;
