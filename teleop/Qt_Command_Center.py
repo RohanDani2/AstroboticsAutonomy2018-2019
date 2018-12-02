@@ -34,12 +34,13 @@ def try_connect(wifi_conn=None):
     wifi_conn.setText("Wifi Connected")
 
 
-def robotState():
+def robotState(state=None):
     global ROBOT_STATE
     while 1:
-        while ROBOT_STATE == "TELE":
+        if ROBOT_STATE == "TELE":
             print("Teleop!")
-        while ROBOT_STATE == "AUTO":
+            # TODO: Xbox Controller Commands
+        elif ROBOT_STATE == "AUTO":
             print("Autonomous!")
             # TODO: talk to nuc
 
@@ -56,7 +57,6 @@ def teleop(teleBtn, autoBtn):
     ROBOT_STATE = "TELE"
     teleBtn.setEnabled(False)
     autoBtn.setEnabled(True)
-    _thread.start_new_thread(robotState, (,))
 
 
 class Window(QWidget):
@@ -129,6 +129,7 @@ class Window(QWidget):
 
 
 def app():
+    robo_state_thread = _thread.start_new_thread(robotState, ("",))
     the_app = QApplication(sys.argv)
     window = Window()
     sys.exit(the_app.exec_())
