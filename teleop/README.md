@@ -10,8 +10,15 @@ To be implemented
   - Ethernet to talk to Intel Nuc
   - Custom commands for control: JSON
 
+### Command Center
+
 ![Command Center](command_center.png)
 
+### Power Block Diagram
+![Power Block Diagram](PowerBlockDiagram.png)
+
+### Communication Block Diagram
+![Communication Block Diagram](CommunicationBlockDiagram.png)
 ```cpp
 
 ```
