@@ -29,11 +29,11 @@ To be implemented
 )
   - [Python Connectivity Script](http://johnallen.us/?p=236)
   - [JSON UDP](https://arduinojson.org/v5/example/udp-beacon/)
+  - [JSON UDP](https://randomnerdtutorials.com/decoding-and-encoding-json-with-arduino-or-esp8266/)
   - [PWM Forum Post](https://arduino.stackexchange.com/questions/421/generating-pwm-signal-1-2-ms-333-hz
 )
   - [VESC PPM Arduino](https://www.electric-skateboard.builders/t/rc-servo-ppm-controller-with-arduino/28581)
   - [ESC Arduino](https://forum.arduino.cc/index.php?topic=270309.0)
-  -
 
 ### Repositories to Use
   - [Xbox Controller](https://github.com/FRC4564/Xbox)
