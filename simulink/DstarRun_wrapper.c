@@ -30,8 +30,8 @@
  * Output function
  *
  */
-void DstarRun_Outputs_wrapper(const real_T *start,
-			const real_T *goal,
+void DstarRun_Outputs_wrapper(const real_T *goal,
+			const real_T *start,
 			const real_T *obst,
 			real_T *shortPath)
 {
@@ -41,12 +41,17 @@ Dstar *dstar;
 bool b_autoreplan = false;
 
 list<state> path;
+int l = 2052;
 int steps = 10;
 int s;
 
 // Use Dstar
 dstar = new Dstar();
 dstar->init(start[0],start[1],goal[0],goal[1]);
+for (int i = 0; i < l; i++)
+{
+  dstar->updateCell(obst[i], obst[i+l], -1);
+} 
 dstar->replan();
 path = dstar->getPath();
 

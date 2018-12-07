@@ -16,8 +16,20 @@ int main()
   int x[steps];
   int y[steps];
 
+  double obst[10];
+  int obstLen = sizeof(obst)/sizeof(double);
+  for (int i = 0; i < obstLen/2; i++)
+  {
+    obst[i] = 5;
+    obst[i+obstLen/2] = i+3;
+  }
+
   dstar = new Dstar();
-  dstar->init(50,10,50,100);
+  dstar->init(1,5,10,5);
+  for (int i = 0; i < obstLen/2; i++)
+  {
+    dstar->updateCell(obst[i], obst[i+obstLen/2], -1);
+  }
   dstar->replan();
   path = dstar->getPath();
 
@@ -37,7 +49,7 @@ int main()
   }
 
   printf("--------------------\n");
-  printf("Path Empty: %d\nPath Length: %d\n",e,s);
+  printf("Obst Len: %d\nPath Length: %d\n",obstLen,s);
   printf("--------------------\n");
   printf("#  X   Y\n");
   for (int i = 0; i < steps; i++)

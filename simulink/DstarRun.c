@@ -26,7 +26,7 @@
  * | See matlabroot/simulink/src/sfuntmpl_doc.c for a more detailed template |
  *  ------------------------------------------------------------------------- 
  *
- * Created: Mon Nov 26 15:10:36 2018
+ * Created: Mon Dec 03 13:56:02 2018
  */
 
 #define S_FUNCTION_LEVEL 2
@@ -35,7 +35,7 @@
 /* %%%-SFUNWIZ_defines_Changes_BEGIN --- EDIT HERE TO _END */
 #define NUM_INPUTS            3
 /* Input Port  0 */
-#define IN_PORT_0_NAME        start
+#define IN_PORT_0_NAME        goal
 #define INPUT_0_WIDTH         1
 #define INPUT_DIMS_0_COL      2
 #define INPUT_0_DTYPE         real_T
@@ -52,7 +52,7 @@
 #define IN_0_BIAS             0
 #define IN_0_SLOPE            0.125
 /* Input Port  1 */
-#define IN_PORT_1_NAME        goal
+#define IN_PORT_1_NAME        start
 #define INPUT_1_WIDTH         1
 #define INPUT_DIMS_1_COL      2
 #define INPUT_1_DTYPE         real_T
@@ -124,8 +124,8 @@
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 #include "simstruc.h"
 
-extern void DstarRun_Outputs_wrapper(const real_T *start,
-			const real_T *goal,
+extern void DstarRun_Outputs_wrapper(const real_T *goal,
+			const real_T *start,
 			const real_T *obst,
 			real_T *shortPath);
 /*====================*
@@ -255,12 +255,12 @@ static void mdlStart(SimStruct *S)
  */
 static void mdlOutputs(SimStruct *S, int_T tid)
 {
-    const real_T *start = (real_T *) ssGetInputPortRealSignal(S, 0);
-    const real_T *goal = (real_T *) ssGetInputPortRealSignal(S, 1);
+    const real_T *goal = (real_T *) ssGetInputPortRealSignal(S, 0);
+    const real_T *start = (real_T *) ssGetInputPortRealSignal(S, 1);
     const real_T *obst = (real_T *) ssGetInputPortRealSignal(S, 2);
     real_T *shortPath = (real_T *) ssGetOutputPortRealSignal(S, 0);
 
-    DstarRun_Outputs_wrapper(start, goal, obst, shortPath);
+    DstarRun_Outputs_wrapper(goal, start, obst, shortPath);
 
 }
 
