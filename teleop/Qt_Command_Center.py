@@ -24,7 +24,7 @@ def try_disconnect(wifi_conn=None):
 
 def try_connect(wifi_conn=None):
     # TODO: connect to Arduino Wifi
-    UDP_IP = "192.168.50.93"
+    UDP_IP = "192.168.50.92"
     UDP_PORT = 4210
     MESSAGE = "Hello, World!"
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -34,14 +34,23 @@ def try_connect(wifi_conn=None):
     wifi_conn.setText("Wifi Connected")
 
 
+def send_to_arduino(message):
+    UDP_IP = "192.168.50.92"
+    UDP_PORT = 4210
+    MESSAGE = message
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.sendto(MESSAGE.encode(), (UDP_IP, UDP_PORT))
+    sock.close()
+
+
 def robotState(state=None):
     global ROBOT_STATE
     while 1:
         if ROBOT_STATE == "TELE":
-            print("Teleop!")
+            x = 1
             # TODO: Xbox Controller Commands
         elif ROBOT_STATE == "AUTO":
-            print("Autonomous!")
+            y = 2
             # TODO: talk to nuc
 
 
@@ -50,6 +59,7 @@ def autonomous(teleBtn, autoBtn):
     ROBOT_STATE = "AUTO"
     autoBtn.setEnabled(False)
     teleBtn.setEnabled(True)
+    send_to_arduino("AUTONOMOUS")
 
 
 def teleop(teleBtn, autoBtn):
@@ -57,6 +67,7 @@ def teleop(teleBtn, autoBtn):
     ROBOT_STATE = "TELE"
     teleBtn.setEnabled(False)
     autoBtn.setEnabled(True)
+    send_to_arduino("TELEOP")
 
 
 class Window(QWidget):
@@ -126,6 +137,22 @@ class Window(QWidget):
 
         self.setLayout(layout)
         self.show()
+
+    def keyPressEvent(self, e):
+        if e.key() == QtCore.Qt.Key_Escape:
+            self.close()
+        elif e.key() == QtCore.Qt.Key_W:
+            print("UP")
+            send_to_arduino("UP")
+        elif e.key() == QtCore.Qt.Key_A:
+            print("LEFT")
+            send_to_arduino("LEFT")
+        elif e.key() == QtCore.Qt.Key_D:
+            print("RIGHT")
+            send_to_arduino("RIGHT")
+        elif e.key() == QtCore.Qt.Key_S:
+            print("DOWN")
+            send_to_arduino("DOWN")
 
 
 def app():

@@ -19,7 +19,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-Note: Select the mode (program mode/throttle setting mode/normal mode), run this code, 
+Note: Select the mode (program mode/throttle setting mode/normal mode), run this code,
 then power on the ESC. Don't power on the ESC before this code is executing, otherwise
 the ESC will see random values on the PWM pin.
 */
@@ -27,10 +27,10 @@ the ESC will see random values on the PWM pin.
 // Need the Servo library
 #include <Servo.h>
 
-#define NUMMOTORS 4
+#define NUMMOTORS 1
 typedef struct MotorDef
 {
-    Servo   Motor; 
+    Servo   Motor;
     int     Pin;   // Indicates the Pin this motor is connected to
 };
 
@@ -44,7 +44,7 @@ typedef struct ESCSettingsDef
   int High;
 };
 
-ESCSettingsDef ESCSettings; 
+ESCSettingsDef ESCSettings;
 
 //#define PROGRAM_MODE
 //#define THROTTLE_MODE
@@ -59,22 +59,22 @@ int Step = 10;
 
 void setup()
 {
-  
+
 	// Required for I/O from Serial monitor
 	Serial.begin(9600);
 	Serial.println("Setup: Serial port communication at 9600bps");
 	// Attach motors to pins
-	
-        Motors[0].Pin =  11;
-	Motors[1].Pin =  10;
-	Motors[2].Pin =  9;
-	Motors[3].Pin =  8;
 
-        for(int i = 0; i < NUMMOTORS; i++)
-        {
-          int pin = Motors[i].Pin;
-          Motors[i].Motor.attach(pin);
-        }
+  Motors[0].Pin =  2;
+	// Motors[1].Pin =  10;
+	// Motors[2].Pin =  9;
+	// Motors[3].Pin =  8;
+
+  for(int i = 0; i < NUMMOTORS; i++)
+  {
+    int pin = Motors[i].Pin;
+    Motors[i].Motor.attach(pin);
+  }
 
 	// Set the ESC settings to the defaults
 	ESCSettings.Low   = ESC_LOW_DEFAULT;
@@ -97,13 +97,13 @@ void ReadLHSpeed()
 	Serial.println("High Speed is");
 	Serial.print(ESCSettings.High);
 	Serial.println("\n");
- 
+
 }
 
 void SetThrottleRange()
 {
 	Serial.println("In Set Throttle Range mode");
-    
+
 	for (int i = 0; i < NUMMOTORS; i++)
 	{
 	  Motors[i].Motor.write(ESCSettings.High);
@@ -250,5 +250,5 @@ void loop()
 #elif defined PROGRAM_MODE
 	ProgramESC();
 #endif
-  while(1) { } 
+  while(1) { }
 }

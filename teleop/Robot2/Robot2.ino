@@ -4,11 +4,11 @@
 //#include <Adafruit_PWMServoDriver.h>
 #include <Servo.h>
 
-#DEFINE DEBUG 1
+#define DEBUG 1
 
 // WiFi Settings
-const char* ssid = "eduroam"; //Enter your wifi network SSID
-const char* password = ""; //Enter your wifi network password
+const char* ssid = "NAME"; //Enter your wifi network SSID
+const char* password = "PWD"; //Enter your wifi network password
 unsigned int localUDPport = 4210;
 byte packetBuffer[512];
 WiFiUDP Udp;
@@ -28,41 +28,26 @@ const int BUCKET_DIG = 2;
 const int BUCKET_LIFT = 3;
 const int DUMP_LIFT = 4; // TODO: Same signal for both linear acutators???
 
-// Manual control procedures
-void bot_forward(int speed);
-void bot_reverse(int speed);
-void bot_left(int speed);
-void bot_right(int speed);
-void bot_mine(); // rotates diging mechanism
-
-// Automated procedures
-void bot_deposit();
-void bot_deploy_elevator(); // potentiometer limits
-void bot_retract_elevator();
+Servo testservo;
 
 // Initialize motor and ESC control
 void init_motors() {
-
+  testservo.attach(2);
 }
 
 // Wireless Setup
 void connectWifi() {
-#ifdef DEBUG
-  Serial.print("Connecting to WIFI network");
   WiFi.hostname("ESP8266");
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
+#ifdef DEBUG
     Serial.print(".");
   }
-  Serial.println("");
   Serial.println("WiFi connected with IP address");
   Serial.println(WiFi.localIP());
 #else
-  WiFi.hostname("ESP8266");
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED)
-    delay(500);
+  }
 #endif
 }
 
@@ -78,20 +63,51 @@ void setup() {
   op_mode = TELEOP;
 }
 
+
 // Robot State Machine
 void loop() {
-  // TODO: Receive UDP packet
-  if () { // UDP == "FAIL"
-    // TODO: kill actuator power (relay off)
+  // Read UDP Packet
+  int packetSize = Udp.parsePacket();
+  if (packetSize) { // receive incoming UDP packets
+    #ifdef DEBUG
+    Serial.printf("Received %d bytes from %s, port %d\n", packetSize, Udp.remoteIP().toString().c_str(), Udp.remotePort());
+    #endif
+    int len = Udp.read(packetBuffer, 255);
+    if (len > 0)
+      packetBuffer[len] = 0;
+    #ifdef DEBUG
+    Serial.printf("UDP packet contents: %s\n", packetBuffer);
+    #endif
   }
+  /* FAILURE: kill actuator power (relay off) */
+  if (strcmp((char *) packetBuffer, "FAILURE") == 0) {
+    Serial.println("FAILURE");
+  }
+  /* AUTONOMOUS Mode */
   else if (op_mode == AUTONOMOUS) {
-    if () { // UDP == "Teleop"
-      op_mode == TELEOP;
+    if (strcmp((char *) packetBuffer, "TELEOP") == 0) {
+      op_mode = TELEOP;
+      #ifdef DEBUG
+      Serial.println("TELEOP Mode");
+      #endif
     } else {
       // TODO: Talk to Nuc for commands
     }
   }
-  else if (op_mode == TELEOP){
-    // TODO: receive movement commands from UDP
+  /* TELEOP Mode */
+  else if (op_mode == TELEOP) {
+    if (strcmp((char *) packetBuffer, "AUTONOMOUS") == 0) {
+      op_mode = AUTONOMOUS;
+      #ifdef DEBUG
+      Serial.println("AUTONOMOUS Mode");
+      #endif
+    } else if (strcmp((char *) packetBuffer, "UP") == 0)
+      testservo.write(0);
+    else if (strcmp((char *) packetBuffer, "DOWN") == 0)
+      testservo.write(180);
+    else if (strcmp((char *) packetBuffer, "LEFT") == 0)
+      testservo.write(0);
+    else if (strcmp((char *) packetBuffer, "RIGHT") == 0)
+      testservo.write(180);
   }
 }
