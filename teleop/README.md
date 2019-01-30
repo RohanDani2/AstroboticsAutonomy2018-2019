@@ -34,6 +34,7 @@ To be implemented
 )
   - [VESC PPM Arduino](https://www.electric-skateboard.builders/t/rc-servo-ppm-controller-with-arduino/28581)
   - [ESC Arduino](https://forum.arduino.cc/index.php?topic=270309.0)
+  - [WebSocket JSON Python Arduino](https://techtutorialsx.com/2017/11/05/esp32-arduino-websocket-server-receiving-and-parsing-json-content/)
 
 ### Repositories to Use
   - [Xbox Controller](https://github.com/FRC4564/Xbox)
