@@ -3,6 +3,7 @@
 //#include <Wire.h>
 //#include <Adafruit_PWMServoDriver.h>
 #include <Servo.h>
+#include <ESC.h>
 
 #define DEBUG 1
 
@@ -22,17 +23,19 @@ const int TELEOP = 43;
 int op_mode;
 
 // MOTOR PINS
-const int LOCO_RIGHT = 0;
-const int LOCO_LEFT = 1;
-const int BUCKET_DIG = 2;
-const int BUCKET_LIFT = 3;
-const int DUMP_LIFT = 4; // TODO: Same signal for both linear acutators???
+const int LOCO_RIGHT = 16;
+const int LOCO_LEFT = 2;
+const int BUCKET_DIG = 0;
+const int BUCKET_LIFT = 0;
+const int DUMP_LIFT = 0; // TODO: Same signal for both linear acutators???
 
-Servo testservo;
+
+Servo leftDrive, rightDrive;
 
 // Initialize motor and ESC control
 void init_motors() {
-  testservo.attach(2);
+  leftDrive.attach(LOCO_LEFT);
+  rightDrive.attach(LOCO_RIGHT);
 }
 
 // Wireless Setup
@@ -101,13 +104,21 @@ void loop() {
       #ifdef DEBUG
       Serial.println("AUTONOMOUS Mode");
       #endif
-    } else if (strcmp((char *) packetBuffer, "UP") == 0)
-      testservo.write(0);
-    else if (strcmp((char *) packetBuffer, "DOWN") == 0)
-      testservo.write(180);
-    else if (strcmp((char *) packetBuffer, "LEFT") == 0)
-      testservo.write(0);
-    else if (strcmp((char *) packetBuffer, "RIGHT") == 0)
-      testservo.write(180);
+    } else if (strcmp((char *) packetBuffer, "UP") == 0){
+      rightDrive.writeMicroseconds(1600);
+      leftDrive.writeMicroseconds(1600);
+    } else if (strcmp((char *) packetBuffer, "DOWN") == 0){
+      rightDrive.writeMicroseconds(1300);
+      leftDrive.writeMicroseconds(1300);
+    } else if (strcmp((char *) packetBuffer, "LEFT") == 0){
+      rightDrive.writeMicroseconds(1600);
+      leftDrive.writeMicroseconds(1500);
+    } else if (strcmp((char *) packetBuffer, "RIGHT") == 0){
+      rightDrive.writeMicroseconds(1500);
+      leftDrive.writeMicroseconds(1600);
+    } else if (strcmp((char *) packetBuffer, "STOP") == 0){
+      rightDrive.writeMicroseconds(1500);
+      leftDrive.writeMicroseconds(1500);
+    }
   }
 }

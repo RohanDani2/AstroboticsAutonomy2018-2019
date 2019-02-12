@@ -1,6 +1,15 @@
 """
 VT Astrobotics
 Command Center
+2019
+
+Author: Colin Grundey
+
+Description:
+    Command center to communicate with robot (Arduino) through network UDP/TCP.
+    Xbox controller input and GUI for feedback and control.
+    robot_state_thread implements each state.
+    PyQt thread modifies state in response to input.
 
 """
 
@@ -11,8 +20,7 @@ import socket
 import _thread
 import threading
 
-mythreads = []
-
+""" Main System State """
 ROBOT_STATE = "TELE"
 
 
@@ -24,7 +32,7 @@ def try_disconnect(wifi_conn=None):
 
 def try_connect(wifi_conn=None):
     # TODO: connect to Arduino Wifi
-    UDP_IP = "192.168.50.92"
+    UDP_IP = "10.0.0.148" #"192.168.50.92"
     UDP_PORT = 4210
     MESSAGE = "Hello, World!"
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -35,7 +43,7 @@ def try_connect(wifi_conn=None):
 
 
 def send_to_arduino(message):
-    UDP_IP = "192.168.50.92"
+    UDP_IP = "10.0.0.148" #"192.168.50.92"
     UDP_PORT = 4210
     MESSAGE = message
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -52,6 +60,8 @@ def robotState(state=None):
         elif ROBOT_STATE == "AUTO":
             y = 2
             # TODO: talk to nuc
+        elif ROBOT_STATE == "FAILURE":
+            x = 2
 
 
 def autonomous(teleBtn, autoBtn):
@@ -75,7 +85,7 @@ class Window(QWidget):
         super(Window, self).__init__()
         self.setGeometry(800, 500, 500, 300)
         self.setWindowTitle("Command Center")
-        self.setWindowIcon(QtGui.QIcon('astro-logo.png'))  # astro-logo.jpg
+        self.setWindowIcon(QtGui.QIcon('images/logos/astro-logo.png'))  # astro-logo.jpg
 
         layout = QVBoxLayout()
 
@@ -140,6 +150,7 @@ class Window(QWidget):
 
     def keyPressEvent(self, e):
         if e.key() == QtCore.Qt.Key_Escape:
+            send_to_arduino("STOP")
             self.close()
         elif e.key() == QtCore.Qt.Key_W:
             print("UP")
@@ -153,6 +164,9 @@ class Window(QWidget):
         elif e.key() == QtCore.Qt.Key_S:
             print("DOWN")
             send_to_arduino("DOWN")
+        elif e.key() == QtCore.Qt.Key_R:
+            print("STOP")
+            send_to_arduino("STOP")
 
 
 def app():
