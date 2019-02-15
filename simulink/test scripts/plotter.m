@@ -8,4 +8,5 @@ function plotter(in)
 %     plot(x, y, 'b.');
 %     xlim([-8000, 8000]);
 %     ylim([-8000, 8000]);
+    drawnow
 end
