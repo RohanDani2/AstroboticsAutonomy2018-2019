@@ -1,7 +1,8 @@
 function plotter(in)
     size1 = size(in,2);
     theta = linspace((-pi/4),(5*pi/4), size1);
-    polar(theta,in,'b.');
+    polarscatter(theta,in,'b.');
+    rlim([0 2000]);
     
 %     figure (2)
 %     [x,y] = pol2cart(theta,in);

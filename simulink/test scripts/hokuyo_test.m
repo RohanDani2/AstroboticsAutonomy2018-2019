@@ -22,29 +22,35 @@ fopen(obj1);
 fprintf(obj1, 'MD0000108001100');
 
 scan_encoded = blanks(0);
-while 1
-    wait = fscanf(obj1);
-    
-    % waiting for rx 99b\n (no error checking)
-    if size(wait,2) == 4 
-        fscanf(obj1);
-        break;
-    end 
-end 
+num_scans = 0;
 
 while 1
+    while 1
+        check = fscanf(obj1);
+        check = check(1:end-1);
+        disp(check);
+
+        if strcmp(check, '99b')
+            fscanf(obj1);
+            break;
+        end 
+    end 
     for i = 1:51
         dblock = fscanf(obj1);
-        dblock = dblock(1:end-2)
+        dblock = dblock(1:end-2);
+        disp([int2str(i) '. ' dblock]);
         scan_encoded = [scan_encoded dblock];
         len = size(scan_encoded, 2);
 
-        if i == 51
-            scan_decoded = decoder(scan_encoded);
-            plotter(scan_decoded);
-            scan_encoded = blanks(0);
-            for j = 1:4
-                fscanf(obj1)
+        if i == 51 
+            disp([len i num_scans]);
+            num_scans = num_scans + 1;
+            if len == 3243
+                scan_decoded = decoder(scan_encoded);
+                plotter(scan_decoded);
+                scan_encoded = blanks(0);
+            else
+                scan_encoded = blanks(0);
             end
         end
     end
