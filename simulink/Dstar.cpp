@@ -158,7 +158,7 @@ void Dstar::setG(state u, double g) {
  * --------------------------
  * Sets the rhs value for state u
  */
-double Dstar::setRHS(state u, double rhs) {
+void Dstar::setRHS(state u, double rhs) {
 
   makeNewCell(u);
   cellHash[u].rhs = rhs;
