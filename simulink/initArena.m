@@ -25,8 +25,8 @@ limit(:,1) = limit(:,1) + distance_from_wall/2;
 limit(:,2) = limit(:,2) + distance_from_wall/2;
 
 % Generate random end location 
-endPtx = randi([size3, xwall-size3]);
-endPty = ywall - distance_from_wall - 2*size3;
+endPtx = randi([size3, xwall-size3]); 
+endPty = ywall - distance_from_wall - 2*size2;
 endPt = horzcat(endPtx, endPty); 
 
 % Generate 3 obstacles at semi-random locations and 2 crosses (craters)
