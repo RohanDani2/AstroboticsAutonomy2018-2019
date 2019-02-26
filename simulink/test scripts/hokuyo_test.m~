@@ -38,7 +38,7 @@ disp('*******************************************************************');
 
 scan_encoded = blanks(3243);
 num_scans = 1;
-corrupted_scans = 0;
+currupted_
 corrupted = 0;
 
 while 1
@@ -64,11 +64,10 @@ while 1
             scan_encoded((64*i-63):(64*i)) = dblock;
         else
             corrupted = 1;
-            corrupted_scans = corrupted_scans + 1;
         end
 
         if i == 51 
-            disp(['scan number: ' int2str(num_scans) '  corrupted scans: ' int2str(corrupted_scans)]);
+            disp(['Scan number: ' int2str(num_scans)]);
             num_scans = num_scans + 1;
             if corrupted == 0 
                 scan_decoded = decoder(scan_encoded);
