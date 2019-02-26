@@ -6,10 +6,10 @@ clf('reset')
 xwall = 58;
 ywall = 37;
 distance_from_wall = 2;
-obstxmin = 10;
-obstxmax = 45;
-obstymin = 10;
-obstymax = 25; 
+obstxmin = 15;
+obstxmax = 58-15;
+obstymin = 2;
+obstymax = 35; 
 size1 = 1; % obstacles 10 - 30 cm diameter 
 size2 = 2;
 size3 = 3; 
@@ -25,9 +25,12 @@ limit(:,1) = limit(:,1) + distance_from_wall/2;
 limit(:,2) = limit(:,2) + distance_from_wall/2;
 
 % Generate random end location 
-endPtx = randi([size3, xwall-size3]); 
-endPty = ywall - distance_from_wall - 2*size2;
+endPtx = xwall - distance_from_wall - size3; 
+endPty = randi([6, ywall-6]);
 endPt = horzcat(endPtx, endPty); 
+
+% Randmly select arena side (swap location of trough)
+side = randi([0 1]);
 
 % Generate 3 obstacles at semi-random locations and 2 crosses (craters)
 % init points are bottom left corner for rectangles, center for crosses
