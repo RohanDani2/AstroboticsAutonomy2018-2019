@@ -4,6 +4,10 @@ function detected = detectRotated(points, cone)
     detected = zeros(1,r);
 
     for j = 1:r
+        if any(isnan(points(j,:)))
+            detected(j) = 0;
+            continue
+        end
         for i = 1:3
             a = cone(i,:) - cone(i+1,:);
             a(:,[1 2]) = a(:,[2 1]);
