@@ -40,7 +40,7 @@ In case of emergency or unknown error, a relay will be able to control the power
   - [WebSocket JSON Python Arduino](https://techtutorialsx.com/2017/11/05/esp32-arduino-websocket-server-receiving-and-parsing-json-content/)
 
 ### Repositories to Use
-  - [Xbox Controller](https://github.com/FRC4564/Xbox)
+  - [Xbox Controller](https://github.com/r4dian/Xbox-360-Controller-for-Python)
   - [ESP8266 RC Car](https://github.com/indrekots/esp8266-rc-car-controller)
   - [VESC Arduino](https://github.com/shusain/eskatecontroller/)
   - [Arduino JSON](https://github.com/bblanchon/ArduinoJson/)
