@@ -19,9 +19,14 @@ from PyQt5 import QtGui, QtCore
 import socket
 import _thread
 import threading
+from xinput import *
 
 """ Main System State """
 ROBOT_STATE = "TELE"
+
+
+def mymap(x, in_min, in_max, out_min, out_max):
+  return int((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
 
 
 def try_disconnect(wifi_conn=None):
@@ -51,12 +56,36 @@ def send_to_arduino(message):
     sock.close()
 
 
-def robotState(state=None):
+def robotState( void ):
     global ROBOT_STATE
+
+    joysticks = XInputJoystick.enumerate_devices()
+    device_numbers = list(map(attrgetter('device_number'), joysticks))
+    if not joysticks:
+        print('No Joystick Found\n')
+        sys.exit(0)
+    j = joysticks[0]
+
+    @j.event
+    def on_button(button, pressed):
+        print('button', button, pressed)
+
+    @j.event
+    def on_axis(axis, value):
+        if axis == 'l_thumb_y':
+            value = mymap(value, -0.5, 0.5, 0, 255)
+            print('axis', axis, value)
+            # TODO: Send pwm value
+        elif axis == 'r_thumb_y':
+            value = mymap(value, -0.5, 0.5, 0, 255)
+            print('axis', axis, value)
+            # TODO: Send pwm value
+
+
     while 1:
         if ROBOT_STATE == "TELE":
-            x = 1
-            # TODO: Xbox Controller Commands
+            j.dispatch_events()
+            time.sleep(.005)
         elif ROBOT_STATE == "AUTO":
             y = 2
             # TODO: talk to nuc

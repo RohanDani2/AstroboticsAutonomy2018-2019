@@ -51,6 +51,22 @@ void connectWifi() {
 #endif
 }
 
+void readWifi() {
+  // Read UDP Packet
+  int packetSize = Udp.parsePacket();
+  if (packetSize) { // receive incoming UDP packets
+    #ifdef DEBUG
+    Serial.printf("Received %d bytes from %s, port %d\n", packetSize, Udp.remoteIP().toString().c_str(), Udp.remotePort());
+    #endif
+    int len = Udp.read(packetBuffer, 255);
+    if (len > 0)
+      packetBuffer[len] = 0;
+    #ifdef DEBUG
+    Serial.printf("UDP packet contents: %s\n", packetBuffer);
+    #endif
+  }
+}
+
 
 void setup() {
 #ifdef DEBUG
@@ -66,19 +82,6 @@ void setup() {
 
 // Robot State Machine
 void loop() {
-  // Read UDP Packet
-  int packetSize = Udp.parsePacket();
-  if (packetSize) { // receive incoming UDP packets
-    #ifdef DEBUG
-    Serial.printf("Received %d bytes from %s, port %d\n", packetSize, Udp.remoteIP().toString().c_str(), Udp.remotePort());
-    #endif
-    int len = Udp.read(packetBuffer, 255);
-    if (len > 0)
-      packetBuffer[len] = 0;
-    #ifdef DEBUG
-    Serial.printf("UDP packet contents: %s\n", packetBuffer);
-    #endif
-  }
   /* FAILURE: kill actuator power (relay off) */
   if (strcmp((char *) packetBuffer, "FAILURE") == 0) {
     Serial.println("FAILURE");
