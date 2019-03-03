@@ -1,0 +1,25 @@
+function [newOccupancyMap] = obstacleInflation(occupancyMap,botRadius)
+    botRadius = round(botRadius);
+    [rows,columns] = size(occupancyMap);
+    newOccupancyMap = occupancyMap;
+    for i = 1:rows
+        for j = 1:columns
+             if (occupancyMap(i,j) == 1)
+               if (newOccupancyMap(i+botRadius,j) ~= 1)
+                    newOccupancyMap(i+botRadius,j) = 1;
+               end 
+               elseif(newOccupancyMap(i-botRadius,j) ~= 1)
+                    newOccupancyMap(i-botRadius,j) = 1;
+               end
+               elseif(newOccupancyMap(i,j+botRadius) ~= 1)
+                    newOccupancyMap(i,j+botRadius) = 1;
+               end
+               newOccupancyMap(i,j-botRadius) = 1;
+               newOccupancyMap(i-botRadius,j-botRadius) = 1;
+               newOccupancyMap(i+botRadius,j-botRadius) = 1;
+               newOccupancyMap(i+botRadius,j+botRadius) = 1;
+               newOccupancyMap(i-botRadius,j+botRadius) = 1;
+            end  
+        end    
+    end
+end 
