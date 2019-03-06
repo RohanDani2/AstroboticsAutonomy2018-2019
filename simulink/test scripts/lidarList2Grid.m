@@ -1,33 +1,35 @@
-function lidarGrid = lidarList2Grid(data)%create occupancy map out of lidar scan. PASS ADJUSTED DATA HERE 
-    fullLidarMap = zeros(3600,5700); %y,x
-    x = data(:,1);
-    y = data(:,2);
-    x1 = round(x,0);
-    y1 = round(y,0);
-    len = length(x1); 
+function lidarGrid = lidarList2Grid(lidarRaw)
+    fullLidarGrid = zeros(3600,5700);
+    lidarRaw = round(lidarRaw, 0);
+    x = lidarRaw(:,1);
+    y = lidarRaw(:,2);
+    len = length(x);
+    
+    % Map list to grid and delete points outside of map limits 
     count = 0;
     for i = 1:len
-        if (x1(i) >= 1) && (x1(i) <= 5700) && (y1(i)>=1) && (y1(i)<=3600)
-            fullLidarMap(y1(i),x1(i)) = 1; 
-            count = count+1;
+        if (x(i)>=1) && (x(i)<=5700) && (y(i)>=1) && (y(i)<=3600)
+            fullLidarGrid(y(i), x(i)) = 1; 
+            count = count + 1;
         end
     end
    
-    lidarGrid = zeros(36,57); %%change size to 36 x 57 for full compression 
+    % Reduce grid by 100x by stepping through 100x100 mini grids 
+    lidarGrid = zeros(36,57); 
     q = 1;
     flag = 0;
-    for i = 1:100:3500 % y change to 1:100:3500 for full compression
+    for i = 1:100:3500 
         r = 1; 
-        for j = 1:100:5600 % x change to 1:100:5600 for full compression
+        for j = 1:100:5600 
             if flag == 1
                 break
             end
-            for k = i:(i+100) % change to i + 100
+            for k = i:(i+100) 
                 if flag == 1
                     break
                 end
-                for l = j:(j+100) % change to i + 100 
-                    if (fullLidarMap(k,l) == 1)
+                for l = j:(j+100) 
+                    if (fullLidarGrid(k,l) == 1)
                         lidarGrid(q,r) = 1;
                         flag = 1;
                         break
@@ -40,3 +42,4 @@ function lidarGrid = lidarList2Grid(data)%create occupancy map out of lidar scan
         q = q+1;
     end
 end
+ 
