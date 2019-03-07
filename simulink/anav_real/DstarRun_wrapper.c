@@ -33,7 +33,7 @@
 void DstarRun_Outputs_wrapper(const real_T *goal,
 			const real_T *start,
 			const real_T *obst,
-			real_T *short_path)
+			real_T *shortPath)
 {
 /* %%%-SFUNWIZ_wrapper_Outputs_Changes_BEGIN --- EDIT HERE TO _END */
 // Set up
@@ -64,8 +64,8 @@ else
 
 for (int i = 0; i < steps; i++)
 {
-  short_path[i] = path.front().x;
-  short_path[i+steps] = path.front().y;
+  shortPath[i] = path.front().x;
+  shortPath[i+steps] = path.front().y;
   path.pop_front();
 }
 /* %%%-SFUNWIZ_wrapper_Outputs_Changes_END --- EDIT HERE TO _BEGIN */

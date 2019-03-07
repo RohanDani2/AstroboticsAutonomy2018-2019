@@ -26,7 +26,7 @@
  * | See matlabroot/simulink/src/sfuntmpl_doc.c for a more detailed template |
  *  ------------------------------------------------------------------------- 
  *
- * Created: Wed Mar 06 20:39:03 2019
+ * Created: Thu Mar 07 00:07:41 2019
  */
 
 #define S_FUNCTION_LEVEL 2
@@ -88,7 +88,7 @@
 
 #define NUM_OUTPUTS           1
 /* Output Port  0 */
-#define OUT_PORT_0_NAME       short_path
+#define OUT_PORT_0_NAME       shortPath
 #define OUTPUT_0_WIDTH        10
 #define OUTPUT_DIMS_0_COL     2
 #define OUTPUT_0_DTYPE        real_T
@@ -113,7 +113,7 @@
 #define CONT_STATES_IC        [0]
 
 #define SFUNWIZ_GENERATE_TLC  0
-#define SOURCEFILES           "__SFB__/home/hal/Documents/astro/AstroboticsAutonomy2018-2019/simulink/anav_real/Dstar.cpp"
+#define SOURCEFILES           "__SFB__/Users/alex/Desktop/Astro/astrobotics_autonomy/simulink/anav_real/Dstar.cpp"
 #define PANELINDEX            8
 #define USE_SIMSTRUCT         0
 #define SHOW_COMPILE_STEPS    0
@@ -127,7 +127,7 @@
 extern void DstarRun_Outputs_wrapper(const real_T *goal,
 			const real_T *start,
 			const real_T *obst,
-			real_T *short_path);
+			real_T *shortPath);
 /*====================*
  * S-function methods *
  *====================*/
@@ -258,9 +258,9 @@ static void mdlOutputs(SimStruct *S, int_T tid)
     const real_T *goal = (real_T *) ssGetInputPortRealSignal(S, 0);
     const real_T *start = (real_T *) ssGetInputPortRealSignal(S, 1);
     const real_T *obst = (real_T *) ssGetInputPortRealSignal(S, 2);
-    real_T *short_path = (real_T *) ssGetOutputPortRealSignal(S, 0);
+    real_T *shortPath = (real_T *) ssGetOutputPortRealSignal(S, 0);
 
-    DstarRun_Outputs_wrapper(goal, start, obst, short_path);
+    DstarRun_Outputs_wrapper(goal, start, obst, shortPath);
 
 }
 

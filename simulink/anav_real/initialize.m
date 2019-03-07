@@ -12,7 +12,7 @@ teleop_controller = 0; % Indicate presence of teleop controller
 
 arena_size = [58 37]; % X and Y measurements of arena in decimeters
 d_from_wall = 2; % Distance from arena wall to virtual limit in decimeters
-% TODO eliminate above parameter and handle the issue more logically 
+% TODO should probably just always be 1 or 0 
 
 %% Set colormap to inverted grayscale 
 if visualize == 1
@@ -25,7 +25,7 @@ limit = generateRectangle(arena_size(1)-d_from_wall,arena_size(2)-d_from_wall);
 limit(:,1) = limit(:,1) + d_from_wall/2;
 limit(:,2) = limit(:,2) + d_from_wall/2;
 
-%% Generate pure visual objects 
+%% Generate static pure visual objects 
 wall = generateRectangle(arena_size(1),arena_size(2));
 trough = generateRectangle(15, 5);
 visualObjects(:,:,1) = wall;
