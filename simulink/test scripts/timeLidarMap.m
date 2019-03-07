@@ -4,8 +4,8 @@ load('notgray.mat')
 lidarGrid = 0;
 alpha = 0.5;
 beta = 0.5;
-botRadius = 250;
-%for i = 1:5
+botRadius = 100;
+for i = 1:5
     lidar_scan(:,1) = lidar_scan(:, 1) + 100;
     inflated = lidarInflate(lidar_scan, botRadius);
     tic
@@ -43,5 +43,5 @@ botRadius = 250;
     title('Gray-Scale Robot Probability Map')
     colormap(notgray)
     pcolor(lidarGrid)
-    %pause
-%end
+    pause
+end
