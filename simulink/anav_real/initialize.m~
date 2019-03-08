@@ -1,4 +1,5 @@
 % fix sObs seed position limits 
+% limit for mode = 2|3 is 100x larger 
 % d_2_wall should inform mapGrid size 
 
 %% Reset workspace, command window, and figures
@@ -12,7 +13,6 @@ doVis = 1; % 1 to visualize map and vehicle state, 0 to not create any plots
 
 mapDim = [58 37]; % X and Y measurements of arena in decimeters
 d_from_wall = 2; % Distance from arena wall to virtual limit in decimeters
-scale = 100; % multiplier between system and lidar precision (mm to decimeter) 
 
 %% Set colormap to inverted grayscale 
 if doVis 
@@ -26,10 +26,9 @@ if mode == 1
     limit(:,1) = limit(:,1) + d_from_wall/2;
     limit(:,2) = limit(:,2) + d_from_wall/2;
 else 
-    limit = generateRectangle(scale*(mapDim(1)-d_from_wall),...
-                              scale*(mapDim(2)-d_from_wall));
-    limit(:,1) = limit(:,1) + scale*d_from_wall/2;
-    limit(:,2) = limit(:,2) + scale*d_from_wall/2;
+    limit = generateRectangle(mapDim(1)-d_from_wall,mapDim(2)-d_from_wall);
+    limit(:,1) = limit(:,1) + d_from_wall/2;
+    limit(:,2) = limit(:,2) + d_from_wall/2;
 end
 
 %% Generate static pure visual objects 
@@ -83,5 +82,4 @@ if mode == 1
     sObs(:,:,2) = vertcat(obstacle2, nan(maxDim-size(obstacle2,1),3));
     sObs(:,:,3) = vertcat(obstacle3, nan(maxDim-size(obstacle3,1),3));
     sObs(:,:,4) = vertcat(obstacle4, nan(maxDim-size(obstacle4,1),3));
-    sObs(:,:,5) = vertcat(obstacle5, nan(maxDim-size(obstacle5,1),3));
 end

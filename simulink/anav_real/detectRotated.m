@@ -1,4 +1,7 @@
 function detected = detectRotated(points, cone)
+    % return vector with 1 if corresponding coordinate in points is inside
+    % cone, otherwise 0
+    
     r = size(points,1);
     d = zeros(r,3);
     detected = zeros(1,r);
