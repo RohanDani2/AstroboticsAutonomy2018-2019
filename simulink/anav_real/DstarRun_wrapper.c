@@ -15,7 +15,6 @@
 /* %%%-SFUNWIZ_wrapper_includes_Changes_BEGIN --- EDIT HERE TO _END */
 #include "Dstar.h"
 /* %%%-SFUNWIZ_wrapper_includes_Changes_END --- EDIT HERE TO _BEGIN */
-#define u_width 1
 #define y_width 2
 
 /*
@@ -30,10 +29,9 @@
  * Output function
  *
  */
-void DstarRun_Outputs_wrapper(const real_T *goal,
-			const real_T *start,
-			const real_T *obst,
-			real_T *shortPath)
+void DstarRun_Outputs_wrapper(const real_T *costs,
+			real_T *dspath,
+			const int_T u_width)
 {
 /* %%%-SFUNWIZ_wrapper_Outputs_Changes_BEGIN --- EDIT HERE TO _END */
 // Set up
@@ -41,11 +39,18 @@ Dstar *dstar;
 bool b_autoreplan = false;
 
 list<state> path;
-int l = 2052;
+double l; 
 int steps = 10;
 int s;
 
+dspath[0] = costs[0];
+dspath[10] = 0;
+dspath[1] = costs[3];
+dspath[11] = costs[4];
+dspath[2] = costs[6];
+dspath[12] = costs[7];
 // Use Dstar
+/*
 dstar = new Dstar();
 dstar->init(start[0],start[1],goal[0],goal[1]);
 for (int i = 0; i < l; i++)
@@ -64,8 +69,8 @@ else
 
 for (int i = 0; i < steps; i++)
 {
-  shortPath[i] = path.front().x;
-  shortPath[i+steps] = path.front().y;
+  dspath[i] = path.front().x;
+  dspath[i+steps] = path.front().y;
   path.pop_front();
 }
 /* %%%-SFUNWIZ_wrapper_Outputs_Changes_END --- EDIT HERE TO _BEGIN */

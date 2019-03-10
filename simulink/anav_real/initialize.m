@@ -1,35 +1,31 @@
-% fix sObs seed position limits 
-% d_2_wall should inform mapGrid size 
-
-%% Reset workspace, command window, and figures
+%% Reset workspace, command window, and figures 
 clear
 clc
-clf('reset')
+clf
 
 %% Config
 mode = 1; % 1 for simulation, 2 for motors and lidar, 3 for motors, lidar, and pozyx
-doVis = 1; % 1 to visualize map and vehicle state, 0 to not create any plots 
 
-mapDim = [58 37]; % X and Y measurements of arena in decimeters
-d_from_wall = 2; % Distance from arena wall to virtual limit in decimeters
+mapDim = [58 37]; % X and Y measurements of arena in whole decimeters
 scale = 100; % multiplier between system and lidar precision (mm to decimeter) 
 
-%% Set colormap to inverted grayscale 
-if doVis 
-    load('notgray.mat')
-    colormap(notgray)
-end
+%% Set colormap to inverted blue scale and generate surface point vectors 
+load('notbone.mat')
+colormap(notbone)
+
+verticiesX = repmat((0:mapDim(1)-1) + 0.5, mapDim(2), 1);
+verticiesY = repmat(rot90((0:mapDim(2)-1) + 0.5, 3), 1, mapDim(1));
+verticies = cat(3, verticiesX, verticiesY);
 
 %% Generate virtual wall limit obstacle 
 if mode == 1
-    limit = generateRectangle(mapDim(1)-d_from_wall,mapDim(2)-d_from_wall);
-    limit(:,1) = limit(:,1) + d_from_wall/2;
-    limit(:,2) = limit(:,2) + d_from_wall/2;
+    limit = generateRectangle(mapDim(1)-2,mapDim(2)-2);
+    limit(:,1) = limit(:,1) + 1;
+    limit(:,2) = limit(:,2) + 1;
 else 
-    limit = generateRectangle(scale*(mapDim(1)-d_from_wall),...
-                              scale*(mapDim(2)-d_from_wall));
-    limit(:,1) = limit(:,1) + scale*d_from_wall/2;
-    limit(:,2) = limit(:,2) + scale*d_from_wall/2;
+    limit = generateRectangle(scale*(mapDim(1)-2),scale*(mapDim(2)-2));
+    limit(:,1) = limit(:,1) + scale/2;
+    limit(:,2) = limit(:,2) + scale/2;
 end
 
 %% Generate static pure visual objects 
@@ -43,7 +39,7 @@ if mode == 1
     % Obstacle min and max loacations in decimeters 
     obstxmin = 15;
     obstxmax = mapDim(1) - obstxmin;
-    obstymin = 2;
+    obstymin = 5;
     obstymax = mapDim(2) - obstymin; 
     % Obstacle sizes, competition has 30 cm ostacles and 30 cm craters
     size1 = 1; 
@@ -67,8 +63,8 @@ if mode == 1
     obstacle3(:,1) = obstacle3(:,1) + xobst_init(3);
     obstacle3(:,2) = obstacle3(:,2) + yobst_init(3);
     obstacle4 = generateCross(size4);
-    obstacle4(:,1) = obstacle4(:,1) + xobst_init(4);
-    obstacle4(:,2) = obstacle4(:,2) + yobst_init(4);
+    obstacle4(:,1) = obstacle4(:,1) + 13;%xobst_init(4);
+    obstacle4(:,2) = obstacle4(:,2) + 13;%yobst_init(4);
     obstacle5 = generateCross(size5);
     obstacle5(:,1) = obstacle5(:,1) + xobst_init(5);
     obstacle5(:,2) = obstacle5(:,2) + yobst_init(5);

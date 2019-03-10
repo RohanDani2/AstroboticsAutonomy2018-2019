@@ -26,24 +26,24 @@
  * | See matlabroot/simulink/src/sfuntmpl_doc.c for a more detailed template |
  *  ------------------------------------------------------------------------- 
  *
- * Created: Thu Mar 07 00:07:41 2019
+ * Created: Sun Mar 10 05:19:41 2019
  */
 
 #define S_FUNCTION_LEVEL 2
 #define S_FUNCTION_NAME DstarRun
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 /* %%%-SFUNWIZ_defines_Changes_BEGIN --- EDIT HERE TO _END */
-#define NUM_INPUTS            3
+#define NUM_INPUTS            1
 /* Input Port  0 */
-#define IN_PORT_0_NAME        goal
-#define INPUT_0_WIDTH         1
-#define INPUT_DIMS_0_COL      2
+#define IN_PORT_0_NAME        costs
+#define INPUT_0_WIDTH         DYNAMICALLY_SIZED
+#define INPUT_DIMS_0_COL      1
 #define INPUT_0_DTYPE         real_T
 #define INPUT_0_COMPLEX       COMPLEX_NO
 #define IN_0_FRAME_BASED      FRAME_NO
 #define IN_0_BUS_BASED        0
 #define IN_0_BUS_NAME         
-#define IN_0_DIMS             2-D
+#define IN_0_DIMS             1-D
 #define INPUT_0_FEEDTHROUGH   1
 #define IN_0_ISSIGNED         0
 #define IN_0_WORDLENGTH       8
@@ -51,44 +51,10 @@
 #define IN_0_FRACTIONLENGTH   9
 #define IN_0_BIAS             0
 #define IN_0_SLOPE            0.125
-/* Input Port  1 */
-#define IN_PORT_1_NAME        start
-#define INPUT_1_WIDTH         1
-#define INPUT_DIMS_1_COL      2
-#define INPUT_1_DTYPE         real_T
-#define INPUT_1_COMPLEX       COMPLEX_NO
-#define IN_1_FRAME_BASED      FRAME_NO
-#define IN_1_BUS_BASED        0
-#define IN_1_BUS_NAME         
-#define IN_1_DIMS             2-D
-#define INPUT_1_FEEDTHROUGH   1
-#define IN_1_ISSIGNED         0
-#define IN_1_WORDLENGTH       8
-#define IN_1_FIXPOINTSCALING  1
-#define IN_1_FRACTIONLENGTH   9
-#define IN_1_BIAS             0
-#define IN_1_SLOPE            0.125
-/* Input Port  2 */
-#define IN_PORT_2_NAME        obst
-#define INPUT_2_WIDTH         2052
-#define INPUT_DIMS_2_COL      2
-#define INPUT_2_DTYPE         real_T
-#define INPUT_2_COMPLEX       COMPLEX_NO
-#define IN_2_FRAME_BASED      FRAME_NO
-#define IN_2_BUS_BASED        0
-#define IN_2_BUS_NAME         
-#define IN_2_DIMS             2-D
-#define INPUT_2_FEEDTHROUGH   1
-#define IN_2_ISSIGNED         0
-#define IN_2_WORDLENGTH       8
-#define IN_2_FIXPOINTSCALING  1
-#define IN_2_FRACTIONLENGTH   9
-#define IN_2_BIAS             0
-#define IN_2_SLOPE            0.125
 
 #define NUM_OUTPUTS           1
 /* Output Port  0 */
-#define OUT_PORT_0_NAME       shortPath
+#define OUT_PORT_0_NAME       dspath
 #define OUTPUT_0_WIDTH        10
 #define OUTPUT_DIMS_0_COL     2
 #define OUTPUT_0_DTYPE        real_T
@@ -124,10 +90,9 @@
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 #include "simstruc.h"
 
-extern void DstarRun_Outputs_wrapper(const real_T *goal,
-			const real_T *start,
-			const real_T *obst,
-			real_T *shortPath);
+extern void DstarRun_Outputs_wrapper(const real_T *costs,
+			real_T *dspath,
+			const int_T u_width);
 /*====================*
  * S-function methods *
  *====================*/
@@ -153,36 +118,11 @@ static void mdlInitializeSizes(SimStruct *S)
 
 
     if (!ssSetNumInputPorts(S, NUM_INPUTS)) return;
-    /* Input Port 0 */
-    inputDimsInfo.width = INPUT_0_WIDTH;
-    ssSetInputPortDimensionInfo(S, 0, &inputDimsInfo);
-    ssSetInputPortMatrixDimensions(S, 0, INPUT_0_WIDTH, INPUT_DIMS_0_COL);
-    ssSetInputPortFrameData(S, 0, IN_0_FRAME_BASED);
+    ssSetInputPortWidth(S, 0, INPUT_0_WIDTH);
     ssSetInputPortDataType(S, 0, SS_DOUBLE);
     ssSetInputPortComplexSignal(S, 0, INPUT_0_COMPLEX);
     ssSetInputPortDirectFeedThrough(S, 0, INPUT_0_FEEDTHROUGH);
     ssSetInputPortRequiredContiguous(S, 0, 1); /*direct input signal access*/
-
-    /* Input Port 1 */
-    inputDimsInfo.width = INPUT_1_WIDTH;
-    ssSetInputPortDimensionInfo(S, 1, &inputDimsInfo);
-    ssSetInputPortMatrixDimensions(S, 1, INPUT_1_WIDTH, INPUT_DIMS_1_COL);
-    ssSetInputPortFrameData(S, 1, IN_1_FRAME_BASED);
-    ssSetInputPortDataType(S, 1, SS_DOUBLE);
-    ssSetInputPortComplexSignal(S, 1, INPUT_1_COMPLEX);
-    ssSetInputPortDirectFeedThrough(S, 1, INPUT_1_FEEDTHROUGH);
-    ssSetInputPortRequiredContiguous(S, 1, 1); /*direct input signal access*/
-
-    /* Input Port 2 */
-    inputDimsInfo.width = INPUT_2_WIDTH;
-    ssSetInputPortDimensionInfo(S, 2, &inputDimsInfo);
-    ssSetInputPortMatrixDimensions(S, 2, INPUT_2_WIDTH, INPUT_DIMS_2_COL);
-    ssSetInputPortFrameData(S, 2, IN_2_FRAME_BASED);
-    ssSetInputPortDataType(S, 2, SS_DOUBLE);
-    ssSetInputPortComplexSignal(S, 2, INPUT_2_COMPLEX);
-    ssSetInputPortDirectFeedThrough(S, 2, INPUT_2_FEEDTHROUGH);
-    ssSetInputPortRequiredContiguous(S, 2, 1); /*direct input signal access*/
-
 
     if (!ssSetNumOutputPorts(S, NUM_OUTPUTS)) return;
     /* Output Port 0 */
@@ -207,6 +147,20 @@ static void mdlInitializeSizes(SimStruct *S)
                      SS_OPTION_WORKS_WITH_CODE_REUSE));
 }
 
+#if defined(MATLAB_MEX_FILE)
+#define MDL_SET_INPUT_PORT_WIDTH
+static void mdlSetInputPortWidth(SimStruct *S, int_T port,
+                                 int_T inputPortWidth)
+{
+    ssSetInputPortWidth(S, port, inputPortWidth);
+}
+#define MDL_SET_OUTPUT_PORT_WIDTH
+static void mdlSetOutputPortWidth(SimStruct *S, int_T port,
+                                  int_T outputPortWidth)
+{
+    ssSetOutputPortWidth(S, port, ssGetInputPortWidth(S, 0));
+}
+#endif
 /* Function: mdlInitializeSampleTimes =========================================
  * Abstract:
  *    Specifiy  the sample time.
@@ -255,12 +209,11 @@ static void mdlStart(SimStruct *S)
  */
 static void mdlOutputs(SimStruct *S, int_T tid)
 {
-    const real_T *goal = (real_T *) ssGetInputPortRealSignal(S, 0);
-    const real_T *start = (real_T *) ssGetInputPortRealSignal(S, 1);
-    const real_T *obst = (real_T *) ssGetInputPortRealSignal(S, 2);
-    real_T *shortPath = (real_T *) ssGetOutputPortRealSignal(S, 0);
+    const real_T *costs = (real_T *) ssGetInputPortRealSignal(S, 0);
+    real_T *dspath = (real_T *) ssGetOutputPortRealSignal(S, 0);
+    const int_T u_width = ssGetInputPortWidth(S, 0);
 
-    DstarRun_Outputs_wrapper(goal, start, obst, shortPath);
+    DstarRun_Outputs_wrapper(costs, dspath, u_width);
 
 }
 

@@ -9,7 +9,7 @@ function inflated = inflate(points, r, mode)
 %     points = [30 25; 31 25; 32 25; 33 25];
 %     r = 10;
 %     mode = 1;
-    
+        
     if mode == 1
         n = 500;
     else
@@ -26,8 +26,8 @@ function inflated = inflate(points, r, mode)
     end
 
     % add circle around each point in points
-    len = size(points, 1);
-    inflated = zeros(n*len, 2);
+    len = size(points(any(~isnan(points), 2), :), 1);
+    inflated = zeros(n*len+len, 2);
     circleTrans = zeros(n, 2);
     for i = 1:len
         circleTrans(:, 1) = circle(:, 1) + points(i, 1);
