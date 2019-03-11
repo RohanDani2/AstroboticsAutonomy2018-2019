@@ -34,28 +34,30 @@ void DstarRun_Outputs_wrapper(const real_T *costs,
 			const int_T u_width)
 {
 /* %%%-SFUNWIZ_wrapper_Outputs_Changes_BEGIN --- EDIT HERE TO _END */
-// Set up
-Dstar *dstar;
-bool b_autoreplan = false;
-
-list<state> path;
-double l; 
-int steps = 10;
-int s;
-
+/*
 dspath[0] = costs[0];
 dspath[10] = 0;
 dspath[1] = costs[3];
 dspath[11] = costs[4];
 dspath[2] = costs[6];
 dspath[12] = costs[7];
+*/
+
+// Set up
+Dstar *dstar;
+bool b_autoreplan = false;
+
+list<state> path;
+int steps = 20;
+int s;
+
 // Use Dstar
-/*
 dstar = new Dstar();
-dstar->init(start[0],start[1],goal[0],goal[1]);
-for (int i = 0; i < l; i++)
+dstar->init(costs[3],costs[4],costs[6],costs[7]);
+for (int i = 0; i < costs[0]; i++)
 {
-  dstar->updateCell(obst[i], obst[i+l], -1);
+  if (costs[i*3+11] > 0)
+    dstar->updateCell(costs[i*3+9], costs[i*3+10], costs[i*3+11]);
 } 
 dstar->replan();
 path = dstar->getPath();

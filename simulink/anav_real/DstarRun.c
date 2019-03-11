@@ -26,7 +26,7 @@
  * | See matlabroot/simulink/src/sfuntmpl_doc.c for a more detailed template |
  *  ------------------------------------------------------------------------- 
  *
- * Created: Sun Mar 10 05:19:41 2019
+ * Created: Sun Mar 10 19:46:05 2019
  */
 
 #define S_FUNCTION_LEVEL 2
@@ -55,7 +55,7 @@
 #define NUM_OUTPUTS           1
 /* Output Port  0 */
 #define OUT_PORT_0_NAME       dspath
-#define OUTPUT_0_WIDTH        10
+#define OUTPUT_0_WIDTH        20
 #define OUTPUT_DIMS_0_COL     2
 #define OUTPUT_0_DTYPE        real_T
 #define OUTPUT_0_COMPLEX      COMPLEX_NO
