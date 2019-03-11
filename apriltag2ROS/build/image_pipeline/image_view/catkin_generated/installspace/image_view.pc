@@ -1,0 +1,8 @@
+prefix=/home/rohan/apriltag2ROS/install
+
+Name: image_view
+Description: Description of image_view
+Version: 1.12.23
+Cflags: -I/home/rohan/apriltag2ROS/install/include
+Libs: -L/home/rohan/apriltag2ROS/install/lib 
+Requires: dynamic_reconfigure

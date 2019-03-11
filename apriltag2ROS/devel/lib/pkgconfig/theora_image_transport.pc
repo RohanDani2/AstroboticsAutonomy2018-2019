@@ -1,0 +1,8 @@
+prefix=/home/rohan/apriltag2ROS/devel
+
+Name: theora_image_transport
+Description: Description of theora_image_transport
+Version: 1.9.5
+Cflags: -I/home/rohan/apriltag2ROS/devel/include -I/home/rohan/apriltag2ROS/src/image_transport_plugins/theora_image_transport/include
+Libs: -L/home/rohan/apriltag2ROS/devel/lib -ltheora_image_transport
+Requires: message_runtime std_msgs

@@ -1,0 +1,8 @@
+prefix=/home/rohan/apriltag2ROS/install
+
+Name: usb_cam
+Description: Description of usb_cam
+Version: 0.3.4
+Cflags: -I/home/rohan/apriltag2ROS/install/include
+Libs: -L/home/rohan/apriltag2ROS/install/lib -lusb_cam
+Requires: 

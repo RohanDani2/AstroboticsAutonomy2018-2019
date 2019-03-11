@@ -1,0 +1,8 @@
+prefix=/home/rohan/apriltag2ROS/devel
+
+Name: apriltags2
+Description: Description of apriltags2
+Version: 0.9.8
+Cflags: -I/home/rohan/apriltag2ROS/src/apriltags2_ros/apriltags2/include
+Libs: -L/home/rohan/apriltag2ROS/devel/lib -lapriltags2
+Requires: 

@@ -1,0 +1,8 @@
+prefix=/home/rohan/apriltag2ROS/devel
+
+Name: image_publisher
+Description: Description of image_publisher
+Version: 1.12.23
+Cflags: -I/home/rohan/apriltag2ROS/devel/include
+Libs: -L/home/rohan/apriltag2ROS/devel/lib 
+Requires: 

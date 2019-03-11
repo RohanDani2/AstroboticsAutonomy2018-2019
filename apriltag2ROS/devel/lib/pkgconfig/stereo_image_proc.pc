@@ -1,0 +1,8 @@
+prefix=/home/rohan/apriltag2ROS/devel
+
+Name: stereo_image_proc
+Description: Description of stereo_image_proc
+Version: 1.12.23
+Cflags: -I/home/rohan/apriltag2ROS/devel/include -I/home/rohan/apriltag2ROS/src/image_pipeline/stereo_image_proc/include
+Libs: -L/home/rohan/apriltag2ROS/devel/lib -lstereo_image_proc
+Requires: image_geometry image_proc sensor_msgs stereo_msgs
