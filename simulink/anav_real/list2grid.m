@@ -1,5 +1,5 @@
 function map = list2grid(x, y, xmax, ymax)
-    map = zeros(ymax, xmax);
+    map = false(ymax, xmax);
     len = length(x);
 
     for l = 1:len

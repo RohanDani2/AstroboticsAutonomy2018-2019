@@ -1,0 +1,124 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  1 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   14 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      Dimensions   []\
+      IsTestPoint  0\
+    }\
+    ChartData {\
+      Name         "sfEvent"\
+      Description  "ActiveChartEvent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "doneDoubleBufferReInit"\
+      Description  "DoubleBufferInitCheck"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_active_c10_anav_real"\
+      Description  "StateIsActive"\
+      SFName       "is_active_c10_anav_real"\
+      Path         "is_active_c10_anav_real"\
+      SrcLocation  ""\
+      IsTestPoint  1\
+    }\
+    ChartData {\
+      Name         "is_c10_anav_real"\
+      Description  "StateActiveChild"\
+      SFName       "is_c10_anav_real"\
+      Path         "is_c10_anav_real"\
+      SrcLocation  ""\
+      IsTestPoint  1\
+    }\
+    ChartData {\
+      Name         "is_change_goal"\
+      Description  "StateActiveChild"\
+      SFName       "is_change_goal"\
+      Path         "change_goal.is_change_goal"\
+      SrcLocation  ""\
+      IsTestPoint  1\
+    }\
+    ChartData {\
+      Name         "is_ideal_path"\
+      Description  "StateActiveChild"\
+      SFName       "is_ideal_path"\
+      Path         "ideal_path.is_ideal_path"\
+      SrcLocation  ""\
+      IsTestPoint  1\
+    }\
+    ChartData {\
+      Name         "mine"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "mine"\
+      SrcLocation  ""\
+      Dimensions   [1,2]\
+    }\
+    ChartData {\
+      Name         "home_in"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "home_in"\
+      SrcLocation  ""\
+      Dimensions   [1,2]\
+    }\
+    ChartData {\
+      Name         "bin"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "bin"\
+      SrcLocation  ""\
+      Dimensions   [1,2]\
+    }\
+    ChartData {\
+      Name         "home_out"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "home_out"\
+      SrcLocation  ""\
+      Dimensions   [1,2]\
+    }\
+    ChartData {\
+      Name         "dir"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "dir"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "f"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "f"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "b"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "b"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "stage"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "stage"\
+      SrcLocation  ""\
+    }\
+  }
+  %return ChartDataElements
+%endfunction

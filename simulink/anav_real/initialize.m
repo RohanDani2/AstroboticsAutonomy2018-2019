@@ -4,6 +4,7 @@ clc
 clf
 
 %% Config
+tic
 mode = 1; % 1 for simulation, 2 for motors and lidar, 3 for motors, lidar, and pozyx
 
 mapDim = [58 37]; % X and Y measurements of arena in whole decimeters
@@ -63,8 +64,8 @@ if mode == 1
     obstacle3(:,1) = obstacle3(:,1) + xobst_init(3);
     obstacle3(:,2) = obstacle3(:,2) + yobst_init(3);
     obstacle4 = generateCross(size4);
-    obstacle4(:,1) = obstacle4(:,1) + 13;%xobst_init(4);
-    obstacle4(:,2) = obstacle4(:,2) + 13;%yobst_init(4);
+    obstacle4(:,1) = obstacle4(:,1) + xobst_init(4);
+    obstacle4(:,2) = obstacle4(:,2) + yobst_init(4);
     obstacle5 = generateCross(size5);
     obstacle5(:,1) = obstacle5(:,1) + xobst_init(5);
     obstacle5(:,2) = obstacle5(:,2) + yobst_init(5);
