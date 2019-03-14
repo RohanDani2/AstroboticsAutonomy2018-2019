@@ -1,5 +1,8 @@
 % calculate or load base list from file once and change wiper position on each line
 % 1 faster for big r, 1 and 2 "same" for big t
+% test horzcat/vertcat vs [A B]/[A; B] speed
+% add test lidar mode 
+
 clear
 a = zeros(100,1);
 for i = 1:100
