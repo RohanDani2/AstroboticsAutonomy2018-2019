@@ -7,8 +7,8 @@
 ////////////////// PARAMETERS //////////////////
 ////////////////////////////////////////////////
 
-const int num_tags = 1; 
-uint16_t tags[num_tags] = {0x670c};             // NULL for local 
+const int num_tags = 2; 
+uint16_t tags[num_tags] = {NULL, 0x670c};             // NULL for local 
 boolean use_processing = false;                         // set this to true to output data for the processing sketch
 
 const uint8_t num_anchors = 3;                                    // the number of anchors
