@@ -1,0 +1,9 @@
+function theta = orientation(front, back)
+y = front(1) - back(1);
+x = front(2) - back(2);
+theta = atan(y/x);
+if ((y > 0) && (x < 0)) | ((y < 0) && (x < 0))
+   theta = theta + pi;
+elseif 
+end
+end
