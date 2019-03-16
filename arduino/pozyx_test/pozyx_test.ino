@@ -7,8 +7,8 @@
 ////////////////// PARAMETERS //////////////////
 ////////////////////////////////////////////////
 
-const int num_tags = 2; 
-uint16_t tags[num_tags] = {NULL, 0x670c};                   // NULL for local 
+const int num_tags = 2;                                     // max 2 with 1 local and 1 remote  
+uint16_t tags[num_tags] = {NULL, 0x670c};                   // NULL for local, ID for remote
 boolean use_processing = false;                             // set this to true to output data for the processing sketch
 
 const uint8_t num_anchors = 3;                              // the number of anchors
@@ -19,7 +19,8 @@ int32_t heights[num_anchors] = {737, 737, 737};             // anchor z-coordina
 
 uint8_t algorithm = POZYX_POS_ALG_UWB_ONLY;                 // positioning algorithm to use
 uint8_t dimension = POZYX_2_5D;                             // positioning dimension
-int32_t height = 1067;                                       // height of device, required in 2.5D positioning
+int32_t height = 1067;                                      // height of device, required in 2.5D positioning
+int32_t midpoint = 185;                                     // fixed measurement to midpoint of 2 tags in mm 
 
 float filterFrequency = 0.5;                                // filter position changes faster than this frequency in Hz  
 
@@ -41,18 +42,6 @@ void setup(){
     abort();
   }
 
-  Serial.println(F("----------POZYX POSITIONING V1.1----------"));
-  Serial.println(F("NOTES:"));
-  Serial.println(F("- No parameters required."));
-  Serial.println();
-  Serial.println(F("- System will auto start anchor configuration"));
-  Serial.println();
-  Serial.println(F("- System will auto start positioning"));
-  Serial.println(F("----------POZYX POSITIONING V1.1----------"));
-  Serial.println();
-  Serial.println(F("Performing manual anchor configuration:"));
-
-
   // configures all remote tags and prints the success of their configuration.
   setAnchorsManual();
   setTagsAlgorithm();
@@ -64,8 +53,10 @@ void setup(){
 void loop(){
   coordinates_t position;
   int status;
-  float theta; 
   float xdif, ydif;
+
+  float theta; 
+  float pos[2];  
   
   for(int i = 0; i < num_tags; i++){
     if (tags[i] == NULL){
@@ -82,58 +73,67 @@ void loop(){
         lpFilterXRemote.input(position.x);
         lpFilterYRemote.input(position.y);
       }
-      // calculate angle between line from local to remote and horizontal  
       if (sizeof(tags)/sizeof(tags[0]) == 2){
+        // calculate orientation of line from local to remote
         xdif = lpFilterXRemote.output() - lpFilterXLocal.output();
         ydif = lpFilterYRemote.output() - lpFilterYLocal.output();
         theta = atan2(ydif, xdif);
+
+        // calculate coordinate of midpoint between 2 tags 
+        pos[0] = lpFilterXLocal.output() + midpoint*cos(theta);
+        pos[1] = lpFilterYLocal.output() + midpoint*sin(theta);
+
+        // print position of midpoint and orientation for bound dual tags 
+        printDualTag(pos, theta);
+      }else{
+        // print raw and filtered coordinate of single tag 
+        printSingleTag(position, tags[i]);
       }
-      // print out position and orientation 
-      printPositionOrientation(theta, tags[i]);
-    }else{
+    }else if (!use_processing){
       printErrorCode("positioning", tags[i]);
     }
   }
 }
 
-// prints the coordinates and orientation for either humans or for processing
-void printPositionOrientation(float theta, uint16_t network_id){
-  float filteredX, filteredY;
+// print results for dual tag use 
+void printDualTag(float pos[], float theta){
   if (!use_processing){
-    Serial.print("ID 0x");
-    if (network_id == NULL){
-      Serial.print("NULL");
-      filteredX = lpFilterXLocal.output();
-      filteredY = lpFilterYLocal.output();
-    }else{
-      Serial.print(network_id, HEX);
-      filteredX = lpFilterXRemote.output();
-      filteredY = lpFilterYRemote.output();
-    }
-    Serial.print(", filteredX (mm): ");
-    Serial.print(filteredX);
-    Serial.print(", filteredY (mm): ");
-    Serial.print(filteredY);
+    Serial.print("X (mm): ");
+    Serial.print(pos[0]);
+    Serial.print(", Y (mm): ");
+    Serial.print(pos[1]);
     Serial.print(", theta (deg): ");
-    Serial.println(theta * (180.0/M_PI));
+    Serial.println(theta * 180.0/M_PI);
   }else{
-    Serial.print("ID 0x");
-    if (network_id == NULL){
-      Serial.print("NULL");
-      filteredX = lpFilterXLocal.output();
-      filteredY = lpFilterYLocal.output();
-    }else{
-      Serial.print(network_id, HEX);
-      filteredX = lpFilterXRemote.output();
-      filteredY = lpFilterYRemote.output();
-    }
+    Serial.print(pos[0]);
     Serial.print(",");
-    Serial.print(filteredX);
+    Serial.print(pos[1]);
     Serial.print(",");
-    Serial.print(filteredY);
-    Serial.print(",");
-    Serial.println(theta * (180.0/M_PI));
+    Serial.println(theta);
   }
+}
+
+// print results for single tag use 
+void printSingleTag(coordinates_t coor, uint16_t network_id){
+  float filteredX, filteredY;
+  Serial.print("ID 0x");
+  if (network_id == NULL){
+    Serial.print("NULL");
+    filteredX = lpFilterXLocal.output();
+    filteredY = lpFilterYLocal.output();
+  }else{
+    Serial.print(network_id, HEX);
+    filteredX = lpFilterXRemote.output();
+    filteredY = lpFilterYRemote.output();
+  }
+  Serial.print(", rawX (mm): ");
+  Serial.print(coor.x);
+  Serial.print(", filteredX (mm): ");
+  Serial.print(filteredX);
+  Serial.print(", rawY (mm): ");
+  Serial.print(coor.y);
+  Serial.print(", filteredY (mm): ");
+  Serial.println(filteredY);
 }
 
 // error printing function for debugging
