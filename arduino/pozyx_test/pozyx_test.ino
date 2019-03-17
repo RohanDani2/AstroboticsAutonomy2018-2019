@@ -9,7 +9,7 @@
 
 const int num_tags = 2;                                     // max 2 with 1 local and 1 remote  
 uint16_t tags[num_tags] = {NULL, 0x670c};                   // NULL for local, ID for remote
-boolean use_processing = false;                             // set this to true to output data for the processing sketch
+boolean use_processing = true;                              // set this to true to output data for the processing sketch
 
 const uint8_t num_anchors = 3;                              // the number of anchors
 uint16_t anchors[num_anchors] = {0x6e40, 0x676f, 0x6753};   // the network id of the anchors: change these to the network ids of your anchors.
@@ -98,16 +98,16 @@ void loop(){
 // print results for dual tag use 
 void printDualTag(float pos[], float theta){
   if (!use_processing){
-    Serial.print("X (mm): ");
-    Serial.print(pos[0]);
-    Serial.print(", Y (mm): ");
-    Serial.print(pos[1]);
+    Serial.print("X (cm): ");
+    Serial.print(pos[0]/10.0);
+    Serial.print(", Y (cm): ");
+    Serial.print(pos[1]/10.0);
     Serial.print(", theta (deg): ");
     Serial.println(theta * 180.0/M_PI);
   }else{
-    Serial.print(pos[0]);
+    Serial.print(pos[0]/100.0);
     Serial.print(",");
-    Serial.print(pos[1]);
+    Serial.print(pos[1]/100.0);
     Serial.print(",");
     Serial.println(theta);
   }
