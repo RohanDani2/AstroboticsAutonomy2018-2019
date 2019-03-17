@@ -24,7 +24,8 @@ from xinput import *
 """ Main System State """
 ROBOT_STATE = "TELE"
 
-
+# Maps joystick input to PWM output
+# TODO: map to PPM output (1 <-> 2)
 def mymap(x, in_min, in_max, out_min, out_max):
   return int((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
 
@@ -37,7 +38,7 @@ def try_disconnect(wifi_conn=None):
 
 def try_connect(wifi_conn=None):
     # TODO: connect to Arduino Wifi
-    UDP_IP = "10.0.0.148" #"192.168.50.92"
+    UDP_IP = "192.168.50.61" #"10.0.0.148"
     UDP_PORT = 4210
     MESSAGE = "Hello, World!"
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -48,7 +49,7 @@ def try_connect(wifi_conn=None):
 
 
 def send_to_arduino(message):
-    UDP_IP = "10.0.0.148" #"192.168.50.92"
+    UDP_IP = "192.168.50.61"#"10.0.0.148"
     UDP_PORT = 4210
     MESSAGE = message
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

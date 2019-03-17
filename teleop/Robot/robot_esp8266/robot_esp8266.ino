@@ -1,21 +1,33 @@
-#include <SPI.h>
-#include <WiFiNINA.h>
 #include <WiFiUdp.h>
+#include <ESP8266WiFi.h>
 #include <Servo.h>
 
-#define DEBUG 1
+//#define DEBUG 1
 
-#include "robot_vars.h"
+// ssid: Team_44
+// pwrd: aresbot17
 
 // WiFi Settings
-char packetBuffer[255];
+const char* ssid = "Team_44";
+const char* password = "aresbot17";
+unsigned int localUDPport = 4210;
+byte packetBuffer[512];
 WiFiUDP Udp;
-int wstatus = WL_IDLE_STATUS;
+byte incomingByte = 0;
 
 const int BAUD_RATE = 9600;
 
 // Robot operation state
+const int AUTONOMOUS = 1;
+const int TELEOP = 43;
 int op_mode;
+
+// MOTOR PINS
+const int LOCO_RIGHT = 0;
+const int LOCO_LEFT = 1;
+const int BUCKET_DIG = 2;
+const int BUCKET_LIFT = 3;
+const int DUMP_LIFT = 4; // TODO: Same signal for both linear acutators???
 
 Servo testservo;
 
@@ -26,31 +38,18 @@ void init_motors() {
 
 // Wireless Setup
 void connectWifi() {
-  if (WiFi.status() == WL_NO_MODULE) {
-    #ifdef DEBUG
-    Serial.println("Communication with WiFi module failed!");
-    #endif
-    while (true); // don't continue
+  WiFi.hostname("ESP8266");
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+#ifdef DEBUG
+    Serial.print(".");
   }
-  String fv = WiFi.firmwareVersion();
-  if (fv < "1.0.0") {
-    #ifdef DEBUG
-    Serial.println("Please upgrade the firmware");
-    #endif
+  Serial.println("WiFi connected with IP address");
+  Serial.println(WiFi.localIP());
+#else
   }
-  while (wstatus != WL_CONNECTED) {
-    #ifdef DEBUG
-    Serial.print("Connecting to SSID: ");
-    Serial.println(ASTRO_SSID);
-    #endif
-    wstatus = WiFi.begin(ASTRO_SSID, ASTRO_PASS);
-
-    delay(5000);
-  }
-  #ifdef DEBUG
-  Serial.print("CONNECTED: "); Serial.println(WiFi.localIP());
-  #endif
-  Udp.begin(UDP_PORT_NUM);
+#endif
 }
 
 void readWifi() {
@@ -58,20 +57,13 @@ void readWifi() {
   int packetSize = Udp.parsePacket();
   if (packetSize) { // receive incoming UDP packets
     #ifdef DEBUG
-    Serial.print("Received packet of size ");
-    Serial.println(packetSize);
-    Serial.print("From ");
-    IPAddress remoteIp = Udp.remoteIP();
-    Serial.print(remoteIp);
-    Serial.print(", port ");
-    Serial.println(Udp.remotePort());
+    Serial.printf("Received %d bytes from %s, port %d\n", packetSize, Udp.remoteIP().toString().c_str(), Udp.remotePort());
     #endif
     int len = Udp.read(packetBuffer, 255);
     if (len > 0)
       packetBuffer[len] = 0;
     #ifdef DEBUG
-    Serial.print("UDP packet contents: ");
-    Serial.println(packetBuffer);
+    Serial.printf("UDP packet contents: %s\n", packetBuffer);
     #endif
   }
 }
@@ -83,6 +75,7 @@ void setup() {
   delay(10);
 #endif
   connectWifi();
+  Udp.begin(localUDPport);
   init_motors();
   op_mode = TELEOP;
 }
@@ -90,12 +83,9 @@ void setup() {
 
 // Robot State Machine
 void loop() {
-  readWifi();
   /* FAILURE: kill actuator power (relay off) */
   if (strcmp((char *) packetBuffer, "FAILURE") == 0) {
-    #ifdef DEBUG
     Serial.println("FAILURE");
-    #endif
   }
   /* AUTONOMOUS Mode */
   else if (op_mode == AUTONOMOUS) {
