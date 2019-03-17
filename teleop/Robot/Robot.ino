@@ -12,19 +12,51 @@ char packetBuffer[255];
 WiFiUDP Udp;
 int wstatus = WL_IDLE_STATUS;
 
-const int BAUD_RATE = 9600;
-
 // Robot operation state
 int op_mode;
 
-Servo testservo;
+Servo leftDrive;
+Servo rightDrive;
+Servo bucketDig;
+Servo bucketLift;
 
 // Initialize motor and ESC control
 void init_motors() {
-  testservo.attach(2);
+  leftDrive.attach(LOCO_LEFT);
+  rightDrive.attach(LOCO_RIGHT);
+  bucketDig.attach(BUCKET_DIG);
+  bucketLift.attach(BUCKET_LIFT);
 }
 
-// Wireless Setup
+void initLinearActuators() {
+  pinMode(L_RELAY_K1, OUTPUT);
+  pinMode(L_RELAY_K2, OUTPUT);
+  pinMode(L_RELAY_K3, OUTPUT);
+  pinMode(L_RELAY_K4, OUTPUT);
+}
+
+void stopActuators() {
+  digitalWrite(L_RELAY_K1, LOW);
+  digitalWrite(L_RELAY_K2, LOW);
+  digitalWrite(L_RELAY_K3, LOW);
+  digitalWrite(L_RELAY_K4, LOW);
+}
+
+void dumpActuators(dump_dir dmp_dir) {
+  if (dmp_dir == STOP)
+    stopActuators();
+  else {
+    PinStatus kx, ky;
+    kx = (dmp_dir == EXTEND) ? LOW : HIGH;
+    ky = (dmp_dir == EXTEND) ? HIGH : LOW;
+    digitalWrite(L_RELAY_K1, kx);
+    digitalWrite(L_RELAY_K2, ky);
+    digitalWrite(L_RELAY_K3, kx);
+    digitalWrite(L_RELAY_K4, ky);
+  }
+}
+
+/* Wireless Setup */
 void connectWifi() {
   if (WiFi.status() == WL_NO_MODULE) {
     #ifdef DEBUG
@@ -88,7 +120,7 @@ void setup() {
 }
 
 
-// Robot State Machine
+/* Robot State Machine */
 void loop() {
   readWifi();
   /* FAILURE: kill actuator power (relay off) */
@@ -115,13 +147,20 @@ void loop() {
       #ifdef DEBUG
       Serial.println("AUTONOMOUS Mode");
       #endif
-    } else if (strcmp((char *) packetBuffer, "UP") == 0)
-      testservo.write(0);
-    else if (strcmp((char *) packetBuffer, "DOWN") == 0)
-      testservo.write(180);
-    else if (strcmp((char *) packetBuffer, "LEFT") == 0)
-      testservo.write(0);
-    else if (strcmp((char *) packetBuffer, "RIGHT") == 0)
-      testservo.write(180);
+    } else if (strcmp((char *) packetBuffer, "UP") == 0) {
+      rightDrive.writeMicroseconds(1650);
+      leftDrive.writeMicroseconds(1350);
+    } else if (strcmp((char *) packetBuffer, "DOWN") == 0) {
+      rightDrive.writeMicroseconds(1350);
+      leftDrive.writeMicroseconds(1650);
+    } else if (strcmp((char *) packetBuffer, "LEFT") == 0) {
+      rightDrive.writeMicroseconds(1650);
+      leftDrive.writeMicroseconds(1500);
+    } else if (strcmp((char *) packetBuffer, "RIGHT") == 0) {
+      rightDrive.writeMicroseconds(1500);
+      leftDrive.writeMicroseconds(1350);
+    } else if (strcmp((char *) packetBuffer, "DUMP") == 0) {
+      dumpActuators(EXTEND);
+    }
   }
 }

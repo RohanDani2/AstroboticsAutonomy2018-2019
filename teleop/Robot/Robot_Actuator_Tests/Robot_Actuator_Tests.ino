@@ -25,7 +25,7 @@ const int LOCO_RIGHT = 16;
 const int LOCO_LEFT = 2;
 const int BUCKET_DIG = 0;
 const int BUCKET_LIFT = 0;
-const int DUMP_LIFT = 0; // TODO: Same signal for both linear acutators???
+const int DUMP_LIFT = 0;
 
 
 Servo leftDrive, rightDrive;
