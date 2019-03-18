@@ -20,6 +20,13 @@
 #define LINEAR_POT1  0    // A0
 #define LINEAR_POT2  1    // A1
 
+/* Sensor Pins */
+#define VOLT_SENSOR  2    // A2
+
+/* LED Pins */
+#define R_LED        3    // A3
+#define G_LED        4    // A4
+#define B_LED        5    // A5
 
 /* Robot State vars */
 #define AUTONOMOUS   1
@@ -28,7 +35,7 @@
 enum dump_dir {
   EXTEND,
   RETRACT,
-  STOP
+  STOP_DUMP
 };
 
 enum turn_dir {
@@ -38,5 +45,5 @@ enum turn_dir {
 enum drive_dir {
   FORWARD,
   BACKWARD,
-  STOP
+  STOP_DRIVE
 };

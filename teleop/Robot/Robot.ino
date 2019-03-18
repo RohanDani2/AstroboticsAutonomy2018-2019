@@ -15,10 +15,21 @@ int wstatus = WL_IDLE_STATUS;
 // Robot operation state
 int op_mode;
 
+/* VESC Motors */
 Servo leftDrive;
 Servo rightDrive;
 Servo bucketDig;
 Servo bucketLift;
+
+float readBattVolt() {
+  int rawVoltageReading = analogRead(VOLT_SENSOR);
+  float vIN = (rawVoltageReading * 5.0) / 204.8;
+  #ifdef DEBUG
+  Serial.print("Voltage Reading: ");
+  Serial.println(vIN);
+  #endif
+  return vIN;
+}
 
 // Initialize motor and ESC control
 void init_motors() {
@@ -43,7 +54,7 @@ void stopActuators() {
 }
 
 void dumpActuators(dump_dir dmp_dir) {
-  if (dmp_dir == STOP)
+  if (dmp_dir == STOP_DUMP)
     stopActuators();
   else {
     PinStatus kx, ky;
