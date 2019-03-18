@@ -40,9 +40,6 @@ void DstarRun_Start_wrapper(void **pW)
  */
 
 pW[0] = new Dstar();
-
-
-
 /* %%%-SFUNWIZ_wrapper_Start_Changes_END --- EDIT HERE TO _BEGIN */
 }
 /*
