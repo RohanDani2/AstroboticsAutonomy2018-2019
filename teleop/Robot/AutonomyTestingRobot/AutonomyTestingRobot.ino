@@ -22,7 +22,7 @@ enum drive_dir {
 
 /* Constant speeds for testing purposes */
 const int forwardSpeed = 1650;
-const int reverseSpeed = 1350;
+const int reverseSpeed = 1250;
 
 Servo driveMotor;
 Servo steeringServo;
@@ -42,8 +42,12 @@ void turn(turn_dir tr_dir) {
 void drive(drive_dir dr_dir) {
   int towrite;
   if (dr_dir == STOP) towrite = 1500;
-  else (dr_dir == FORWARD) ? forwardSpeed : reverseSpeed;
+  else towrite = (dr_dir == FORWARD) ? forwardSpeed : reverseSpeed;
   driveMotor.writeMicroseconds(towrite);
+}
+
+void testdrive() {
+  driveMotor.writeMicroseconds(1100);
 }
 
 void setup() {
@@ -56,14 +60,20 @@ byte serialCMD;
 
 void loop() {
   // Read Serial command
-  if (Serial.available() > 0) {
-    serialCMD = Serial.read();
-    Serial.print("Serial Command: ");
-    Serial.println(serialCMD);
-  }
-  if (serialCMD == '1') turn(RIGHT);
-  else if (serialCMD == '2') turn(LEFT);
-  else if (serialCMD == '3') drive(FORWARD);
-  else if (serialCMD == '4') drive(BACKWARD);
-  else if (serialCMD == '5') drive(STOP);
+//  if (Serial.available() > 0) {
+//    serialCMD = Serial.read();
+//    Serial.print("Serial Command: ");
+//    Serial.println(serialCMD);
+//  }
+//  if (serialCMD == '1') turn(RIGHT);
+//  else if (serialCMD == '2') turn(LEFT);
+//  else if (serialCMD == '3') drive(FORWARD);
+//  else if (serialCMD == '4') drive(BACKWARD);
+//  else if (serialCMD == '5') drive(STOP);
+//  delay(100);
+
+
+  testdrive();
+
+
 }
