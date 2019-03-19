@@ -52,21 +52,6 @@ void DstarRun_Outputs_wrapper(const real_T *costs,
 			const int_T u_width)
 {
 /* %%%-SFUNWIZ_wrapper_Outputs_Changes_BEGIN --- EDIT HERE TO _END */
-/*
-real_T *x = (real_T *)pW[0];
-if (*x == 0) 
-{
-    x[0] = 1;
-    dspath[0] =  *x;
-    memset(pW[0], 1, 1);
-}
-else 
-{
-    dspath[0] = *x;
-    memset(pW[0], 0, 1);
-}
-*/
-
 // Set up
 list<state> path;
 Dstar *dstar = static_cast<Dstar*>(pW[0]); 
