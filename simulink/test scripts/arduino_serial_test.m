@@ -1,10 +1,10 @@
-W = evalin('caller','whos'); %or 'base'
-doesExist = ismember('a',{W(:).name});
-if doesExist
-    stopasync(a)
-    fclose(a);
-    delete(a) 
-end
+% W = evalin('caller','whos'); %or 'base'
+% doesExist = ismember('a',{W(:).name});
+% if doesExist
+%     stopasync(a)
+%     fclose(a);
+%     delete(a) 
+% end
 
 clear 
 a = serial('/dev/cu.usbmodem1421');
@@ -34,3 +34,7 @@ while 1
     end
     i = i + 1;
 end  
+
+stopasync(a)
+fclose(a);
+delete(a)
