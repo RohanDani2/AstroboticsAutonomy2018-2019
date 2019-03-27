@@ -1,14 +1,28 @@
 
 #include <Servo.h>
 
+/* Linear Actuator Pins */
 #define L_RELAY_K1   7
 #define L_RELAY_K2   8
 #define L_RELAY_K3   12
 #define L_RELAY_K4   13
+#define EXTEND_BTN   7
+#define RETRACT_BTN  8
+#define LINEAR_LED   2
 
-int motor1, motor2, motor3, motor4, motor5, motor6, extendBTN, retractBTN;
+/* Motor Pins */
+#define MOTOR1       3
+#define MOTOR2       5
+#define MOTOR3       6
 
-Servo m1, m2, m3, m4, m5, m6;
+/* Potentiometer Pins */ 
+#define POT1         0
+#define POT2         1
+#define POT3         2
+
+int motor1, motor2, motor3, extendBTN, retractBTN;
+
+Servo m1, m2, m3;
 
 void initLinearActuators() {
   pinMode(L_RELAY_K1, OUTPUT);
@@ -36,55 +50,48 @@ void extendActuators() {
   digitalWrite(L_RELAY_K2, LOW);
   digitalWrite(L_RELAY_K3, LOW);
   digitalWrite(L_RELAY_K4, HIGH);
-}
+} 
 
 void setup() {
   Serial.begin(9600);
-  m1.attach(1);
-  m2.attach(2);
-  m3.attach(3);
-  m4.attach(4);
-  m5.attach(5);
-  m6.attach(6);
-  pinMode(7, INPUT); // Extend Button
-  pinMode(8, INPUT); // Retract Button
+  m1.attach(MOTOR1);
+  m2.attach(MOTOR2);
+  m3.attach(MOTOR3);
+  pinMode(EXTEND_BTN, INPUT);
+  pinMode(RETRACT_BTN, INPUT);
+  pinMode(LINEAR_LED, OUTPUT);
   initLinearActuators();
 }
 
 void loop() {
-  motor1 = map(analogRead(0), 0, 1023, 1500, 2000);
-  motor2 = map(analogRead(1), 0, 1023, 1500, 2000);
-  motor3 = map(analogRead(2), 0, 1023, 1500, 2000);
-  motor4 = map(analogRead(3), 0, 1023, 1500, 2000);
-  motor5 = map(analogRead(4), 0, 1023, 1500, 2000);
-  motor6 = map(analogRead(5), 0, 1023, 1500, 2000);
+  /* Map to PPM Value */
+  motor1 = map(analogRead(POT1), 0, 1023, 1500, 2000);
+  motor2 = map(analogRead(POT2), 0, 1023, 1500, 2000);
+  motor3 = map(analogRead(POT3), 0, 1023, 1500, 2000);
 
   m1.writeMicroseconds(motor1);
   m2.writeMicroseconds(motor2);
   m3.writeMicroseconds(motor3);
-  m4.writeMicroseconds(motor4);
-  m5.writeMicroseconds(motor5);
-  m6.writeMicroseconds(motor6);
 
-  extendBTN = digitalRead(7);
-  retractBTN = digitalRead(8);
+  extendBTN = digitalRead(EXTEND_BTN);
+  retractBTN = digitalRead(RETRACT_BTN);
+  digitalWrite(LINEAR_LED, extendBTN | retractBTN);
 
-  if (extendBTN == HIGH)  extendActuators();
-  else stopActuators();
+  if (extendBTN == HIGH)
+    extendActuators();
+  else 
+    stopActuators();
 
-  if (retractBTN == HIGH)  retractActuators();
-  else stopActuators();
+  if (retractBTN == HIGH)
+     retractActuators();
+  else 
+    stopActuators();
   
   Serial.print("Motor1: ");
   Serial.print(motor1);
   Serial.print("\tMotor2: ");
   Serial.print(motor2);
   Serial.print("\tMotor3: ");
-  Serial.print(motor3);
-  Serial.print("\tMotor4: ");
-  Serial.print(motor4);
-  Serial.print("\tMotor5: ");
-  Serial.print(motor5);
-  Serial.print("\tMotor6: ");
-  Serial.println(motor6);
+  Serial.print("\tExtending: ");
+  Serial.println(extendBTN);
 }
