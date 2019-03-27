@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/VT_Cmd_Center.py" line="148" mnemonic="9" />
+    <bookmark url="file://$PROJECT_DIR$/VT_Cmd_Center.py" line="152" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac5f23d2-4687-431f-9853-137fb8c94920" name="Default" comment="" />
@@ -13,64 +13,30 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.4877907">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-          <file leaf-file-name="VT_Cmd_Center.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/VT_Cmd_Center.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-4183">
-                  <caret line="27" column="33" lean-forward="false" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
-                  <folding>
-                    <element signature="e#321#331#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-          <file leaf-file-name="xinput.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/xinput.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="119">
-                  <caret line="277" column="19" lean-forward="false" selection-start-line="277" selection-start-column="19" selection-end-line="277" selection-end-column="19" />
-                  <folding>
-                    <element signature="e#463#476#0" expanded="true" />
-                    <element signature="e#1195#1322#0" expanded="false" />
-                    <element signature="e#1371#1475#0" expanded="false" />
-                    <element signature="e#1533#1627#0" expanded="false" />
-                    <element signature="e#2247#2866#0" expanded="false" />
-                    <element signature="e#2901#3140#0" expanded="false" />
-                    <element signature="e#3548#4009#0" expanded="false" />
-                    <element signature="e#4078#4256#0" expanded="false" />
-                    <element signature="e#4370#4828#0" expanded="false" />
-                    <element signature="e#4866#4901#0" expanded="false" />
-                    <element signature="e#4958#5152#0" expanded="false" />
-                    <element signature="e#5216#5666#0" expanded="false" />
-                    <element signature="e#5715#7010#0" expanded="false" />
-                    <element signature="e#7051#7482#0" expanded="false" />
-                    <element signature="e#7534#7872#0" expanded="false" />
-                    <element signature="e#7925#8123#0" expanded="false" />
-                    <element signature="e#8176#9219#0" expanded="false" />
-                    <element signature="e#9274#9730#0" expanded="false" />
-                    <element signature="e#9803#9852#0" expanded="false" />
-                    <element signature="e#9939#9943#0" expanded="false" />
-                    <element signature="e#9989#9993#0" expanded="false" />
-                    <element signature="e#10045#10049#0" expanded="false" />
-                    <element signature="e#10099#10103#0" expanded="false" />
-                    <element signature="e#10150#10233#0" expanded="false" />
-                    <element signature="e#10292#12009#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
+      <file leaf-file-name="VT_Cmd_Center.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/VT_Cmd_Center.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="191" column="33" lean-forward="false" selection-start-line="191" selection-start-column="33" selection-end-line="191" selection-end-column="33" />
+              <folding>
+                <element signature="e#321#331#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QLabel.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.PyCharmCE2017.2/system/python_stubs/-1563432472/PyQt5/QtWidgets/QLabel.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7740">
+              <caret line="263" column="8" lean-forward="false" selection-start-line="263" selection-start-column="8" selection-end-line="263" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -101,8 +67,8 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-10" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="525" />
     <option name="width" value="1100" />
     <option name="height" value="1390" />
   </component>
@@ -140,8 +106,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -341,14 +307,14 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-10" y="0" width="1100" height="1390" extended-state="0" />
+    <frame x="-11" y="-11" width="2182" height="1402" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3710575" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12268519" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23724696" sideWeight="0.5037037" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35775527" sideWeight="0.4962963" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22267206" sideWeight="0.4962963" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -373,39 +339,11 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sample.py" />
     <entry file="file://$PROJECT_DIR$/XboxController.py" />
     <entry file="file://$PROJECT_DIR$/xinput.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#463#476#0" expanded="true" />
-            <element signature="e#1195#1322#0" expanded="false" />
-            <element signature="e#1371#1475#0" expanded="false" />
-            <element signature="e#1533#1627#0" expanded="false" />
-            <element signature="e#2247#2866#0" expanded="false" />
-            <element signature="e#2901#3140#0" expanded="false" />
-            <element signature="e#3548#4009#0" expanded="false" />
-            <element signature="e#4078#4256#0" expanded="false" />
-            <element signature="e#4370#4828#0" expanded="false" />
-            <element signature="e#4866#4901#0" expanded="false" />
-            <element signature="e#4958#5152#0" expanded="false" />
-            <element signature="e#5216#5666#0" expanded="false" />
-            <element signature="e#5715#7010#0" expanded="false" />
-            <element signature="e#7051#7482#0" expanded="false" />
-            <element signature="e#7534#7872#0" expanded="false" />
-            <element signature="e#7925#8123#0" expanded="false" />
-            <element signature="e#8176#9219#0" expanded="false" />
-            <element signature="e#9274#9730#0" expanded="false" />
-            <element signature="e#9803#9852#0" expanded="false" />
-            <element signature="e#9939#9943#0" expanded="false" />
-            <element signature="e#9989#9993#0" expanded="false" />
-            <element signature="e#10045#10049#0" expanded="false" />
-            <element signature="e#10099#10103#0" expanded="false" />
-            <element signature="e#10150#10233#0" expanded="false" />
-            <element signature="e#10292#12009#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -626,41 +564,22 @@
     <entry file="file://$PROJECT_DIR$/xinput.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="277" column="19" lean-forward="false" selection-start-line="277" selection-start-column="19" selection-end-line="277" selection-end-column="19" />
-          <folding>
-            <element signature="e#463#476#0" expanded="true" />
-            <element signature="e#1195#1322#0" expanded="false" />
-            <element signature="e#1371#1475#0" expanded="false" />
-            <element signature="e#1533#1627#0" expanded="false" />
-            <element signature="e#2247#2866#0" expanded="false" />
-            <element signature="e#2901#3140#0" expanded="false" />
-            <element signature="e#3548#4009#0" expanded="false" />
-            <element signature="e#4078#4256#0" expanded="false" />
-            <element signature="e#4370#4828#0" expanded="false" />
-            <element signature="e#4866#4901#0" expanded="false" />
-            <element signature="e#4958#5152#0" expanded="false" />
-            <element signature="e#5216#5666#0" expanded="false" />
-            <element signature="e#5715#7010#0" expanded="false" />
-            <element signature="e#7051#7482#0" expanded="false" />
-            <element signature="e#7534#7872#0" expanded="false" />
-            <element signature="e#7925#8123#0" expanded="false" />
-            <element signature="e#8176#9219#0" expanded="false" />
-            <element signature="e#9274#9730#0" expanded="false" />
-            <element signature="e#9803#9852#0" expanded="false" />
-            <element signature="e#9939#9943#0" expanded="false" />
-            <element signature="e#9989#9993#0" expanded="false" />
-            <element signature="e#10045#10049#0" expanded="false" />
-            <element signature="e#10099#10103#0" expanded="false" />
-            <element signature="e#10150#10233#0" expanded="false" />
-            <element signature="e#10292#12009#0" expanded="false" />
-          </folding>
+          <caret line="277" column="20" lean-forward="false" selection-start-line="277" selection-start-column="20" selection-end-line="277" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.2/system/python_stubs/-1563432472/PyQt5/QtWidgets/QLabel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7740">
+          <caret line="263" column="8" lean-forward="false" selection-start-line="263" selection-start-column="8" selection-end-line="263" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VT_Cmd_Center.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4183">
-          <caret line="27" column="33" lean-forward="false" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+        <state relative-caret-position="294">
+          <caret line="191" column="33" lean-forward="false" selection-start-line="191" selection-start-column="33" selection-end-line="191" selection-end-column="33" />
           <folding>
             <element signature="e#321#331#0" expanded="true" />
           </folding>

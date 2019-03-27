@@ -53,18 +53,24 @@ void stopActuators() {
   digitalWrite(L_RELAY_K4, LOW);
 }
 
+void retractActuator() {
+  digitalWrite(L_RELAY_K1, LOW);
+  digitalWrite(L_RELAY_K2, HIGH);
+  digitalWrite(L_RELAY_K3, HIGH);
+  digitalWrite(L_RELAY_K4, LOW);
+}
+
+void extendActuator() {
+  digitalWrite(L_RELAY_K1, HIGH);
+  digitalWrite(L_RELAY_K2, LOW);
+  digitalWrite(L_RELAY_K3, LOW);
+  digitalWrite(L_RELAY_K4, HIGH);
+}
+
 void dumpActuators(dump_dir dmp_dir) {
-  if (dmp_dir == STOP_DUMP)
-    stopActuators();
-  else {
-    PinStatus kx, ky;
-    kx = (dmp_dir == EXTEND) ? LOW : HIGH;
-    ky = (dmp_dir == EXTEND) ? HIGH : LOW;
-    digitalWrite(L_RELAY_K1, kx);
-    digitalWrite(L_RELAY_K2, ky);
-    digitalWrite(L_RELAY_K3, kx);
-    digitalWrite(L_RELAY_K4, ky);
-  }
+  if (dmp_dir == STOP_DUMP)   stopActuators();
+  else if (dmp_dir == EXTEND) extendActuator();
+  else if(dmp_dir == RETRACT) retractActuator();
 }
 
 /* Wireless Setup */
@@ -158,6 +164,12 @@ void loop() {
       #ifdef DEBUG
       Serial.println("AUTONOMOUS Mode");
       #endif
+    } else if (strcmp((char *) packetBuffer, "STOP") == 0) {
+      stopActuators();
+      rightDrive.writeMicroseconds(1500);
+      leftDrive.writeMicroseconds(1500);
+      bucketDig.writeMicroseconds(1500);
+      bucketLift.writeMicroseconds(1500);
     } else if (strcmp((char *) packetBuffer, "UP") == 0) {
       rightDrive.writeMicroseconds(1650);
       leftDrive.writeMicroseconds(1350);
@@ -171,7 +183,14 @@ void loop() {
       rightDrive.writeMicroseconds(1500);
       leftDrive.writeMicroseconds(1350);
     } else if (strcmp((char *) packetBuffer, "DUMP") == 0) {
-      dumpActuators(EXTEND);
+      extendActuator();
+    } else if (strcmp((char *) packetBuffer, "RETRACT") == 0) {
+      retractActuator();
+    } else if (strcmp((char *) packetBuffer, "RETRACT MINING") == 0) {
+      bucketDig.writeMicroseconds(1800);
+    } else if (strcmp((char *) packetBuffer, "DEPLOY MINING") == 0) {
+      bucketDig.writeMicroseconds(1200);
     }
   }
+  // TODO: Send Sensor Data: Voltage & Actuator positions
 }

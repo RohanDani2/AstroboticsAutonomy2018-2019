@@ -38,7 +38,7 @@ def try_disconnect(wifi_conn=None):
 
 def try_connect(wifi_conn=None):
     # TODO: connect to Arduino Wifi
-    UDP_IP = "192.168.50.61" #"10.0.0.148"
+    UDP_IP = "10.0.0.102" #"10.0.0.148"
     UDP_PORT = 4210
     MESSAGE = "Hello, World!"
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -49,7 +49,7 @@ def try_connect(wifi_conn=None):
 
 
 def send_to_arduino(message):
-    UDP_IP = "192.168.50.61"#"10.0.0.148"
+    UDP_IP = "10.0.0.102"
     UDP_PORT = 4210
     MESSAGE = message
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -124,6 +124,10 @@ class Window(QWidget):
         sensors = QGroupBox("Sensor Data")
         statuses = QGroupBox("Status")
 
+        # logo_img = QLabel()
+        # logo_img.setPixmap(QtGui.QPixmap("images/logos/Astro-banner.png"))
+        # TODO: resize this
+
         wifi_conn = QLabel("Wifi Disconnected")
         wifi_conn.setStyleSheet("QLabel {background-color: red; color: yellow}")
         xbox_conn = QLabel("Controller Connected")
@@ -170,6 +174,7 @@ class Window(QWidget):
         statuses.setLayout(status_grid)
         sensors.setLayout(sensor_grid)
 
+        # layout.addWidget(logo_img)
         layout.addWidget(connections)
         layout.addWidget(modes)
         layout.addWidget(sensors)
@@ -194,9 +199,24 @@ class Window(QWidget):
         elif e.key() == QtCore.Qt.Key_S:
             print("DOWN")
             send_to_arduino("DOWN")
+        elif e.key() == QtCore.Qt.Key_P:
+            print("STOP")
+            send_to_arduino("STOP")
         elif e.key() == QtCore.Qt.Key_R:
             print("STOP")
             send_to_arduino("STOP")
+        elif e.key() == QtCore.Qt.Key_U:
+            print("RETRACT MINING")
+            send_to_arduino("RETRACT MINING")
+        elif e.key() == QtCore.Qt.Key_V:
+            print("DEPLOY MINING")
+            send_to_arduino("DEPLOY MINING")
+        elif e.key() == QtCore.Qt.Key_Y:
+            print("DUMP")
+            send_to_arduino("DUMP")
+        elif e.key() == QtCore.Qt.Key_V:
+            print("RETRACT")
+            send_to_arduino("RETRACT")
 
 
 def app():
