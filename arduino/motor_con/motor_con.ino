@@ -61,18 +61,16 @@ void drive(dir command) {
 
 void setup() {
   Serial.begin(BAUD_RATE);
-  Serial.println("Begin");
+  //Serial.println("*");
   delay(10);
   init_motors();
 }
 
 void loop() {
-//  if (Serial.available() > 0) {
-//    serialCMD = Serial.read(); 
-//    Serial.println(Serial.available());
-//  }
-    int a = Serial.available();
-    Serial.println(a);
+    if (Serial.available() > 0) {
+      serialCMD = Serial.read(); 
+      Serial.println(serialCMD);
+    } 
 //  Serial.println(0);
 //  Serial.println(1);
 
