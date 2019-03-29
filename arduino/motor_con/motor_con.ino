@@ -67,18 +67,15 @@ void setup() {
 }
 
 void loop() {
-    if (Serial.available() > 0) {
-      serialCMD = Serial.read(); 
-      Serial.println(serialCMD);
-    } 
-//  Serial.println(0);
-//  Serial.println(1);
-
-//  if (serialCMD == 0) drive(STOP);
-//  else if (serialCMD == 1) drive(FOR);
-//  else if (serialCMD == 2) drive(BACK);
-//  else if (serialCMD == 3) drive(CC);
-//  else if (serialCMD == 4) drive(CW);
+  if (Serial.available() > 0) {
+    serialCMD = Serial.read(); 
+    Serial.println(serialCMD);
+    if (serialCMD == '0') drive(STOP);
+    else if (serialCMD == '1') drive(FOR);
+    else if (serialCMD == '2') drive(BACK);
+    else if (serialCMD == '3') drive(CC);
+    else if (serialCMD == '4') drive(CW);
+  }
 
 //  drive(FOR);
 //  delay(2000);
