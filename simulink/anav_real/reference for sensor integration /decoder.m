@@ -2,7 +2,7 @@ function [data] = decoder(in)
     i = 1; 
     j = 1;
     size1 = size(in);
-    data = zeros(1,1081); 
+    data = zeros(1081,1); 
     while i <= size1(2)
         data1 = uint8(in(i)) - uint8('0');
         data2 = uint8(in(i+1)) - uint8('0');
@@ -13,7 +13,7 @@ function [data] = decoder(in)
         
         BinaryData = horzcat(data1,data2,data3);
         measure = bin2dec(BinaryData);
-        data(1, j) = measure; 
+        data(j, 1) = measure; 
         i = i+3;
         j = j+1; 
     end

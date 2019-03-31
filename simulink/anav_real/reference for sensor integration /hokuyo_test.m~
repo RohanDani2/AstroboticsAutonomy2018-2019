@@ -57,7 +57,7 @@ while 1
     for i = 1:51
         dblock = fscanf(obj1);
         dblock = strip(dblock);
-        dblock = regexprep(dblock, '.$', '', 'lineanchors');
+        dblock = dblock(1:end-1);
         blockSize = size(dblock, 2);
         %disp([int2str(i) '. ' dblock]);
         if (i == 51) && (blockSize == 43)
@@ -75,8 +75,7 @@ while 1
             if ~corrupted 
                 scan_decoded(:,1) = thetas;
                 scan_decoded(:,2) = decoder(scan_encoded);
-                polar(scan_decoded(:,1), scan_decoded(:,2), '.')
-                drawnow
+                plot(scan_decoded(:,1), scan_decoded(:,2)
             else
                 corrupted = 0;
             end

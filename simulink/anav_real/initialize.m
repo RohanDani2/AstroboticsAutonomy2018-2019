@@ -5,35 +5,22 @@ clf
 
 %% Config
 tic
-mode = 1; % 1 for simulation, 2 for motors and lidar, 3 for motors, lidar, and pozyx
-port_arduino_motors = '/dev/ttyACM0'; % serial port ID for motor control'/dev/ttyACM0'ling arduino 
-
+mode = 1; % 1 for sim or 0 for real with all sensors 
 mapDim = [58 37]; % X and Y measurements of arena in whole decimeters
-scale = 100; % multiplier between system and lidar precision (mm to decimeter) 
 
-%% Set serial communication objects 
-% W = evalin('base','whos');
-% doesExist = ismember('COM_arduino_motors',{W(:).name});
-% if doesExist
-%     %fclose(COM_arduino_motors);
-%     delete(COM_arduino_motors) 
-%     clear COM_arduino_motors 
-% end
-% 
-% COM_arduino_motors = serial(port_arduino_motors);
-% set(COM_arduino_motors, 'Timeout', 10)
-% set(COM_arduino_motors, 'BaudRate', 115200)
-% COM_arduino_motors.Terminator = {'CR/LF', 0};
-
-%fopen(COM_arduino_motors);
-
-%% Set colormap to inverted blue scale and generate surface point vectors 
+%% Set colormap to inverted blue scale and generate surface point vectors also set scale  
 load('notbone.mat')
 colormap(notbone)
 
 verticiesX = repmat((0:mapDim(1)-1) + 0.5, mapDim(2), 1);
 verticiesY = repmat(rot90((0:mapDim(2)-1) + 0.5, 3), 1, mapDim(1));
 verticies = cat(3, verticiesX, verticiesY);
+
+if mode
+    scale = 1;
+else
+    scale = 100;
+end
 
 %% Generate virtual wall limit obstacle 
 if mode == 1
