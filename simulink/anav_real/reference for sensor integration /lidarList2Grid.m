@@ -13,7 +13,7 @@ function lidarGrid = lidarList2Grid(lidarRaw)
             count = count + 1;
         end
     end
-   
+    
     % Reduce grid by 100x by stepping through 100x100 mini grids 
     lidarGrid = zeros(36,57); 
     q = 1;

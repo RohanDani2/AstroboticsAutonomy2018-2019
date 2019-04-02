@@ -1,11 +1,9 @@
 function inflated = inflate(points, r, mode)
     % perform object inflation on list of XY coordinates by creating high
     % point-count circles around each point and then rounding the values of
-    % said circles. Alternatively use lower point count, don't round and
-    % follow up with compression compression functionality
-    
-    % TODO use sim inflation mode for real as well
-    
+    % said circles. Can use lower point count for real lidar scan to reduce
+    % matrix size since it will be compressed anyways 
+  
 %     points = [30 25; 31 25; 32 25; 33 25];
 %     r = 10;
 %     mode = 1;
@@ -13,17 +11,18 @@ function inflated = inflate(points, r, mode)
     if mode == 1
         n = 500;
     else
-        n = 100;
+        n = 25;
     end
+    
+    % round points to grid 
+    points = round(points);
     
     % generate x, y list representing origin centered circle with radius r
     theta = linspace(0, 2*pi, n);
     x = rot90(r*cos(theta), 3); 
     y = rot90(r*sin(theta), 3);
     circle = horzcat(x, y);
-    if mode == 1
-        circle = round(circle);
-    end
+    circle = round(circle);
 
     % add circle around each point in points
     len = size(points(any(~isnan(points), 2), :), 1);

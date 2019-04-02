@@ -39,7 +39,8 @@ trough = generateRectangle(15, 5);
 visualObj(:,:,1) = wall;
 visualObj(:,:,2) = vertcat(trough, nan(size(wall,1)-size(trough,1),3));
 
-%% Generate simulated obstacles and combine with limit      
+%% Generate simulated obstacles and combine with limit   
+
 if mode == 1
     % Obstacle min and max loacations in decimeters 
     obstxmin = 15;
@@ -85,4 +86,6 @@ if mode == 1
     sObs(:,:,3) = vertcat(obstacle3, nan(maxDim-size(obstacle3,1),3));
     sObs(:,:,4) = vertcat(obstacle4, nan(maxDim-size(obstacle4,1),3));
     sObs(:,:,5) = vertcat(obstacle5, nan(maxDim-size(obstacle5,1),3));
+else
+    sObs = nan(2, 3);
 end

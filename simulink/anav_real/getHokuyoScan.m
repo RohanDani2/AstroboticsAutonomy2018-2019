@@ -1,9 +1,9 @@
-function scan = getHokuyoScan(obj)
-    coder.extrinsic('fscanf', 'fprintf', 'regexprep')
+function scan_decoded = getHokuyoScan(obj)
+    coder.extrinsic('pad', 'fscanf', 'fprintf', 'regexprep')
     persistent num_scans corrupted_scans
 
     if isempty(num_scans)
-        %disp('*******************************************************************');
+        disp('*******************************************************************');
         for i = 1:13
             if i == 1
                 fprintf(obj, 'RS');
@@ -14,55 +14,55 @@ function scan = getHokuyoScan(obj)
             elseif i == 11
                 fprintf(obj, 'TM2');
             end
-            reset = fscanf(obj);
-            reset = strip(reset);
-            %disp(reset);
+            disp(fscanf(obj));
         end
-        %disp('*******************************************************************');
+        disp('*******************************************************************');
         num_scans = 1;
         corrupted_scans = 0;
     end
     
     scan_encoded = blanks(3243);
-    thetas = linspace(deg2rad(-45), deg2rad(225), 1081);
-    corrupted = 0;
+    scan_decoded = zeros(1081, 2); 
+    scan_decoded(:,1) = linspace(deg2rad(-45), deg2rad(225), 1081);
+    padSize = 100; % max is 66 
+    flag_corrupted = 0;
+    flag_header = 0;
 
     while 1
         fprintf(obj, 'MD0000108001101');
-        while 1
-            check = fscanf(obj);
-            check = strip(check);
-            %disp(check);
-
-            if strcmp(check, '99b')
+        while ~flag_header
+            if strcmp(strip(fscanf(obj)), '99b')
                 fscanf(obj);
+                flag_header = 1;
                 break;
             end 
         end 
         for i = 1:51
-            dblock = fscanf(obj);
-            dblock = strip(dblock);
-            dblock = regexprep(dblock, '.$', '', 'lineanchors');
-            blockSize = size(dblock, 2);
-            %disp([int2str(i) '. ' dblock]);
+            
+            dblock = blanks(padSize); % set to known type 
+            dblockTemp = blanks(padSize); % set to known type 
+            blockSize = 0; % set to known type 
+            dblockTemp = pad(fscanf(obj), padSize, 'right');
+            dblock = pad(regexprep(strip(dblockTemp), '.$', '', 'lineanchors'), padSize, 'right');
+            %disp(dblock);
+            blockSize = size(strip(dblock), 2);
             if (i == 51) && (blockSize == 43)
-                scan_encoded(3201:3243) = dblock;
+                scan_encoded(3201:3243) = strip(dblock);
             elseif blockSize == 64
-                scan_encoded((64*i-63):(64*i)) = dblock;
+                scan_encoded((64*i-63):(64*i)) = strip(dblock);
             else
-                corrupted = 1;
+                flag_corrupted = 1;
                 corrupted_scans = corrupted_scans + 1;
             end
 
             if i == 51 
                 disp(['scan number: ' int2str(num_scans) '  corrupted scans: ' int2str(corrupted_scans)]);
                 num_scans = num_scans + 1;
-                if ~corrupted 
-                    scan(:,1) = thetas;
-                    scan(:,2) = decoder(scan_encoded);
+                if ~flag_corrupted 
+                    scan_decoded(:,2) = decoder(scan_encoded);
                     return
                 else
-                    corrupted = 0;
+                    flag_corrupted = 0;
                 end
                 scan_encoded = blanks(3243);
             end
