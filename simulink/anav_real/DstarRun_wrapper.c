@@ -15,7 +15,7 @@
 /* %%%-SFUNWIZ_wrapper_includes_Changes_BEGIN --- EDIT HERE TO _END */
 #include "Dstar.h"
 
-#define AMP 100 
+#define AMP 100
 #define STEPS 20
 /* %%%-SFUNWIZ_wrapper_includes_Changes_END --- EDIT HERE TO _BEGIN */
 #define y_width 2

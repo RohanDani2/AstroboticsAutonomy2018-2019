@@ -9,7 +9,7 @@
 
 const int num_tags = 2;                                     // max 2 with 1 local and 1 remote  
 uint16_t tags[num_tags] = {NULL, 0x670c};                   // NULL for local, ID for remote
-boolean use_processing = true;                              // set this to true to output data for the processing sketch
+boolean use_processing = true;                              // set this to true to output data for matlab (decimeter and radians)
 
 const uint8_t num_anchors = 3;                              // the number of anchors
 uint16_t anchors[num_anchors] = {0x6e40, 0x676f, 0x6753};   // the network id of the anchors: change these to the network ids of your anchors.

@@ -1,0 +1,26 @@
+function [pos, theta] = getPozyxData(obj)
+    coder.extrinsic('readasync', 'pad', 'fscanf', 'regexprep')
+    persistent count
+    
+    if isempty(count)
+        count = 0;
+    end
+    
+    while 1
+        count = count + 1;
+        readasync(obj)
+        get(obj, 'BytesAvailable');
+        % wait for 20 reads to pass 
+        if count > 20 
+            split = strsplit(fscanf(, ',');
+            data = str2double(split);
+            if size(data, 2) == 3
+                pos = [data(1) data(2)];
+                theta = data(3);
+                return
+            end
+        else
+            fscanf(obj);
+        end
+    end
+end

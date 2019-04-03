@@ -7,7 +7,7 @@
 % end
 
 clear 
-a = serial('/dev/cu.usbmodem1421');
+a = serial('/dev/ttyUSB0');
 a.InputBufferSize = 128;
 fopen(a);
 set(a, 'BaudRate', 115200);
