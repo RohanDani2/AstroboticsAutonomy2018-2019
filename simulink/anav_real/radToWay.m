@@ -6,4 +6,7 @@ function rad = radToWay(point, pos, theta)
     if rad >= pi
         rad = rad - 2*pi;
     end
+    if isnan(rad)
+       disp('RAD IS NAN')
+    end
 end

@@ -24,9 +24,9 @@ enum dir {
 
 /* Constant speeds for testing purposes */
 const int stopSpeed = 1500;
-const int forwardSpeed = 1400;
-const int backwardSpeed = 1600;
-const int turnSpeed = 100;
+const int forwardSpeed = 1375;
+const int backwardSpeed = 1625;
+const int turnSpeed = 125;
 
 Servo driveMotor_Left;
 Servo driveMotor_Right;
@@ -77,6 +77,8 @@ void loop() {
     else if (serialCMD == '4') drive(CW);
   }
 
+//  drive(STOP);
+//  delay(6000);
 //  drive(FOR);
 //  delay(2000);
 //  drive(STOP);
