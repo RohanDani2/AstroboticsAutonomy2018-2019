@@ -12,15 +12,15 @@ uint16_t tags[num_tags] = {NULL, 0x670c};                   // NULL for local, I
 boolean use_processing = true;                              // set this to true to output data for matlab (decimeter and radians)
 
 const uint8_t num_anchors = 3;                              // the number of anchors
-uint16_t anchors[num_anchors] = {0x6e40, 0x676f, 0x6753};   // the network id of the anchors: change these to the network ids of your anchors.
-int32_t anchors_x[num_anchors] = {0, 0, -508};              // anchor x-coorindates in mm
-int32_t anchors_y[num_anchors] = {0, 1372, 689};            // anchor y-coordinates in mm
-int32_t heights[num_anchors] = {737, 737, 737};             // anchor z-coordinates in mm
+uint16_t anchors[num_anchors] = {0x676f, 0x6e40, 0x6753};   // the network id of the anchors: change these to the network ids of your anchors.
+int32_t anchors_x[num_anchors] = {100, 100, -687};              // anchor x-coorindates in mm
+int32_t anchors_y[num_anchors] = {100, 1789, 887};            // anchor y-coordinates in mm
+int32_t heights[num_anchors] = {654, 654, 654};             // anchor z-coordinates in mm
 
 uint8_t algorithm = POZYX_POS_ALG_UWB_ONLY;                 // positioning algorithm to use
 uint8_t dimension = POZYX_2_5D;                             // positioning dimension
-int32_t height = 1067;                                      // height of device, required in 2.5D positioning
-int32_t midpoint = 185;                                     // fixed measurement to midpoint of 2 tags in mm 
+int32_t height = 292;                                      // height of device, required in 2.5D positioning
+int32_t midpoint = 222;                                     // fixed measurement to midpoint of 2 tags in mm 
 
 float filterFrequency = 0.5;                                // filter position changes faster than this frequency in Hz  
 

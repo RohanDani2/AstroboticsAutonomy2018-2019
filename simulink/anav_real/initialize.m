@@ -5,8 +5,8 @@ clf
 
 %% Config
 tic
-mode = 1; % 1 for sim or 0 for real with all sensors 
-mapDim = [58 37]; % X and Y measurements of arena in whole decimeters
+mode = 0; % 1 for sim or 0 for real with all sensors 
+mapDim = [40 20]; % X and Y measurements of arena in whole decimeters
 
 %% Set colormap to inverted blue scale and generate surface point vectors also set scale  
 load('notbone.mat')
