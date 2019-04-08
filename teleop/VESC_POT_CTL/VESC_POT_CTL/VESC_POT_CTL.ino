@@ -6,9 +6,10 @@
 #define L_RELAY_K2   8
 #define L_RELAY_K3   12
 #define L_RELAY_K4   13
-#define EXTEND_BTN   7
-#define RETRACT_BTN  8
-#define LINEAR_LED   2
+#define EXTEND_BTN   5
+#define RETRACT_BTN  4
+#define LIN_EXT_LED  2
+#define LIN_RET_LED  3
 
 /* Motor Pins */
 #define MOTOR1       3
@@ -59,7 +60,8 @@ void setup() {
   m3.attach(MOTOR3);
   pinMode(EXTEND_BTN, INPUT);
   pinMode(RETRACT_BTN, INPUT);
-  pinMode(LINEAR_LED, OUTPUT);
+  pinMode(LIN_EXT_LED, OUTPUT);
+  pinMode(LIN_RET_LED, OUTPUT);
   initLinearActuators();
 }
 
@@ -75,23 +77,23 @@ void loop() {
 
   extendBTN = digitalRead(EXTEND_BTN);
   retractBTN = digitalRead(RETRACT_BTN);
-  digitalWrite(LINEAR_LED, extendBTN | retractBTN);
+  digitalWrite(LIN_EXT_LED, extendBTN);
+  digitalWrite(LIN_RET_LED, retractBTN);
 
-  if (extendBTN == HIGH)
+  if (extendBTN)
     extendActuators();
-  else 
+  else if (retractBTN)
+    retractActuators();
+  else
     stopActuators();
 
-  if (retractBTN == HIGH)
-     retractActuators();
-  else 
-    stopActuators();
-  
   Serial.print("Motor1: ");
   Serial.print(motor1);
   Serial.print("\tMotor2: ");
   Serial.print(motor2);
   Serial.print("\tMotor3: ");
+  Serial.print("\tRetracting: ");
+  Serial.print(retractBTN);
   Serial.print("\tExtending: ");
   Serial.println(extendBTN);
 }

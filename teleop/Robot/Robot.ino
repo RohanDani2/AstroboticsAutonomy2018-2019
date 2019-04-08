@@ -14,6 +14,8 @@ int wstatus = WL_IDLE_STATUS;
 
 // Robot operation state
 int op_mode;
+bool digEnabled = false;
+bool locoEnabled = false;
 
 /* VESC Motors */
 Servo leftDrive;
@@ -139,6 +141,7 @@ void setup() {
 
 /* Robot State Machine */
 void loop() {
+  packetBuffer[0] = '$';
   readWifi();
   /* FAILURE: kill actuator power (relay off) */
   if (strcmp((char *) packetBuffer, "FAILURE") == 0) {
@@ -164,33 +167,60 @@ void loop() {
       #ifdef DEBUG
       Serial.println("AUTONOMOUS Mode");
       #endif
-    } else if (strcmp((char *) packetBuffer, "STOP") == 0) {
+    } /* ENABLE BUTTONS */
+    else if (strcmp((char *) packetBuffer, "DIG_EN") == 0) {
+      digEnabled = true;
+    } else if (strcmp((char *) packetBuffer, "DIG_DIS") == 0) {
+      digEnabled = false;
+      bucketDig.writeMicroseconds(1500);
+      bucketLift.writeMicroseconds(1500);
+    } else if (strcmp((char *) packetBuffer, "LOCO_EN") == 0) {
+      locoEnabled = true;
+    } else if (strcmp((char *) packetBuffer, "LOCO_DIS") == 0) {
+      locoEnabled = false;
+      rightDrive.writeMicroseconds(1500);
+      leftDrive.writeMicroseconds(1500);
+    } /* LOCOMOTION CONTROL */
+    else if (locoEnabled) { // "l1230" OR "r1450"
+      if (strcmp((char *) packetBuffer, "ZERO_LEFT") == 0) {
+        leftDrive.writeMicroseconds(1500);
+      } else if (strcmp((char *) packetBuffer, "ZERO_RIGHT") == 0) {
+        rightDrive.writeMicroseconds(1500);
+      } else if (packetBuffer[0] == 'l') {
+        String speedStr = packetBuffer;
+        for (int i = 1; i < 5; i++) {
+          speedStr += packetBuffer[i];
+        } // TODO: extract speed and write it to leftDrive
+        Serial.println(speedStr.toInt());
+      } else if (packetBuffer[0] == 'r') {
+        String speedStr = packetBuffer;
+        for (int i = 1; i < 5; i++) {
+          speedStr += packetBuffer[i];
+        } // TODO: extract speed and write it to rightDrive
+        Serial.println(speedStr.toInt());
+      }
+    } /* MINING CONTROL */
+    else if (digEnabled) {
+      if (packetBuffer[0] == 'l') {
+        // TODO: extract speed and write it to Bucket Lift
+      } else if (packetBuffer[0] == 'r') {
+        // TODO: extract speed and write it to Bucket Dig
+      }
+    } /* DUMP BODY CONTROL */
+    else if (strcmp((char *) packetBuffer, "EXTEND") == 0) {
+      extendActuator();
+    } else if (strcmp((char *) packetBuffer, "RETRACT") == 0) {
+      retractActuator();
+    } else if (strcmp((char *) packetBuffer, "STOP_DUMP") == 0) {
+      stopActuators();
+    } /* FAIL STOP ALL */
+    else if (strcmp((char *) packetBuffer, "STOP") == 0) {
       stopActuators();
       rightDrive.writeMicroseconds(1500);
       leftDrive.writeMicroseconds(1500);
       bucketDig.writeMicroseconds(1500);
       bucketLift.writeMicroseconds(1500);
-    } else if (strcmp((char *) packetBuffer, "UP") == 0) {
-      rightDrive.writeMicroseconds(1650);
-      leftDrive.writeMicroseconds(1350);
-    } else if (strcmp((char *) packetBuffer, "DOWN") == 0) {
-      rightDrive.writeMicroseconds(1350);
-      leftDrive.writeMicroseconds(1650);
-    } else if (strcmp((char *) packetBuffer, "LEFT") == 0) {
-      rightDrive.writeMicroseconds(1650);
-      leftDrive.writeMicroseconds(1500);
-    } else if (strcmp((char *) packetBuffer, "RIGHT") == 0) {
-      rightDrive.writeMicroseconds(1500);
-      leftDrive.writeMicroseconds(1350);
-    } else if (strcmp((char *) packetBuffer, "DUMP") == 0) {
-      extendActuator();
-    } else if (strcmp((char *) packetBuffer, "RETRACT") == 0) {
-      retractActuator();
-    } else if (strcmp((char *) packetBuffer, "RETRACT MINING") == 0) {
-      bucketDig.writeMicroseconds(1800);
-    } else if (strcmp((char *) packetBuffer, "DEPLOY MINING") == 0) {
-      bucketDig.writeMicroseconds(1200);
-    }
+    } 
   }
   // TODO: Send Sensor Data: Voltage & Actuator positions
 }

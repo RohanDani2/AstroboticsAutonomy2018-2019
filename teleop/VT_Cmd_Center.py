@@ -13,6 +13,13 @@ Description:
 
 """
 
+"""  
+TODO:
+- Keep alive message
+- Static IP
+
+"""
+
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QGridLayout, QLabel, QGroupBox, QVBoxLayout
 from PyQt5 import QtGui, QtCore
@@ -23,6 +30,9 @@ from xinput import *
 
 """ Main System State """
 ROBOT_STATE = "TELE"
+
+UDP_IP = "10.0.0.102"
+UDP_PORT = 4210
 
 # Maps joystick input to PWM output
 # TODO: map to PPM output (1 <-> 2)
@@ -37,9 +47,6 @@ def try_disconnect(wifi_conn=None):
 
 
 def try_connect(wifi_conn=None):
-    # TODO: connect to Arduino Wifi
-    UDP_IP = "10.0.0.102" #"10.0.0.148"
-    UDP_PORT = 4210
     MESSAGE = "Hello, World!"
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.sendto(MESSAGE.encode(), (UDP_IP, UDP_PORT))
@@ -49,8 +56,6 @@ def try_connect(wifi_conn=None):
 
 
 def send_to_arduino(message):
-    UDP_IP = "10.0.0.102"
-    UDP_PORT = 4210
     MESSAGE = message
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.sendto(MESSAGE.encode(), (UDP_IP, UDP_PORT))
@@ -70,18 +75,52 @@ def robotState( void ):
     @j.event
     def on_button(button, pressed):
         print('button', button, pressed)
-
+        if button == 16:
+            if pressed:
+                send_to_arduino("EXTEND")
+                print("EXTEND")
+            else:
+                send_to_arduino("STOP_DUMP")
+                print("STOP DUMP")
+        elif button == 13:
+            if pressed:
+                send_to_arduino("RETRACT")
+                print("RETRACT")
+            else:
+                send_to_arduino("STOP_DUMP")
+                print("STOP DUMP")
+        elif button == 10:
+            if pressed:
+                send_to_arduino("DIG_EN")
+                print("DIG_ENABLE")
+            else:
+                send_to_arduino("DIG_DIS")
+                print("DIG_DISABLE")
+        elif button == 9:
+            if pressed:
+                send_to_arduino("LOCO_EN")
+                print("LOCO_EN")
+            else:
+                send_to_arduino("LOCO_DIS")
+                print("LOCO_DIS")
+        elif button == 7:
+            if pressed:
+                send_to_arduino("ZERO_LEFT")
+                print("ZERO_LEFT")
+        elif button == 8:
+            if pressed:
+                send_to_arduino("ZERO_RIGHT")
+                print("ZERO_RIGHT")
     @j.event
     def on_axis(axis, value):
         if axis == 'l_thumb_y':
-            value = mymap(value, -0.5, 0.5, 0, 255)
-            print('axis', axis, value)
-            # TODO: Send pwm value
+            value = 'l' + str(int(mymap(value, -0.5, 0.5, 1000, 2000)))
+            send_to_arduino(value)
+            print(value)
         elif axis == 'r_thumb_y':
-            value = mymap(value, -0.5, 0.5, 0, 255)
-            print('axis', axis, value)
-            # TODO: Send pwm value
-
+            value = 'r' + str(int(mymap(value, -0.5, 0.5, 1000, 2000)))
+            send_to_arduino(value)
+            print(value)
 
     while 1:
         if ROBOT_STATE == "TELE":
@@ -124,9 +163,8 @@ class Window(QWidget):
         sensors = QGroupBox("Sensor Data")
         statuses = QGroupBox("Status")
 
-        # logo_img = QLabel()
-        # logo_img.setPixmap(QtGui.QPixmap("images/logos/Astro-banner.png"))
-        # TODO: resize this
+        logo_img = QLabel()
+        logo_img.setPixmap(QtGui.QPixmap("images/logos/Astro-banner.png"))
 
         wifi_conn = QLabel("Wifi Disconnected")
         wifi_conn.setStyleSheet("QLabel {background-color: red; color: yellow}")
@@ -174,7 +212,7 @@ class Window(QWidget):
         statuses.setLayout(status_grid)
         sensors.setLayout(sensor_grid)
 
-        # layout.addWidget(logo_img)
+        layout.addWidget(logo_img)
         layout.addWidget(connections)
         layout.addWidget(modes)
         layout.addWidget(sensors)
@@ -187,36 +225,9 @@ class Window(QWidget):
         if e.key() == QtCore.Qt.Key_Escape:
             send_to_arduino("STOP")
             self.close()
-        elif e.key() == QtCore.Qt.Key_W:
-            print("UP")
-            send_to_arduino("UP")
-        elif e.key() == QtCore.Qt.Key_A:
-            print("LEFT")
-            send_to_arduino("LEFT")
-        elif e.key() == QtCore.Qt.Key_D:
-            print("RIGHT")
-            send_to_arduino("RIGHT")
-        elif e.key() == QtCore.Qt.Key_S:
-            print("DOWN")
-            send_to_arduino("DOWN")
-        elif e.key() == QtCore.Qt.Key_P:
+        elif e.key() == 16777344: # Play/Pause button
             print("STOP")
             send_to_arduino("STOP")
-        elif e.key() == QtCore.Qt.Key_R:
-            print("STOP")
-            send_to_arduino("STOP")
-        elif e.key() == QtCore.Qt.Key_U:
-            print("RETRACT MINING")
-            send_to_arduino("RETRACT MINING")
-        elif e.key() == QtCore.Qt.Key_V:
-            print("DEPLOY MINING")
-            send_to_arduino("DEPLOY MINING")
-        elif e.key() == QtCore.Qt.Key_Y:
-            print("DUMP")
-            send_to_arduino("DUMP")
-        elif e.key() == QtCore.Qt.Key_V:
-            print("RETRACT")
-            send_to_arduino("RETRACT")
 
 
 def app():

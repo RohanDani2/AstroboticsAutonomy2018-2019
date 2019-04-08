@@ -11,7 +11,7 @@
 from __future__ import print_function
 
 from tkinter import *
-from xbox import *
+# from xbox import *
 
 
 def xbox_connected():
@@ -67,3 +67,4 @@ j_status = Label(window, text="Connecting Controller...", bd=1, relief=SUNKEN, a
 j_status.grid(row=4, column=1, columnspan=2)
 
 window.mainloop()
+print("testing")
