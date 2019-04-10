@@ -75,13 +75,17 @@ while 1
             if ~corrupted 
                 scan_decoded(:,1) = thetas;
                 scan_decoded(:,2) = decoder(scan_encoded);
-                polar(scan_decoded(2:end,1), scan_decoded(2:end,2), '.')
+                m = min(scan_decoded(:,2));
+                if m == 1
+                    polar(scan_decoded(2:end,1), scan_decoded(2:end,2), 'r.')
+                else
+                    polar(scan_decoded(2:end,1), scan_decoded(2:end,2), 'b.')
+                end
                 drawnow
             else
                 corrupted = 0;
             end
             scan_encoded = blanks(3243);
-            disp(sum(scan_decoded(:,2) == 1)) % number of radii = 1 (should be 0)
         end
     end
 end
