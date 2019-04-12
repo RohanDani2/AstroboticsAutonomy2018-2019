@@ -56,7 +56,7 @@ function scan_decoded = getHokuyoScan(obj)
             end
 
             if i == 51 
-                disp(['scan number: ' int2str(num_scans) '  corrupted scans: ' int2str(corrupted_scans)]);
+                %disp(['scan number: ' int2str(num_scans) '  corrupted scans: ' int2str(corrupted_scans)]);
                 num_scans = num_scans + 1;
                 if ~flag_corrupted 
                     scan_decoded(:,2) = decoder(scan_encoded);

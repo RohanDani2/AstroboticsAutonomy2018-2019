@@ -21,7 +21,6 @@ function compressed = compress(grid, mapDim, scale)
                         compressed(q,r) = 1;
                         flag = 1;
                         break
-                    
                     end
                 end
             end
