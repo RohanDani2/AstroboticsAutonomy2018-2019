@@ -1,5 +1,5 @@
 function [data] = decoder(in)
-    num1s1 = 0;
+    %num1s1 = 0;
 
     i = 1; 
     j = 1;
@@ -21,13 +21,15 @@ function [data] = decoder(in)
         
         binaryData = [bin1 bin2 bin3];
         measure = bin2dec(binaryData);
-        data(j, 1) = measure; 
+        if measure == 1
+            data(j, 1) = 30000; % max value 
+            %num1s1 = num1s1 + 1;
+            %disp([data1 data2 data3])
+        else
+            data(j, 1) = measure; 
+        end
         i = i+3;
         j = j+1; 
-        if measure == 1
-            num1s1 = num1s1 + 1;
-            disp([data1 data2 data3])
-        end
     end
-    disp(['number of output ones: ' int2str(num1s1)]);
+    %disp(['number of output ones: ' int2str(num1s1)]);
 end 
