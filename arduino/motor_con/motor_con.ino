@@ -24,9 +24,9 @@ enum dir {
 
 /* Constant speeds for testing purposes */
 const int stopSpeed = 1500;
-const int forwardSpeed = 1375;
-const int backwardSpeed = 1625;
-const int turnSpeed = 125;
+const int forwardSpeed = 1330;
+const int backwardSpeed = 1670;
+const int turnSpeed = 170;
 
 Servo driveMotor_Left;
 Servo driveMotor_Right;
@@ -67,6 +67,7 @@ void setup() {
 }
 
 void loop() {
+  
   if (Serial.available() > 0) {
     serialCMD = Serial.read(); 
     Serial.println(serialCMD);
@@ -76,24 +77,29 @@ void loop() {
     else if (serialCMD == '3') drive(CC);
     else if (serialCMD == '4') drive(CW);
   }
+ 
 
-//  drive(STOP);
-//  delay(6000);
-//  drive(FOR);
-//  delay(2000);
-//  drive(STOP);
-//  delay(2000);
-//  drive(BACK);
-//  delay(2000);
-//  drive(STOP);
-//  delay(4000);
-//  drive(CC);
-//  delay(2000);
-//  drive(STOP);
-//  delay(2000);
-//  drive(CW);
-//  delay(2000);
-//  drive(STOP);
-//  delay(4000);
+/*
+  drive(STOP);
+  delay(6000);
+  drive(FOR);
+  delay(2000);
+  drive(STOP);
+  delay(2000);
+  drive(BACK);
+  delay(2000);
+  drive(STOP);
+  delay(4000);
 
+  drive(STOP);
+  delay(2000);
+  drive(CC);
+  delay(2000);
+  drive(STOP);
+  delay(2000);
+  drive(CW);
+  delay(2000);
+  drive(STOP);
+  delay(4000);
+*/
 }
