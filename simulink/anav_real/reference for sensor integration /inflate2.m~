@@ -1,0 +1,33 @@
+clear
+grid = randi([1 100], 40, 80);
+grid(grid>1) = 0;
+figure(1)
+imshow(grid)
+
+r = 10;
+
+h = fspecial('disk', r);
+h(h>0) = 1;
+
+for i = 1:100
+tic
+inflated1 = imfilter(grid, h);
+disktime(i) = toc;
+
+sigma = r/3;
+r1 = r - 0.5;
+threshold = (1 / (2 * pi * sigma * sigma)) * exp(- (r1 * r1) / ( 2 * sigma * sigma ));
+
+tic
+inflated2 = imgaussfilt(grid, 2);
+inflated2(inflated2>threshold) = 1;
+gausstime(i) = toc;
+
+figure(2)
+imshow(inflated1)
+
+figure(3)
+imshow(inflated2)
+
+mean(disktime)
+mean(gausstime)
