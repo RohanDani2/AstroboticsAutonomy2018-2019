@@ -13,6 +13,7 @@ disktime = zeros(1,100);
 for i = 1:100
     tic
     inflated1 = imfilter(grid, h);
+    inflated1(inflated1 > 1) = 1;
     disktime(i) = toc;
 end
 mean(disktime)
