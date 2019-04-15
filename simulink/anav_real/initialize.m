@@ -4,7 +4,7 @@ clc
 clf
 
 %% Config
-mode = 1; % 1 for sim or 0 for real with all sensors 
+mode = 0; % 1 for sim or 0 for real with all sensors 
 mapDim = [80 40]; % X and Y measurements of arena in whole decimeters
 
 %% Set colormap to inverted blue scale and generate surface point vectors also set scale  
@@ -22,16 +22,10 @@ else
 end
 
 %% Generate virtual wall limit obstacle 
-if mode == 1
-    limit = generateRectangle(mapDim(1)-2,mapDim(2)-2);
-    limit(:,1) = limit(:,1) + 1;
-    limit(:,2) = limit(:,2) + 1;
-else 
-    limit = generateRectangle(scale*(mapDim(1)-2),scale*(mapDim(2)-2));
-    limit(:,1) = limit(:,1) + scale/2;
-    limit(:,2) = limit(:,2) + scale/2;
-end
-
+limit = generateRectangle(mapDim(1)-2,mapDim(2)-2);
+limit(:,1) = limit(:,1) + 1;
+limit(:,2) = limit(:,2) + 1;
+    
 %% Generate static pure visual objects 
 wall = generateRectangle(mapDim(1),mapDim(2));
 trough = generateRectangle(15, 5);

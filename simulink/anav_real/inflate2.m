@@ -1,6 +1,4 @@
 function inflated = inflate2(grid, r)
-%     coder.extrinsic('fspecial')
-%     coder.extrinsic('imfilter')
 
     persistent h
     if isempty(h)

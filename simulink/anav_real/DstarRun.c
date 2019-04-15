@@ -26,7 +26,7 @@
  * | See matlabroot/simulink/src/sfuntmpl_doc.c for a more detailed template |
  *  ------------------------------------------------------------------------- 
  *
- * Created: Sun Apr 14 02:45:21 2019
+ * Created: Mon Apr 15 13:58:21 2019
  */
 
 #define S_FUNCTION_LEVEL 2
@@ -79,7 +79,7 @@
 #define CONT_STATES_IC        [0]
 
 #define SFUNWIZ_GENERATE_TLC  0
-#define SOURCEFILES           "__SFB__/Users/alex/Desktop/Astro/astrobotics_autonomy/simulink/anav_real/Dstar.cpp"
+#define SOURCEFILES           "__SFB__/home/hal/Documents/astro/AstroboticsAutonomy2018-2019/simulink/anav_real/Dstar.cpp"
 #define PANELINDEX            8
 #define USE_SIMSTRUCT         0
 #define SHOW_COMPILE_STEPS    0
