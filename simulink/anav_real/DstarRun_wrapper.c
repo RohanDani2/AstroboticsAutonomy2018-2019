@@ -61,8 +61,9 @@ dstar->updateStart(costs[3],costs[4]);
 dstar->updateGoal(costs[6],costs[7]);
 for (int i = 0; i < costs[0]; i++)
 {
-  if (costs[i*3+11] > 0)
-    dstar->updateCell(costs[i*3+9], costs[i*3+10], AMP*costs[i*3+11]);
+    if (costs[i*3+11] > 0)
+        dstar->updateCell(costs[i*3+9], costs[i*3+10], AMP*costs[i*3+11]);
+
 } 
 dstar->replan();
 path = dstar->getPath();

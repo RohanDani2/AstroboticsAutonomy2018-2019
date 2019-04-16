@@ -74,7 +74,7 @@ while 1
             num_scans = num_scans + 1;
             if ~corrupted 
                 scan_decoded(:,1) = thetas;
-                scan_decoded(:,2) = decoder(scan_encoded);
+                scan_decoded(:,2) = decode2(scan_encoded);
                 m = min(scan_decoded(:,2));
                 if m == 1
                     polar(scan_decoded(2:end,1), scan_decoded(2:end,2), 'r.')
