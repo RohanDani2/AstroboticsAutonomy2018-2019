@@ -20,24 +20,23 @@ TODO:
 
 """
 
-import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QGridLayout, QLabel, QGroupBox, QVBoxLayout
 from PyQt5 import QtGui, QtCore
 import socket
 import _thread
-import threading
 from xinput import *
 
 """ Main System State """
 ROBOT_STATE = "TELE"
 
-UDP_IP = "10.0.0.102"
+UDP_IP = "10.0.0.122"
 UDP_PORT = 4210
 
-# Maps joystick input to PWM output
-# TODO: map to PPM output (1 <-> 2)
+# Maps joystick input to PPM output
 def mymap(x, in_min, in_max, out_min, out_max):
-  return int((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
+    if x > -0.2 and x < 0.2:
+        return 1500
+    return int((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
 
 
 def try_disconnect(wifi_conn=None):
@@ -125,7 +124,7 @@ def robotState( void ):
     while 1:
         if ROBOT_STATE == "TELE":
             j.dispatch_events()
-            time.sleep(.005)
+            time.sleep(.05)
         elif ROBOT_STATE == "AUTO":
             y = 2
             # TODO: talk to nuc

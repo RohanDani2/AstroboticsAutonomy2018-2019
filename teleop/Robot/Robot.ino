@@ -6,6 +6,8 @@
 #define DEBUG 1
 
 #include "robot_vars.h"
+#include "VescUart.h"
+#include "datatypes.h"
 
 // WiFi Settings
 char packetBuffer[255];
@@ -22,6 +24,8 @@ Servo leftDrive;
 Servo rightDrive;
 Servo bucketDig;
 Servo bucketLift;
+
+struct bldcMeasure measuredValues;
 
 float readBattVolt() {
   int rawVoltageReading = analogRead(VOLT_SENSOR);
@@ -129,6 +133,7 @@ void readWifi() {
 
 
 void setup() {
+  Serial1.begin(115200);
 #ifdef DEBUG
   Serial.begin(BAUD_RATE);
   delay(10);
@@ -187,24 +192,40 @@ void loop() {
       } else if (strcmp((char *) packetBuffer, "ZERO_RIGHT") == 0) {
         rightDrive.writeMicroseconds(1500);
       } else if (packetBuffer[0] == 'l') {
-        String speedStr = packetBuffer;
-        for (int i = 1; i < 5; i++) {
-          speedStr += packetBuffer[i];
-        } // TODO: extract speed and write it to leftDrive
-        Serial.println(speedStr.toInt());
+        int i;
+        for (i = 0; i < 4; i++) {
+          packetBuffer[i] = packetBuffer[i+1];
+        } packetBuffer[4] = '\0';
+        // extract speed from buffer and write it to rightDrive
+        Serial.println(atoi(packetBuffer));
+        leftDrive.writeMicroseconds(atoi(packetBuffer));
       } else if (packetBuffer[0] == 'r') {
-        String speedStr = packetBuffer;
-        for (int i = 1; i < 5; i++) {
-          speedStr += packetBuffer[i];
-        } // TODO: extract speed and write it to rightDrive
-        Serial.println(speedStr.toInt());
+        int i;
+        for (i = 0; i < 4; i++) {
+          packetBuffer[i] = packetBuffer[i+1];
+        } packetBuffer[4] = '\0';
+        // extract speed from buffer and write it to rightDrive
+        Serial.println(atoi(packetBuffer));
+        leftDrive.writeMicroseconds(atoi(packetBuffer));
       }
     } /* MINING CONTROL */
     else if (digEnabled) {
       if (packetBuffer[0] == 'l') {
-        // TODO: extract speed and write it to Bucket Lift
+        int i;
+        for (i = 0; i < 4; i++) {
+          packetBuffer[i] = packetBuffer[i+1];
+        } packetBuffer[4] = '\0';
+        // extract speed from buffer and write it to bucketDig
+        Serial.println(atoi(packetBuffer));
+        bucketDig.writeMicroseconds(atoi(packetBuffer));
       } else if (packetBuffer[0] == 'r') {
-        // TODO: extract speed and write it to Bucket Dig
+        int i;
+        for (i = 0; i < 4; i++) {
+          packetBuffer[i] = packetBuffer[i+1];
+        } packetBuffer[4] = '\0';
+        // extract speed from buffer and write it to bucketLift
+        Serial.println(atoi(packetBuffer));
+        bucketLift.writeMicroseconds(atoi(packetBuffer));
       }
     } /* DUMP BODY CONTROL */
     else if (strcmp((char *) packetBuffer, "EXTEND") == 0) {
@@ -223,4 +244,7 @@ void loop() {
     } 
   }
   // TODO: Send Sensor Data: Voltage & Actuator positions
+  if (VescUartGetValue(measuredValues,1)) {
+    SerialPrint(measuredValues);
+  } else { Serial.println("Failed to read VESC!"); }
 }

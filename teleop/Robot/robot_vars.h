@@ -13,6 +13,7 @@
 #define LOCO_LEFT    9
 #define BUCKET_DIG   5
 #define BUCKET_LIFT  6
+
 #define L_RELAY_K1   7
 #define L_RELAY_K2   8
 #define L_RELAY_K3   12
