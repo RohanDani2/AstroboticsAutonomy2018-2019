@@ -40,6 +40,7 @@ void DstarRun_Start_wrapper(void **pW)
  */
 
 pW[0] = new Dstar();
+pW[1] = malloc(sizeof(list<state>));
 /* %%%-SFUNWIZ_wrapper_Start_Changes_END --- EDIT HERE TO _BEGIN */
 }
 /*
@@ -53,8 +54,8 @@ void DstarRun_Outputs_wrapper(const real_T *costs,
 {
 /* %%%-SFUNWIZ_wrapper_Outputs_Changes_BEGIN --- EDIT HERE TO _END */
 // Set up
-list<state> path;
 Dstar *dstar = static_cast<Dstar*>(pW[0]); 
+list<state> *path = (list<state> *)pW[1];
 
 // Update
 dstar->updateStart(costs[3],costs[4]);
@@ -97,6 +98,7 @@ void DstarRun_Terminate_wrapper(void **pW)
 Dstar *dstar = static_cast<Dstar*>(pW[0]); 
 
 delete dstar;
+free(pW[1]);
 /* %%%-SFUNWIZ_wrapper_Terminate_Changes_END --- EDIT HERE TO _BEGIN */
 }
 
