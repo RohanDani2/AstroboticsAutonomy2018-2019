@@ -37,6 +37,7 @@ function scan_decoded = getHokuyoScan(obj)
                 break;
             end 
         end 
+
         for i = 1:51
             
             dblock = blanks(padSize); % set to known type 
@@ -59,7 +60,7 @@ function scan_decoded = getHokuyoScan(obj)
                 %disp(['scan number: ' int2str(num_scans) '  corrupted scans: ' int2str(corrupted_scans)]);
                 num_scans = num_scans + 1;
                 if ~flag_corrupted 
-                    scan_decoded(:,2) = decoder(scan_encoded);
+                    scan_decoded(:,2) = decode2(scan_encoded);
                     return
                 else
                     flag_corrupted = 0;

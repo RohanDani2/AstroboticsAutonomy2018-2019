@@ -1301,109 +1301,103 @@ static emlrtRTEInfo c12_ji_emlrtRTEI = { 214,/* lineNo */
   "/usr/local/MATLAB/R2018a/toolbox/eml/eml/+coder/+internal/+lapack/xgesvd.m"/* pName */
 };
 
-static emlrtRTEInfo c12_ki_emlrtRTEI = { 83,/* lineNo */
-  53,                                  /* colNo */
-  "svd",                               /* fName */
-  "/usr/local/MATLAB/R2018a/toolbox/eml/eml/+coder/+internal/svd.m"/* pName */
-};
-
-static emlrtRTEInfo c12_li_emlrtRTEI = { 75,/* lineNo */
-  14,                                  /* colNo */
-  "svd",                               /* fName */
-  "/usr/local/MATLAB/R2018a/toolbox/eml/eml/+coder/+internal/svd.m"/* pName */
-};
-
-static emlrtRTEInfo c12_mi_emlrtRTEI = { 48,/* lineNo */
-  25,                                  /* colNo */
+static emlrtRTEInfo c12_ki_emlrtRTEI = { 28,/* lineNo */
+  33,                                  /* colNo */
   "xgesvd",                            /* fName */
   "/usr/local/MATLAB/R2018a/toolbox/eml/eml/+coder/+internal/+lapack/xgesvd.m"/* pName */
 };
 
-static emlrtRTEInfo c12_ni_emlrtRTEI = { 78,/* lineNo */
+static emlrtRTEInfo c12_li_emlrtRTEI = { 28,/* lineNo */
   5,                                   /* colNo */
   "xgesvd",                            /* fName */
   "/usr/local/MATLAB/R2018a/toolbox/eml/eml/+coder/+internal/+lapack/xgesvd.m"/* pName */
 };
 
-static emlrtRTEInfo c12_oi_emlrtRTEI = { 117,/* lineNo */
+static emlrtRTEInfo c12_mi_emlrtRTEI = { 75,/* lineNo */
+  14,                                  /* colNo */
+  "svd",                               /* fName */
+  "/usr/local/MATLAB/R2018a/toolbox/eml/eml/+coder/+internal/svd.m"/* pName */
+};
+
+static emlrtRTEInfo c12_ni_emlrtRTEI = { 117,/* lineNo */
   9,                                   /* colNo */
   "xgesvd",                            /* fName */
   "/usr/local/MATLAB/R2018a/toolbox/eml/eml/+coder/+internal/+lapack/xgesvd.m"/* pName */
 };
 
-static emlrtRTEInfo c12_pi_emlrtRTEI = { 100,/* lineNo */
+static emlrtRTEInfo c12_oi_emlrtRTEI = { 100,/* lineNo */
   5,                                   /* colNo */
   "diag",                              /* fName */
   "/usr/local/MATLAB/R2018a/toolbox/eml/lib/matlab/elmat/diag.m"/* pName */
 };
 
-static emlrtRTEInfo c12_qi_emlrtRTEI = { 1,/* lineNo */
+static emlrtRTEInfo c12_pi_emlrtRTEI = { 1,/* lineNo */
   14,                                  /* colNo */
   "diag",                              /* fName */
   "/usr/local/MATLAB/R2018a/toolbox/eml/lib/matlab/elmat/diag.m"/* pName */
 };
 
-static emlrtRTEInfo c12_ri_emlrtRTEI = { 72,/* lineNo */
+static emlrtRTEInfo c12_qi_emlrtRTEI = { 72,/* lineNo */
   13,                                  /* colNo */
   "padarray",                          /* fName */
   "/usr/local/MATLAB/R2018a/toolbox/images/images/eml/padarray.m"/* pName */
 };
 
-static emlrtRTEInfo c12_si_emlrtRTEI = { 24,/* lineNo */
+static emlrtRTEInfo c12_ri_emlrtRTEI = { 24,/* lineNo */
   1,                                   /* colNo */
   "sortrows",                          /* fName */
   "/usr/local/MATLAB/R2018a/toolbox/eml/lib/matlab/datafun/sortrows.m"/* pName */
 };
 
-static emlrtRTEInfo c12_ti_emlrtRTEI = { 27,/* lineNo */
+static emlrtRTEInfo c12_si_emlrtRTEI = { 27,/* lineNo */
   30,                                  /* colNo */
   "sortrows",                          /* fName */
   "/usr/local/MATLAB/R2018a/toolbox/eml/lib/matlab/datafun/sortrows.m"/* pName */
 };
 
-static emlrtRTEInfo c12_ui_emlrtRTEI = { 28,/* lineNo */
+static emlrtRTEInfo c12_ti_emlrtRTEI = { 28,/* lineNo */
   29,                                  /* colNo */
   "sortrows",                          /* fName */
   "/usr/local/MATLAB/R2018a/toolbox/eml/lib/matlab/datafun/sortrows.m"/* pName */
 };
 
-static emlrtRTEInfo c12_vi_emlrtRTEI = { 29,/* lineNo */
+static emlrtRTEInfo c12_ui_emlrtRTEI = { 29,/* lineNo */
   1,                                   /* colNo */
   "sortrows",                          /* fName */
   "/usr/local/MATLAB/R2018a/toolbox/eml/lib/matlab/datafun/sortrows.m"/* pName */
 };
 
-static emlrtRTEInfo c12_wi_emlrtRTEI = { 52,/* lineNo */
+static emlrtRTEInfo c12_vi_emlrtRTEI = { 52,/* lineNo */
   9,                                   /* colNo */
   "mergesort",                         /* fName */
   "/usr/local/MATLAB/R2018a/toolbox/eml/eml/+coder/+internal/mergesort.m"/* pName */
 };
 
-static emlrtRTEInfo c12_xi_emlrtRTEI = { 1,/* lineNo */
+static emlrtRTEInfo c12_wi_emlrtRTEI = { 1,/* lineNo */
   34,                                  /* colNo */
   "mergesort",                         /* fName */
   "/usr/local/MATLAB/R2018a/toolbox/eml/eml/+coder/+internal/mergesort.m"/* pName */
 };
 
-static emlrtRTEInfo c12_yi_emlrtRTEI = { 58,/* lineNo */
+static emlrtRTEInfo c12_xi_emlrtRTEI = { 58,/* lineNo */
   32,                                  /* colNo */
   "mergesort",                         /* fName */
   "/usr/local/MATLAB/R2018a/toolbox/eml/eml/+coder/+internal/mergesort.m"/* pName */
 };
 
-static emlrtRTEInfo c12_aj_emlrtRTEI = { 85,/* lineNo */
+static emlrtRTEInfo c12_yi_emlrtRTEI = { 85,/* lineNo */
   40,                                  /* colNo */
   "mergesort",                         /* fName */
   "/usr/local/MATLAB/R2018a/toolbox/eml/eml/+coder/+internal/mergesort.m"/* pName */
 };
 
-static emlrtRTEInfo c12_bj_emlrtRTEI = { 297,/* lineNo */
+static emlrtRTEInfo c12_aj_emlrtRTEI = { 297,/* lineNo */
   5,                                   /* colNo */
   "nullAssignment",                    /* fName */
   "/usr/local/MATLAB/R2018a/toolbox/eml/eml/+coder/+internal/nullAssignment.m"/* pName */
 };
 
-static emlrtRTEInfo c12_cj_emlrtRTEI = { 25,/* lineNo */
+static emlrtRTEInfo c12_bj_emlrtRTEI = { 25,/* lineNo */
   13,                                  /* colNo */
   "nullAssignment",                    /* fName */
   "/usr/local/MATLAB/R2018a/toolbox/eml/eml/+coder/+internal/nullAssignment.m"/* pName */
@@ -1662,9 +1656,6 @@ static void c12_b_svd(SFc12_anav_realInstanceStruct *chartInstance,
 static void c12_d_error(SFc12_anav_realInstanceStruct *chartInstance);
 static void c12_e_error(SFc12_anav_realInstanceStruct *chartInstance, int32_T
   c12_varargin_2);
-static void c12_ceval_xgesvd(SFc12_anav_realInstanceStruct *chartInstance,
-  c12_emxArray_creal_T *c12_A, c12_emxArray_creal_T *c12_U, c12_emxArray_real_T *
-  c12_S, c12_emxArray_creal_T *c12_V, int32_T *c12_info);
 static void c12_f_error(SFc12_anav_realInstanceStruct *chartInstance, int32_T
   c12_varargin_2);
 static void c12_g_error(SFc12_anav_realInstanceStruct *chartInstance);
@@ -5124,15 +5115,15 @@ const mxArray *sf_c12_anav_real_get_eml_resolved_functions_info(void)
 {
   const mxArray *c12_nameCaptureInfo = NULL;
   const char * c12_data[6] = {
-    "789ced56cb4edb40141d178a6041956efa035d83832b5ad8252540a3f22c41055555b1e3eb78c83cc01e47980d95aafe453fa4ddf1176cfb1fdd60133f929146"
-    "ae043275952b79c647c773cfccd5f8e822adbdad21849e45cfaf2b847e3f4777313f9c502d999fa0f190792d99a7249cc653343db64e4bf47e24b8cb99800b31",
-    "040433d809a8055e049849214b63738a99c944273c03e481cfc900ec3bc6c1043a98c2161f01ef7004e8c6089581988adfd75ce8f60f028a3cd7cfb74b46014a"
-    "ea13c789e2fcd305f59143ae8ffc5d91de4c819ea698d39843b339f8badb48f5ce14f98ace97e69f53e8d5249e605f183d0fdb09be6f7d53bd1909e7fa43c6e6",
-    "814520d7fb794fbd23a5de38ff69fdb3ee720aba6b12bdc5bb0105267cddf485c7f5663c5a5ce0aedf0c04679c86467d6965211a56751fd320fa21fabac9ccc1"
-    "170fa2f559f1166979f7e4fadb9f9737cd52ef252af93f7844bd0b45bebfbd872f147a35893f6f1fb43dd816a784ad2f5bcc0d8ff784d1caf7b157a053b40fa4",
-    "c065e53f51acafb63fef371eca1f67258cb2ef860c660e31051855f5e38f4abd71fe41fd382dda222df15e5c7f5f5998f871d5fdb8bffb26dc6f7d58351ccbb5"
-    "3b7572095eef786de2c772fc537edc382cbd5f8ebb3d23eefb125c557f7e947e392bdea45ffe5ff4caf26738b7374f7b87f5b7af1ceabc0eedc15160bedfacbe",
-    "3fdf029cc2e168", "" };
+    "789ced56cb4edb40141d178a60d12add745d893538b86a0bbba484d288525e41055555b1e3eb78c83cc01e47b81b90aafe453f84257fd12dffc1069bf8918c34"
+    "722590a9ab5cc9333e3a9e7b66aec6471769ed4d0d21f43c7a5e9d2374fd02ddc5b3e1846ac9fc048d87cc6bc93c25e1349ea2e9b1755aa2f73bc15dce049c89",
+    "212098c1e7805ae045809914b23436a798994c74c213401ef89c0cc0be631c4ca083297ce223e0238e00fd30426520a6e2f75517bafdbd8022cff5f3ed925180"
+    "92fac471a438ff74417de490eb237f57a43753a0a729e634e6d06c0e2eb61aa9de89225fd1f9d2fc730abd9ac413ec0ba3e7613bc1f7ad6faa3723e15c7fc8d8",
+    "3cb008e47a97f7d43b50ea8df35fd7bee92ea7a0bb26d15bbc1b5060c2d74d5f785c6fc6a3c505eefacd4070c66968d4979617a26145f7310da21fa2af9bcc1c"
+    "7cf7205a9f156f9196774fae7edeccff69967a2f51c9ffc123ea9d29f2fded3d7ca9d0ab49fc697bafedc1a638266ced8dc5dcf0705b18ad7c1fdb053a45fb40",
+    "0a5c56fe23c5fa6afbf34ee3a1fc7156c228fb6ec860e610538051553ffea2d41be71fd48fd3a22dd212efc5d5afe585891f57dd8ffb5befc29dd6ee8ae158ae"
+    "dda9931fe0f50e57277e2cc73fe5c78dfdd2fbe5b8db33e2be2fc155f5e747e997b3e24dfae5ff45af2c7f86537bfdb8b75f7fffdaa1cedbd01e1c04e6c67af5",
+    "fdf916725fe036", "" };
 
   c12_nameCaptureInfo = NULL;
   emlrtNameCaptureMxArrayR2016a(c12_data, 4600U, &c12_nameCaptureInfo);
@@ -12841,8 +12832,33 @@ static void c12_b_svd(SFc12_anav_realInstanceStruct *chartInstance,
   int32_T c12_i819;
   int32_T c12_d_loop_ub;
   int32_T c12_i820;
+  int32_T c12_c_m;
+  int32_T c12_c_n;
+  int32_T c12_b_minnm;
+  int32_T c12_i821;
+  int32_T c12_i822;
+  int32_T c12_i823;
+  boolean_T c12_b41;
+  boolean_T c12_b42;
   int32_T c12_e_info;
+  ptrdiff_t c12_b_m_t;
+  ptrdiff_t c12_b_n_t;
+  int32_T c12_i824;
+  ptrdiff_t c12_b_lda_t;
+  ptrdiff_t c12_b_ldu_t;
+  ptrdiff_t c12_b_ldv_t;
+  c12_emxArray_real_T *c12_superb;
+  int32_T c12_e_loop_ub;
+  int32_T c12_i825;
+  int32_T c12_i826;
+  int32_T c12_i827;
   int32_T c12_f_info;
+  int32_T c12_f_loop_ub;
+  int32_T c12_g_info;
+  int32_T c12_i828;
+  ptrdiff_t c12_b_info_t;
+  boolean_T c12_b_p;
+  int32_T c12_h_info;
   c12_emxInit_creal_T(chartInstance, &c12_b_A, 2, &c12_hi_emlrtRTEI);
   c12_m = c12_A->size[0];
   c12_n = c12_A->size[1];
@@ -12860,7 +12876,7 @@ static void c12_b_svd(SFc12_anav_realInstanceStruct *chartInstance,
     c12_b_A->data[c12_i812] = c12_A->data[c12_i812];
   }
 
-  c12_emxInit_creal_T(chartInstance, &c12_Vt, 2, &c12_li_emlrtRTEI);
+  c12_emxInit_creal_T(chartInstance, &c12_Vt, 2, &c12_mi_emlrtRTEI);
   c12_lda = c12_m;
   c12_minnm = muIntScalarMin_sint32(c12_b_n, c12_b_m);
   c12_i813 = c12_U->size[0] * c12_U->size[1];
@@ -12918,9 +12934,84 @@ static void c12_b_svd(SFc12_anav_realInstanceStruct *chartInstance,
       c12_b_A->data[c12_i819] = c12_A->data[c12_i819];
     }
 
-    c12_ceval_xgesvd(chartInstance, c12_b_A, c12_U, c12_s, c12_V, &c12_e_info);
+    c12_c_m = c12_b_A->size[0];
+    c12_c_n = c12_b_A->size[1];
+    c12_b_minnm = muIntScalarMin_sint32(c12_c_n, c12_c_m);
+    c12_i821 = c12_U->size[0] * c12_U->size[1];
+    c12_U->size[0] = c12_c_m;
+    c12_U->size[1] = c12_c_m;
+    c12_emxEnsureCapacity_creal_T(chartInstance, c12_U, c12_i821,
+      &c12_li_emlrtRTEI);
+    c12_i822 = c12_Vt->size[0] * c12_Vt->size[1];
+    c12_Vt->size[0] = c12_c_n;
+    c12_Vt->size[1] = c12_c_n;
+    c12_emxEnsureCapacity_creal_T(chartInstance, c12_Vt, c12_i822,
+      &c12_li_emlrtRTEI);
+    c12_i823 = c12_s->size[0];
+    c12_s->size[0] = c12_b_minnm;
+    c12_emxEnsureCapacity_real_T1(chartInstance, c12_s, c12_i823,
+      &c12_li_emlrtRTEI);
+    c12_b41 = (c12_b_A->size[0] == 0);
+    c12_b42 = (c12_b_A->size[1] == 0);
+    if (!(c12_b41 || c12_b42)) {
+      c12_b_m_t = (ptrdiff_t)c12_c_m;
+      c12_b_n_t = (ptrdiff_t)c12_c_n;
+      c12_b_lda_t = (ptrdiff_t)c12_c_m;
+      c12_b_ldu_t = (ptrdiff_t)c12_c_m;
+      c12_b_ldv_t = (ptrdiff_t)c12_c_n;
+      c12_emxInit_real_T1(chartInstance, &c12_superb, 1, &c12_ni_emlrtRTEI);
+      if (c12_b_minnm > 1) {
+        c12_i827 = c12_superb->size[0];
+        c12_superb->size[0] = c12_b_minnm - 1;
+        c12_emxEnsureCapacity_real_T1(chartInstance, c12_superb, c12_i827,
+          &c12_li_emlrtRTEI);
+      } else {
+        c12_i826 = c12_superb->size[0];
+        c12_superb->size[0] = 1;
+        c12_emxEnsureCapacity_real_T1(chartInstance, c12_superb, c12_i826,
+          &c12_li_emlrtRTEI);
+      }
+
+      c12_b_info_t = LAPACKE_zgesvd(102, 'A', 'A', c12_b_m_t, c12_b_n_t,
+        (lapack_complex_double *)&c12_b_A->data[0], c12_b_lda_t, &c12_s->data[0],
+        (lapack_complex_double *)&c12_U->data[0], c12_b_ldu_t,
+        (lapack_complex_double *)&c12_Vt->data[0], c12_b_ldv_t,
+        &c12_superb->data[0]);
+      c12_e_info = (int32_T)c12_b_info_t;
+      c12_emxFree_real_T(chartInstance, &c12_superb);
+    } else {
+      c12_e_info = 0;
+    }
+
+    c12_i824 = c12_V->size[0] * c12_V->size[1];
+    c12_V->size[0] = c12_Vt->size[1];
+    c12_V->size[1] = c12_Vt->size[0];
+    c12_emxEnsureCapacity_creal_T(chartInstance, c12_V, c12_i824,
+      &c12_ji_emlrtRTEI);
+    c12_e_loop_ub = c12_Vt->size[0] - 1;
+    for (c12_i825 = 0; c12_i825 <= c12_e_loop_ub; c12_i825++) {
+      c12_f_loop_ub = c12_Vt->size[1] - 1;
+      for (c12_i828 = 0; c12_i828 <= c12_f_loop_ub; c12_i828++) {
+        c12_V->data[c12_i828 + c12_V->size[0] * c12_i825].re = c12_Vt->
+          data[c12_i825 + c12_Vt->size[0] * c12_i828].re;
+        c12_V->data[c12_i828 + c12_V->size[0] * c12_i825].im = -c12_Vt->
+          data[c12_i825 + c12_Vt->size[0] * c12_i828].im;
+      }
+    }
+
     c12_f_info = c12_e_info;
-    c12_b_info = c12_f_info;
+    c12_g_info = c12_f_info;
+    c12_b_p = (c12_g_info < 0);
+    if (c12_b_p) {
+      if (c12_f_info == -1010) {
+        c12_d_error(chartInstance);
+      } else {
+        c12_f_error(chartInstance, c12_f_info);
+      }
+    }
+
+    c12_h_info = c12_e_info;
+    c12_b_info = c12_h_info;
   } else {
     c12_i816 = c12_V->size[0] * c12_V->size[1];
     c12_V->size[0] = c12_Vt->size[1];
@@ -12993,117 +13084,6 @@ static void c12_e_error(SFc12_anav_realInstanceStruct *chartInstance, int32_T
                     sf_mex_call_debug(sfGlobalDebugInstanceStruct, "getString",
     1U, 1U, 14, sf_mex_call_debug(sfGlobalDebugInstanceStruct, "message", 1U, 3U,
     14, c12_b_y, 14, c12_c_y, 14, c12_d_y)));
-}
-
-static void c12_ceval_xgesvd(SFc12_anav_realInstanceStruct *chartInstance,
-  c12_emxArray_creal_T *c12_A, c12_emxArray_creal_T *c12_U, c12_emxArray_real_T *
-  c12_S, c12_emxArray_creal_T *c12_V, int32_T *c12_info)
-{
-  c12_emxArray_creal_T *c12_Vt;
-  int32_T c12_m;
-  int32_T c12_n;
-  int32_T c12_minnm;
-  int32_T c12_i821;
-  int32_T c12_i822;
-  int32_T c12_i823;
-  boolean_T c12_b41;
-  boolean_T c12_b42;
-  int32_T c12_b_info;
-  ptrdiff_t c12_m_t;
-  ptrdiff_t c12_n_t;
-  int32_T c12_i824;
-  ptrdiff_t c12_lda_t;
-  ptrdiff_t c12_ldu_t;
-  ptrdiff_t c12_ldv_t;
-  c12_emxArray_real_T *c12_superb;
-  int32_T c12_loop_ub;
-  int32_T c12_i825;
-  int32_T c12_i826;
-  int32_T c12_i827;
-  int32_T c12_b_loop_ub;
-  int32_T c12_c_info;
-  int32_T c12_i828;
-  ptrdiff_t c12_info_t;
-  int32_T c12_d_info;
-  boolean_T c12_p;
-  c12_emxInit_creal_T(chartInstance, &c12_Vt, 2, &c12_ni_emlrtRTEI);
-  c12_m = c12_A->size[0];
-  c12_n = c12_A->size[1];
-  c12_minnm = muIntScalarMin_sint32(c12_n, c12_m);
-  c12_i821 = c12_U->size[0] * c12_U->size[1];
-  c12_U->size[0] = c12_m;
-  c12_U->size[1] = c12_m;
-  c12_emxEnsureCapacity_creal_T(chartInstance, c12_U, c12_i821,
-    &c12_mi_emlrtRTEI);
-  c12_i822 = c12_Vt->size[0] * c12_Vt->size[1];
-  c12_Vt->size[0] = c12_n;
-  c12_Vt->size[1] = c12_n;
-  c12_emxEnsureCapacity_creal_T(chartInstance, c12_Vt, c12_i822,
-    &c12_mi_emlrtRTEI);
-  c12_i823 = c12_S->size[0];
-  c12_S->size[0] = c12_minnm;
-  c12_emxEnsureCapacity_real_T1(chartInstance, c12_S, c12_i823,
-    &c12_mi_emlrtRTEI);
-  c12_b41 = (c12_A->size[0] == 0);
-  c12_b42 = (c12_A->size[1] == 0);
-  if (!(c12_b41 || c12_b42)) {
-    c12_m_t = (ptrdiff_t)c12_m;
-    c12_n_t = (ptrdiff_t)c12_n;
-    c12_lda_t = (ptrdiff_t)c12_m;
-    c12_ldu_t = (ptrdiff_t)c12_m;
-    c12_ldv_t = (ptrdiff_t)c12_n;
-    c12_emxInit_real_T1(chartInstance, &c12_superb, 1, &c12_oi_emlrtRTEI);
-    if (c12_minnm > 1) {
-      c12_i827 = c12_superb->size[0];
-      c12_superb->size[0] = c12_minnm - 1;
-      c12_emxEnsureCapacity_real_T1(chartInstance, c12_superb, c12_i827,
-        &c12_mi_emlrtRTEI);
-    } else {
-      c12_i826 = c12_superb->size[0];
-      c12_superb->size[0] = 1;
-      c12_emxEnsureCapacity_real_T1(chartInstance, c12_superb, c12_i826,
-        &c12_mi_emlrtRTEI);
-    }
-
-    c12_info_t = LAPACKE_zgesvd(102, 'A', 'A', c12_m_t, c12_n_t,
-      (lapack_complex_double *)&c12_A->data[0], c12_lda_t, &c12_S->data[0],
-      (lapack_complex_double *)&c12_U->data[0], c12_ldu_t,
-      (lapack_complex_double *)&c12_Vt->data[0], c12_ldv_t, &c12_superb->data[0]);
-    c12_b_info = (int32_T)c12_info_t;
-    c12_emxFree_real_T(chartInstance, &c12_superb);
-  } else {
-    c12_b_info = 0;
-  }
-
-  c12_i824 = c12_V->size[0] * c12_V->size[1];
-  c12_V->size[0] = c12_Vt->size[1];
-  c12_V->size[1] = c12_Vt->size[0];
-  c12_emxEnsureCapacity_creal_T(chartInstance, c12_V, c12_i824,
-    &c12_ji_emlrtRTEI);
-  c12_loop_ub = c12_Vt->size[0] - 1;
-  for (c12_i825 = 0; c12_i825 <= c12_loop_ub; c12_i825++) {
-    c12_b_loop_ub = c12_Vt->size[1] - 1;
-    for (c12_i828 = 0; c12_i828 <= c12_b_loop_ub; c12_i828++) {
-      c12_V->data[c12_i828 + c12_V->size[0] * c12_i825].re = c12_Vt->
-        data[c12_i825 + c12_Vt->size[0] * c12_i828].re;
-      c12_V->data[c12_i828 + c12_V->size[0] * c12_i825].im = -c12_Vt->
-        data[c12_i825 + c12_Vt->size[0] * c12_i828].im;
-    }
-  }
-
-  c12_emxFree_creal_T(chartInstance, &c12_Vt);
-  c12_c_info = c12_b_info;
-  c12_d_info = c12_c_info;
-  c12_p = (c12_d_info < 0);
-  if (c12_p) {
-    if (c12_c_info == -1010) {
-      c12_d_error(chartInstance);
-    } else {
-      c12_f_error(chartInstance, c12_c_info);
-    }
-  }
-
-  *c12_info = c12_b_info;
 }
 
 static void c12_f_error(SFc12_anav_realInstanceStruct *chartInstance, int32_T
@@ -13185,7 +13165,7 @@ static void c12_diag(SFc12_anav_realInstanceStruct *chartInstance,
     c12_i829 = c12_d->size[0];
     c12_d->size[0] = 1;
     c12_emxEnsureCapacity_real_T1(chartInstance, c12_d, c12_i829,
-      &c12_pi_emlrtRTEI);
+      &c12_oi_emlrtRTEI);
     c12_d->data[0] = c12_v->data[0];
   } else {
     c12_b45 = (c12_v->size[0] == 1);
@@ -13217,7 +13197,7 @@ static void c12_diag(SFc12_anav_realInstanceStruct *chartInstance,
     c12_i830 = c12_d->size[0];
     c12_d->size[0] = c12_iv27[0];
     c12_emxEnsureCapacity_real_T1(chartInstance, c12_d, c12_i830,
-      &c12_qi_emlrtRTEI);
+      &c12_pi_emlrtRTEI);
     c12_i831 = c12_dlen;
     for (c12_k = 0; c12_k < c12_i831; c12_k++) {
       c12_d->data[c12_k] = c12_v->data[c12_k + c12_v->size[0] * c12_k];
@@ -13512,7 +13492,7 @@ static void c12_padImage(SFc12_anav_realInstanceStruct *chartInstance, real_T
   c12_i834 = c12_a->size[0] * c12_a->size[1];
   c12_a->size[0] = (int32_T)c12_dv11[0];
   c12_a->size[1] = (int32_T)c12_dv11[1];
-  c12_emxEnsureCapacity_real_T(chartInstance, c12_a, c12_i834, &c12_ri_emlrtRTEI);
+  c12_emxEnsureCapacity_real_T(chartInstance, c12_a, c12_i834, &c12_qi_emlrtRTEI);
   c12_d10 = c12_pad[1];
   c12_i835 = (int32_T)c12_d10 - 1;
   for (c12_j = 0; c12_j <= c12_i835; c12_j++) {

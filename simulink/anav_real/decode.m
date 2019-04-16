@@ -1,4 +1,4 @@
-function [data] = decoder(in)
+function [data] = decode(in)
     %num1s1 = 0;
 
     i = 1; 
