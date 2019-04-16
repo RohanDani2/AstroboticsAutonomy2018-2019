@@ -193,7 +193,6 @@ typedef struct {
   real_T c12_costsTemp[9252];
   real_T c12_costs[9252];
   real_T c12_x[9252];
-  real_T c12_b_costs[9252];
   real_T c12_mapList[9243];
   real_T c12_dv3[9243];
   creal_T c12_inflated_data[3081];
@@ -207,7 +206,6 @@ typedef struct {
   real_T c12_b_data[3081];
   real_T c12_hoistedGlobal[3081];
   real_T c12_b_mapGrid[3081];
-  real_T c12_c_mapGrid[3081];
   real_T c12_varargin_1[3081];
   real_T c12_b_varargin_1[3081];
   real_T c12_b_b1_data[3081];
@@ -230,10 +228,9 @@ typedef struct {
   real_T c12_c_roundedUnique_data[2162];
   real_T c12_result_data[2162];
   real_T c12_y_data[2162];
-  real_T c12_x_data[2162];
   void *c12_fEmlrtCtx;
   real_T (*c12_pos)[2];
-  real_T (*c12_c_costs)[9252];
+  real_T (*c12_b_costs)[9252];
   real_T *c12_theta;
   real_T (*c12_c_detectedList)[2162];
   real_T *c12_scale;
@@ -241,7 +238,7 @@ typedef struct {
   real_T *c12_vehicleRad;
   real_T (*c12_limit)[708];
   real_T *c12_mode;
-  real_T (*c12_d_mapGrid)[3081];
+  real_T (*c12_c_mapGrid)[3081];
 } SFc12_anav_realInstanceStruct;
 
 #endif                                 /*typedef_SFc12_anav_realInstanceStruct*/
