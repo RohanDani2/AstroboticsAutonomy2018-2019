@@ -26,7 +26,7 @@
  * | See matlabroot/simulink/src/sfuntmpl_doc.c for a more detailed template |
  *  ------------------------------------------------------------------------- 
  *
- * Created: Tue Apr 16 15:34:57 2019
+ * Created: Tue Apr 16 22:49:35 2019
  */
 
 #define S_FUNCTION_LEVEL 2
@@ -79,9 +79,9 @@
 #define CONT_STATES_IC        [0]
 
 #define SFUNWIZ_GENERATE_TLC  0
-#define SOURCEFILES           "__SFB__/home/hal/Documents/astro/AstroboticsAutonomy2018-2019/simulink/anav_real/Dstar.cpp"
+#define SOURCEFILES           "__SFB__/Users/alex/Desktop/Astro/astrobotics_autonomy/simulink/anav_real/Dstar.cpp"
 #define PANELINDEX            8
-#define USE_SIMSTRUCT         0
+#define USE_SIMSTRUCT         1
 #define SHOW_COMPILE_STEPS    0
 #define CREATE_DEBUG_MEXFILE  0
 #define SAVE_CODE_ONLY        0
@@ -90,12 +90,15 @@
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 #include "simstruc.h"
 
-extern void DstarRun_Start_wrapper(void **pW);
+extern void DstarRun_Start_wrapper(void **pW,
+			SimStruct *S);
 extern void DstarRun_Outputs_wrapper(const real_T *costs,
 			real_T *dspath,
 			void **pW,
-			const int_T u_width);
-extern void DstarRun_Terminate_wrapper(void **pW);
+			const int_T u_width,
+			SimStruct *S);
+extern void DstarRun_Terminate_wrapper(void **pW,
+			SimStruct *S);
 /*====================*
  * S-function methods *
  *====================*/
@@ -135,7 +138,7 @@ static void mdlInitializeSizes(SimStruct *S)
     ssSetOutputPortFrameData(S, 0, OUT_0_FRAME_BASED);
     ssSetOutputPortDataType(S, 0, SS_DOUBLE);
     ssSetOutputPortComplexSignal(S, 0, OUTPUT_0_COMPLEX);
-    ssSetNumPWork(S, 2);
+    ssSetNumPWork(S, 1);
 
     ssSetNumSampleTimes(S, 1);
     ssSetNumRWork(S, 0);
@@ -206,7 +209,7 @@ static void mdlStart(SimStruct *S)
 {
     void **pW = ssGetPWork(S);
 
-    DstarRun_Start_wrapper(pW);
+    DstarRun_Start_wrapper(pW, S);
 }
 #endif /*  MDL_START */
 
@@ -220,7 +223,7 @@ static void mdlOutputs(SimStruct *S, int_T tid)
     real_T *dspath = (real_T *) ssGetOutputPortRealSignal(S, 0);
     const int_T u_width = ssGetInputPortWidth(S, 0);
 
-    DstarRun_Outputs_wrapper(costs, dspath, pW, u_width);
+    DstarRun_Outputs_wrapper(costs, dspath, pW, u_width, S);
 
 }
 
@@ -234,7 +237,7 @@ static void mdlTerminate(SimStruct *S)
 {
     void **pW = ssGetPWork(S);
 
-    DstarRun_Terminate_wrapper(pW);
+    DstarRun_Terminate_wrapper(pW, S);
 }
 
 

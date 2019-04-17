@@ -4,6 +4,7 @@
  */
 
 #include "Dstar.h"
+#include "simstruc.h"
 
 #ifdef USE_OPEN_GL
 #ifdef MACOS
@@ -595,6 +596,7 @@ bool Dstar::replan() {
     n.clear();
     cur = smin;
   }
+
   path.push_back(s_goal);
   return true;
 }

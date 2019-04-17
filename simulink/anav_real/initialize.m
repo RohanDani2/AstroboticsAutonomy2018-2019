@@ -4,7 +4,7 @@ clc
 clf
 
 %% Config
-mode = 0; % 1 for sim or 0 for real with all sensors 
+mode = 1; % 1 for sim or 0 for real with all sensors 
 mapDim = [80 40]; % X and Y measurements of arena in whole decimeters
 
 %% Set colormap to inverted blue scale and generate surface point vectors also set scale  
@@ -30,7 +30,7 @@ limit(:,2) = limit(:,2) + 1;
 wall = generateRectangle(mapDim(1),mapDim(2));
 trough = generateRectangle(15, 5);
 visualObj(:,:,1) = wall;
-visualObj(:,:,2) = vertcat(trough, nan(size(wall,1)-size(trough,1),3));
+visualObj(:,:,2) = vertcat(trough, zeros(size(wall,1)-size(trough,1),3));
 
 %% Generate simulated obstacles and combine with limit   
 
@@ -80,5 +80,5 @@ if mode == 1
     sObs(:,:,4) = vertcat(obstacle4, nan(maxDim-size(obstacle4,1),3));
     sObs(:,:,5) = vertcat(obstacle5, nan(maxDim-size(obstacle5,1),3));
 else
-    sObs = nan(2, 3);
+    sObs = zeros(2, 3);
 end
