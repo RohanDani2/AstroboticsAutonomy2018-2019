@@ -84,7 +84,6 @@ for (int i = 0; i < STEPS; i++)
   dspath[i+STEPS] = path.front().y;
   path.pop_front();
 }
-
 /* %%%-SFUNWIZ_wrapper_Outputs_Changes_END --- EDIT HERE TO _BEGIN */
 }
 
