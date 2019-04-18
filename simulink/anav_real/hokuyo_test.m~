@@ -42,10 +42,9 @@ num_scans = 1;
 corrupted_scans = 0;
 corrupted = 0;
 flag_header = 0;
-j = 1;
+i = 1
 
-while j > 0
-    j
+while i > 0
     fprintf(obj1, 'MD0000108001101');
 %     while ~flag_header
 %         if strcmp(strip(fscanf(obj1)), '99b')
@@ -54,16 +53,12 @@ while j > 0
 %             break;
 %         end 
 %     end 
-    fscanf(obj1);
-    fscanf(obj1);
-    fscanf(obj1);
-    fscanf(obj1);
-    fscanf(obj1);
     fscanf(obj1)
-    if j > 1
-        fscanf(obj1)
-    end
-    j = j + 1;
+    fscanf(obj1)
+    fscanf(obj1)
+    fscanf(obj1)
+    fscanf(obj1)
+    fscanf(obj1)
     for i = 1:51
         dblock = fscanf(obj1);
         dblock = strip(dblock);

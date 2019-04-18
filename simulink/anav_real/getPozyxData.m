@@ -19,7 +19,7 @@ function [pos, theta] = getPozyxData(obj)
             if dataSize == 3
                 pos = [data(1) data(2)];
                 theta = data(3);
-                disp([pos theta]);
+                %disp([pos theta]);
                 return
             end
         else

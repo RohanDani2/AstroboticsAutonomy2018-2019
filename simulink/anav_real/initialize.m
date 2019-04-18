@@ -4,7 +4,7 @@ clc
 clf
 tic
 %% Config
-mode = 1; % 1 for sim or 0 for real with all sensors 
+mode = 0; % 1 for sim or 0 for real with all sensors 
 mapDim = [80 40]; % X and Y measurements of arena in whole decimeters
 
 %% Set colormap to inverted blue scale and generate surface point vectors also set scale  

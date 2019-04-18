@@ -1,7 +1,7 @@
 function scan_decoded = getHokuyoScan(obj)
     coder.extrinsic('pad', 'fscanf', 'fprintf', 'regexprep')
     persistent num_scans corrupted_scans
-    
+
     if isempty(num_scans)
         disp('*******************************************************************');
         for i = 1:13
@@ -27,10 +27,9 @@ function scan_decoded = getHokuyoScan(obj)
     padSize = 100; % max is 66 
     flag_corrupted = 0;
     flag_header = 0;
-    j = 1;
+    i = 1;
 
-    while j > 0
-        j
+    while i > 0
         fprintf(obj, 'MD0000108001101');
 %         while ~flag_header
 %             if strcmp(strip(fscanf(obj)), '99b')
@@ -39,17 +38,18 @@ function scan_decoded = getHokuyoScan(obj)
 %                 break;
 %             end 
 %         end 
-        fscanf(obj);
-        fscanf(obj);
-        fscanf(obj);
-        fscanf(obj);
-        fscanf(obj);
         fscanf(obj)
-        if j > 1
-            fscanf(obj)
+        fscanf(obj)
+        fscanf(obj)
+        fscanf(obj)
+        fscanf(obj1)
+        fscanf(obj1)
+        if i ~= 1
+            fscanf(obj1)
         end
-        j = j + 1;
+
         for i = 1:51
+            
             dblock = blanks(padSize); % set to known type 
             dblockTemp = blanks(padSize); % set to known type 
             blockSize = 0; % set to known type 
