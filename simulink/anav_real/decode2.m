@@ -6,10 +6,10 @@ function [out] = decode2(raw)
     numchars = 3;
     
     data = raw; 
-    data = uint8(data);
-    data = data - uint8('0');
-    data = dec2bin(data, numbits);
-    combined = reshape(data',numbits*numchars,len/numchars)';
+    data1 = uint8(data);
+    data2 = data1 - uint8('0');
+    data3 = dec2bin(data2, numbits);
+    combined = reshape(data3',numbits*numchars,len/numchars)';
     
     dec = bin2dec(combined);
     out = zeros(len/3, 1); % known type 

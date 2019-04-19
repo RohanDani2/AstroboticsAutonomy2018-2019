@@ -1945,7 +1945,7 @@ static void sf_gateway_c12_anav_real(SFc12_anav_realInstanceStruct
   int32_T c12_i12;
   _SFD_SYMBOL_SCOPE_PUSH(0U, 0U);
   _sfTime_ = sf_get_time(chartInstance->S);
-  _SFD_CC_CALL(CHART_ENTER_SFUNCTION_TAG, 6U, chartInstance->c12_sfEvent);
+  _SFD_CC_CALL(CHART_ENTER_SFUNCTION_TAG, 5U, chartInstance->c12_sfEvent);
   _SFD_DATA_RANGE_CHECK(*chartInstance->c12_mode, 7U);
   for (c12_i7 = 0; c12_i7 < 708; c12_i7++) {
     _SFD_DATA_RANGE_CHECK((*chartInstance->c12_limit)[c12_i7], 6U);
@@ -2396,7 +2396,7 @@ static void c12_chartstep_c12_anav_real(SFc12_anav_realInstanceStruct
   int32_T c12_i160;
   int32_T c12_i161;
   int32_T exitg1;
-  _SFD_CC_CALL(CHART_ENTER_DURING_FUNCTION_TAG, 6U, chartInstance->c12_sfEvent);
+  _SFD_CC_CALL(CHART_ENTER_DURING_FUNCTION_TAG, 5U, chartInstance->c12_sfEvent);
   c12_b_hoistedGlobal = *chartInstance->c12_theta;
   c12_c_hoistedGlobal = *chartInstance->c12_scale;
   c12_d_hoistedGlobal = *chartInstance->c12_vehicleRad;
@@ -3622,7 +3622,7 @@ static void c12_chartstep_c12_anav_real(SFc12_anav_realInstanceStruct
       c12_mapGrid[c12_i161];
   }
 
-  _SFD_CC_CALL(EXIT_OUT_OF_FUNCTION_TAG, 6U, chartInstance->c12_sfEvent);
+  _SFD_CC_CALL(EXIT_OUT_OF_FUNCTION_TAG, 5U, chartInstance->c12_sfEvent);
 }
 
 static void initSimStructsc12_anav_real(SFc12_anav_realInstanceStruct
@@ -5033,15 +5033,15 @@ const mxArray *sf_c12_anav_real_get_eml_resolved_functions_info(void)
 {
   const mxArray *c12_nameCaptureInfo = NULL;
   const char * c12_data[6] = {
-    "789ced56cb4edb40141d178a60511436fd81aec1a9112dec9212a051a14049555055153bbe8e87cc03ec7184bb2952d5bfe88774c95f74cb0ff005dd60133f92"
-    "9146ae0432b8ca953ce3a3e3b967e66a7c7491d6ded11042f3d173fd1da1ab05741bcf8613aa25f313341e32af25f39484d3788aa6c7d66989deaf0477391370",
-    "2e86806006ef036a8117016652c8d2d89c626632d1094f0179e0733200fb967130810ea6b0cd47c05b1c01ba39426520a6e2f77517bafd838022cff5f3ed9251"
-    "8092fac471ac38ff74417de490eb237f57a43753a0a729e634e6d06c0e2e761ba9dea9225fd1f9d2fc730abd9ac413ec0ba3e7613bc177ad6faa3723e15c7fc8",
-    "d83cb008e47abfefa877a8d41be73f6f7cd15d4e41774da2b77837a0c084af9bbef0b8de8c478b0bdcf59b81e08cd3d0a8bf5c5d8c8635ddc734887e88be6e32"
-    "73f0d583687d56bc255ade3db9fcf1f7c59f66a9f71295fc1f3ca0deb922dfbfdec3e70abd9ac49fb50fda1eec8813c236562ce686477bc268e5fbd82bd029da",
-    "0752e0b2f21f2bd657da9f1bfb8dfbf2c75909a3ecbb218399434c014655fdf893526f9cbf573f4e8bb6444bbc17973f5717277e5c753feeefbe0ef75b1fd60c"
-    "c772ed4e9d7c03af77b43ef163391e951f5f744aef97e36ecf88fbbe0457d59f1fa45fce8a37e997ff17bdb2fc19ceecad93dec7fa9b65873aaf427b701898ef",
-    "b6aaefcf37657ae1cf", "" };
+    "789ced56cb4edb40141d178a6051946efa035d8383112dec929294462def20405555ecf83a1e320fb0c7116653a4aa7fd10fe992bfe8b6ffd14d6de24732d2c8"
+    "9540a6ae7225cff8e878ee99b91a1f5da475b63584d062f4b4bf20f4eb39ba8b67a309d592f9099a0c99d7927946c2693c45b313ebb444ef7b827b9c09b81223",
+    "4030839d805ae045809914b23436a798994c74c30b401ef89c0cc1be631c4ca08b297ce063e01d8e007d3b466520a6e2f74d177a83c38022cff5f3ed92718092"
+    "fac471a638ff6c417de490eb237f57a43757a0a729e63416d07c0e6e761ba9de85225fd1f9d2fc0b0abd9ac413ec0ba3ef613bc1f7ad6faa3727e15c7fc4d83c",
+    "b008e47a3feea977a2d49be43fb63fe92ea7a0bb26d15bbc175060c2d74d5f785c6fc6a3c505eef9cd4070c66968d457d697a26143f7310da21f62a09bcc1c7e"
+    "f6205a9f156f9996774f6ebffe7ef9b359eabd4425ff078fa877a5c8f7b7f7f08542af26f1979dc38e07dbe29cb0f69ac5dcf0744f18ad7c1f7b053a45fb400a",
+    "5c56fe33c5fa4afb7363bff150fe382f61947d376230738829c0a8aa1f1f2bf526f907f5e3b468cbb4c47b71fb6d7d69eac755f7e3c1eeeb70bf75b06138966b"
+    "77ebe41abcfee9e6d48fe5f8a7fcf8a65b7abf1c777b46dcf725b8aafefc28fd7256bc69bffcbfe895e5cf70696f9df78fea6f561deabc0aede14960bedfaabe",
+    "3fff0127e1e07f", "" };
 
   c12_nameCaptureInfo = NULL;
   emlrtNameCaptureMxArrayR2016a(c12_data, 4600U, &c12_nameCaptureInfo);

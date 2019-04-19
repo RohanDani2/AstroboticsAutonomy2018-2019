@@ -317,7 +317,7 @@ unsigned int sf_anav_real_updateBuildInfo_args_info( int nlhs, mxArray * plhs[],
 void anav_real_debug_initialize(struct SfDebugInstanceStruct* debugInstance)
 {
   _anav_realMachineNumber_ = sf_debug_initialize_machine(debugInstance,
-    "anav_real","sfun",0,7,0,0,0);
+    "anav_real","sfun",0,6,0,0,0);
   sf_debug_set_machine_event_thresholds(debugInstance,_anav_realMachineNumber_,0,
     0);
   sf_debug_set_machine_data_thresholds(debugInstance,_anav_realMachineNumber_,0);

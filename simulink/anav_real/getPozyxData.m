@@ -12,7 +12,8 @@ function [pos, theta] = getPozyxData(obj)
         get(obj, 'BytesAvailable');
         % wait for 20 reads to pass 
         if count > 20 
-            split = strsplit(strip(fscanf(obj)), ',');
+            raw = fscanf(obj);
+            split = strsplit(raw, ',');
             data = str2double(split);
             dataSize = 0; % set to known type 
             dataSize = size(data, 2);
@@ -23,7 +24,7 @@ function [pos, theta] = getPozyxData(obj)
                 return
             end
         else
-            fscanf(obj);
+            trash = fscanf(obj);
         end
     end
 end

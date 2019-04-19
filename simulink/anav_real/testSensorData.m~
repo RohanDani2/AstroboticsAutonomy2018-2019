@@ -96,7 +96,7 @@ function [pos, theta, detectedList, visArea] = testSensorData(sObs, mode)
                 COM_hokuyo = instrfind('Port', port_hokuyo');
             end
             set(COM_hokuyo, 'Timeout', 10)
-            set(COM_hokuyo, 'InputBufferSize', 4096)
+            set(obj1, 'InputBufferSize', 4096)
             fclose(COM_hokuyo);
             fopen(COM_hokuyo); 
         end
