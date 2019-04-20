@@ -8,8 +8,8 @@ function [pos, theta] = getPozyxData(obj)
     
     while 1
         count = count + 1;
-%         readasync(obj)
-%         get(obj, 'BytesAvailable');
+        readasync(obj)
+        get(obj, 'BytesAvailable');
         % wait for 20 reads to pass 
         if count > 10 
             raw = fscanf(obj);

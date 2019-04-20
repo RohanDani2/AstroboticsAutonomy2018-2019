@@ -14,6 +14,6 @@ function [out] = decode2(raw)
     dec = bin2dec(combined);
     out = zeros(len/3, 1); % known type 
     out = dec;
-    out(out == 1) = 30000;
+    out(out <= 5) = 30000;
    
 end 
