@@ -1,6 +1,6 @@
 clear testSensorData getHokuyoScan
 
-n = 50;
+n = 200;
 t = zeros(1, n);
 for i = 1:n
     tic

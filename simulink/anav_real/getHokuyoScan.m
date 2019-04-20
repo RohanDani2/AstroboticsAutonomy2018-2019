@@ -3,7 +3,7 @@ function scan_decoded = getHokuyoScan(obj)
     persistent num_scans
     
     if isempty(num_scans)
-        disp('*******************************************************************');
+        fprintf('***************************************************\n');
         for i = 1:13
             if i == 1
                 fprintf(obj, 'RS');
@@ -16,7 +16,7 @@ function scan_decoded = getHokuyoScan(obj)
             end
             disp(fscanf(obj));
         end
-        disp('*******************************************************************');
+        fprintf('***************************************************\n');
         num_scans = 1;
     end
     
@@ -31,15 +31,17 @@ function scan_decoded = getHokuyoScan(obj)
     
     fprintf(obj, 'MD0000108001101');
     
-    trash = blanks(num_header_chars);
-    header = char(fread(obj, num_header_chars));
-    trash = sscanf(header,'%c');
+%     trash = blanks(num_header_chars);
+%     header = fread(obj, num_header_chars, 'char');
+%     header2 = char(header);
+%     trash = sscanf(header2,'%c');
 
-    raw2 = blanks(num_scan_chars);
-    raw = char(fread(obj, num_scan_chars));
-    raw2 = sscanf(raw,'%c');
-    raw3 = strip(raw2);
-    data = raw3(indicies);
+    raw1 = char(fread(obj, num_scan_chars+num_header_chars, 'char'));
+    raw2 = blanks(num_scan_chars+num_header_chars); % known type 
+    raw2 = sscanf(raw1,'%c');
+    raw3 = raw2(num_header_chars+1:end);
+    raw4 = strip(raw3);
+    data = raw4(indicies);
     scan_decoded(:,2) = decode2(data);
     
     num_scans = num_scans + 1;
