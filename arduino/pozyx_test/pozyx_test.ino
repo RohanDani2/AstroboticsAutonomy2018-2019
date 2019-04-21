@@ -51,7 +51,7 @@ void setup(){
 
   Serial.println(F("Starting positioning: "));
 }
-
+int t1, t2, t3, t4, t5, t6;
 void loop(){
   coordinates_t position;
   int status;
@@ -62,9 +62,17 @@ void loop(){
   
   for(int i = 0; i < num_tags; i++){
     if (tags[i] == NULL){
+      t3 = millis();
       status = Pozyx.doPositioning(&position, dimension, height, algorithm);
+      t4 = millis();
+      //Serial.print("local positioning: ");
+      //Serial.println(t4-t3);
     }else{
+      t5 = millis();
       status = Pozyx.doRemotePositioning(tags[i], &position, dimension, height, algorithm);
+      t6 = millis();
+      //Serial.print("remote positioning: ");
+      //Serial.println(t6-t5);
     }
     if (status == POZYX_SUCCESS){
       // update moving average filters 
@@ -75,25 +83,29 @@ void loop(){
         lpFilterXRemote.input(position.x);
         lpFilterYRemote.input(position.y);
       }
-      if (sizeof(tags)/sizeof(tags[0]) == 2){
-        // calculate orientation of line from local to remote
-        xdif = lpFilterXRemote.output() - lpFilterXLocal.output();
-        ydif = lpFilterYRemote.output() - lpFilterYLocal.output();
-        theta = atan2(ydif, xdif);
-
-        // calculate coordinate of midpoint between 2 tags 
-        pos[0] = lpFilterXLocal.output() + midpoint*cos(theta);
-        pos[1] = lpFilterYLocal.output() + midpoint*sin(theta);
-
-        // print position of midpoint and orientation for bound dual tags 
-        printDualTag(pos, theta);
-      }else{
-        // print raw and filtered coordinate of single tag 
-        printSingleTag(position, tags[i]);
-      }
     }else if (!use_processing){
       printErrorCode("positioning", tags[i]);
     }
+  }
+  if (sizeof(tags)/sizeof(tags[0]) == 2){
+    // calculate orientation of line from local to remote
+    xdif = lpFilterXRemote.output() - lpFilterXLocal.output();
+    ydif = lpFilterYRemote.output() - lpFilterYLocal.output();
+    theta = atan2(ydif, xdif);
+  
+    // calculate coordinate of midpoint between 2 tags 
+    pos[0] = lpFilterXLocal.output() + midpoint*cos(theta);
+    pos[1] = lpFilterYLocal.output() + midpoint*sin(theta);
+  
+    // print position of midpoint and orientation for bound dual tags 
+    printDualTag(pos, theta);
+    t1 = millis();
+    //Serial.print("full loop: ");
+    //Serial.println(t1-t2);
+    t2 = millis();
+  }else{
+    // print raw and filtered coordinate of single tag 
+    printSingleTag(position, tags[0]);
   }
 }
 
