@@ -31,7 +31,9 @@ function [pos, theta, detectedList, visArea] = testSensorData(sObs, mode)
             end
             set(COM_pozyx, 'BaudRate', 115200)
             set(COM_pozyx, 'Timeout', 10)
-            set(COM_pozyx, 'InputBufferSize', 128)
+            set(COM_pozyx, 'InputBufferSize', 32)
+            set(COM_pozyx, 'OutputBufferSize', 1)
+            set(COM_pozyx, 'Terminator', {'CR/LF', ''});
             set(COM_pozyx, 'ReadAsyncMode', 'continuous')
             fclose(COM_pozyx);
             fopen(COM_pozyx); 

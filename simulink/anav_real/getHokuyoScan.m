@@ -4,6 +4,7 @@ function scan_decoded = getHokuyoScan(obj)
     
     if isempty(num_scans)
         fprintf('***************************************************\n');
+        fprintf('LIDAR Sync Begin\n');
         for i = 1:13
             if i == 1
                 fprintf(obj, 'RS');
@@ -14,8 +15,9 @@ function scan_decoded = getHokuyoScan(obj)
             elseif i == 11
                 fprintf(obj, 'TM2');
             end
-            disp(fscanf(obj));
+            fscanf(obj);
         end
+        fprintf('LIDAR Sync Complete\n');
         fprintf('***************************************************\n');
         num_scans = 1;
     end

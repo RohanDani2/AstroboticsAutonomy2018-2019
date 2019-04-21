@@ -1,6 +1,6 @@
-clear testSensorData getHokuyoScan
+clear testSensorData getHokuyoScan getPozyxData
 
-n = 200;
+n = 50;
 t = zeros(1, n);
 for i = 1:n
     tic
@@ -9,7 +9,7 @@ for i = 1:n
 %     polar(detectedList(:,1), detectedList(:,2), 'b.')
 %     drawnow
 end
-mean(t(2:end))
+mean(t(5:end))
 
 pozyx = instrfind('Port', '/dev/ttyUSB0');
 if ~isempty(pozyx)

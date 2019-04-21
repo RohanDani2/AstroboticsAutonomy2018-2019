@@ -32,6 +32,8 @@ FilterOnePole lpFilterXRemote(LOWPASS, filterFrequency);
 FilterOnePole lpFilterYLocal(LOWPASS, filterFrequency);  
 FilterOnePole lpFilterYRemote(LOWPASS, filterFrequency);
 
+int count = 0; 
+
 void setup(){
   Serial.begin(115200);
 
@@ -97,7 +99,10 @@ void loop(){
 
 // print results for dual tag use 
 void printDualTag(float pos[], float theta){
+  count += 1;
   if (!use_processing){
+    Serial.print(count);
+    Serial.print(". ");
     Serial.print("X (cm): ");
     Serial.print(pos[0]/10.0);
     Serial.print(", Y (cm): ");
@@ -105,6 +110,8 @@ void printDualTag(float pos[], float theta){
     Serial.print(", theta (deg): ");
     Serial.println(theta * 180.0/M_PI);
   }else{
+    Serial.print(count);
+    Serial.print(",");
     Serial.print(pos[0]/100.0);
     Serial.print(",");
     Serial.print(pos[1]/100.0);
