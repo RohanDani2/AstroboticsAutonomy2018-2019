@@ -1,5 +1,5 @@
 function [pos, theta] = getPozyxData(obj)
-    coder.extrinsic('readasync', 'strsplit', 'fscanf')
+    coder.extrinsic('readasync', 'strsplit', 'fscanf', 'flushinput')
     persistent posP thetaP numP count 
     
     if isempty(count)
@@ -9,13 +9,16 @@ function [pos, theta] = getPozyxData(obj)
         count = 0;
     end
     
+    avail = 0; % known type 
+    
     while 1
         count = count + 1;
 %         readasync(obj)
 %         get(obj, 'BytesAvailable');
         % wait for some reads to pass 
         if count > 3
-            if get(obj, 'BytesAvailable') > 0 || count == 4
+            avail = get(obj, 'BytesAvailable');
+            if 	avail > 0 || count == 4
                 raw = fscanf(obj);
                 flushinput(obj);
                 split = strsplit(raw, ',');
@@ -41,7 +44,7 @@ function [pos, theta] = getPozyxData(obj)
             end
         else
             trash = fscanf(obj);
-            fprintf(trash(1:end-1));
+            fprintf(strip(trash));
         end
     end
 end
