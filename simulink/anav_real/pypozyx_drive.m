@@ -21,7 +21,7 @@ while (toc(total) < runtime)
     data = py.pypozyx_test.run_once(local);
     if (~py.pypozyx_test.is_none(data))
         a = data.linear_acceleration;
-
+        
         avd.a.x(idx) = a.x;  
         avd.a.y(idx) = a.y;  
         avd.a.z(idx) = a.z; 
