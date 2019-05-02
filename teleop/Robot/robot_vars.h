@@ -1,4 +1,11 @@
 /* Wireless Vars */
+/*
+ * Configuring HooToo TripMate Titan (HT-TM05)
+ *  IP: 10.0.0.1
+ *  username: root
+ *  password: aresbot17
+ *  Arduino UNO WiFi -> static IP: 10.0.0.122
+ */
 #define ASTRO_SSID "Team_44"
 #define ASTRO_PASS "aresbot17"
 #define UDP_PORT_NUM 4210
@@ -25,9 +32,9 @@
 #define VOLT_SENSOR  2    // A2
 
 /* LED Pins */
-#define R_LED        3    // A3
-#define G_LED        4    // A4
-#define B_LED        5    // A5
+#define B_LED        2
+#define G_LED        3
+#define R_LED        4
 
 /* Robot State vars */
 #define AUTONOMOUS   1

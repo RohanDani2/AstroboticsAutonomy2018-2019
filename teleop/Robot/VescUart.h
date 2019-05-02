@@ -31,22 +31,8 @@ If you want to use debug, uncomment DEBUGSERIAL and define a port.*/
 
 #ifndef _CONFIG_h
 
-#ifdef __AVR_ATmega2560__
 #define SERIALIO Serial1
-#define SERIALIO2 Serial2
-#define SERIALIO3 Serial3
 #define DEBUGSERIAL Serial
-#endif
-
-#define SERIALIO Serial1
-
-#ifdef ARDUINO_AVR_NANO
-#define SERIALIO Serial
-#define DEBUGSERIAL Serial
-#endif
-
-#define DEBUGSERIAL Serial
-
 
 #endif
 

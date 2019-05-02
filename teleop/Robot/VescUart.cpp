@@ -33,26 +33,8 @@ int ReceiveUartMessage(uint8_t* payloadReceived, int num) {
 	bool messageRead = false;
 	uint8_t messageReceived[256];
 	int lenPayload = 0;
-	HardwareSerial *serial;
-	serial=&Serial;
-	#ifdef __AVR_ATmega2560__
-	switch (num) {
-		case 0:
-			serial=&Serial;
-			break;
-		case 1:
-			serial=&Serial1;
-			break;
-		case 2:
-			serial=&Serial2;
-			break;
-		case 3:
-			serial=&Serial3;
-			break;
-		default:
-			break;
-	}
-	#endif
+	HardwareSerial *serial=&Serial1;
+  
 	while (serial->available()) {
 
 		messageReceived[counter++] = serial->read();
@@ -164,25 +146,7 @@ int PackSendPayload(uint8_t* payload, int lenPay, int num) {
 #endif // DEBUG
 
 
-	HardwareSerial *serial;
-	#ifdef __AVR_ATmega2560__
-	switch (num) {
-		case 0:
-			serial=&Serial;
-			break;
-		case 1:
-			serial=&Serial1;
-			break;
-		case 2:
-			serial=&Serial2;
-			break;
-		case 3:
-			serial=&Serial3;
-			break;
-		default:
-			break;
-	}
-	#endif
+	HardwareSerial *serial=&Serial1;
 	//Sending package
 	serial->write(messageSend, count);
 

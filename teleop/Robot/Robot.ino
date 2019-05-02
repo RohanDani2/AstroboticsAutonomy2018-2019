@@ -45,18 +45,19 @@ void init_motors() {
   bucketLift.attach(BUCKET_LIFT);
 }
 
-void initLinearActuators() {
-  pinMode(L_RELAY_K1, OUTPUT);
-  pinMode(L_RELAY_K2, OUTPUT);
-  pinMode(L_RELAY_K3, OUTPUT);
-  pinMode(L_RELAY_K4, OUTPUT);
-}
-
 void stopActuators() {
   digitalWrite(L_RELAY_K1, LOW);
   digitalWrite(L_RELAY_K2, LOW);
   digitalWrite(L_RELAY_K3, LOW);
   digitalWrite(L_RELAY_K4, LOW);
+}
+
+void initLinearActuators() {
+  pinMode(L_RELAY_K1, OUTPUT);
+  pinMode(L_RELAY_K2, OUTPUT);
+  pinMode(L_RELAY_K3, OUTPUT);
+  pinMode(L_RELAY_K4, OUTPUT);
+  stopActuators();
 }
 
 void retractActuator() {
@@ -102,6 +103,7 @@ void connectWifi() {
 
     delay(5000);
   }
+  
   #ifdef DEBUG
   Serial.print("CONNECTED: "); Serial.println(WiFi.localIP());
   #endif
@@ -112,7 +114,7 @@ void readWifi() {
   // Read UDP Packet
   int packetSize = Udp.parsePacket();
   if (packetSize) { // receive incoming UDP packets
-    #ifdef DEBUG
+    #ifdef DEBUGWIFI
     Serial.print("Received packet of size ");
     Serial.println(packetSize);
     Serial.print("From ");
@@ -124,21 +126,37 @@ void readWifi() {
     int len = Udp.read(packetBuffer, 255);
     if (len > 0)
       packetBuffer[len] = 0;
-    #ifdef DEBUG
+    #ifdef DEBUGWIFI
     Serial.print("UDP packet contents: ");
     Serial.println(packetBuffer);
     #endif
   }
 }
 
+void blinkSuccessWifi() {
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(LED_BUILTIN, HIGH);
+    delay(300);
+    digitalWrite(LED_BUILTIN, LOW);
+    delay(300);
+  }
+}
 
 void setup() {
+  pinMode(LED_BUILTIN, OUTPUT);
   Serial1.begin(115200);
+  pinMode(R_LED, OUTPUT);
+  pinMode(G_LED, OUTPUT);
+  pinMode(B_LED, OUTPUT);
+  digitalWrite(R_LED, LOW);
+  digitalWrite(G_LED, HIGH);
+  digitalWrite(B_LED, LOW);
 #ifdef DEBUG
   Serial.begin(BAUD_RATE);
   delay(10);
 #endif
   connectWifi();
+  blinkSuccessWifi();
   init_motors();
   op_mode = TELEOP;
 }
@@ -196,7 +214,7 @@ void loop() {
         for (i = 0; i < 4; i++) {
           packetBuffer[i] = packetBuffer[i+1];
         } packetBuffer[4] = '\0';
-        // extract speed from buffer and write it to rightDrive
+        // extract speed from buffer and write it to leftDrive
         Serial.println(atoi(packetBuffer));
         leftDrive.writeMicroseconds(atoi(packetBuffer));
       } else if (packetBuffer[0] == 'r') {
@@ -206,7 +224,7 @@ void loop() {
         } packetBuffer[4] = '\0';
         // extract speed from buffer and write it to rightDrive
         Serial.println(atoi(packetBuffer));
-        leftDrive.writeMicroseconds(atoi(packetBuffer));
+        rightDrive.writeMicroseconds(atoi(packetBuffer));
       }
     } /* MINING CONTROL */
     else if (digEnabled) {
@@ -244,7 +262,9 @@ void loop() {
     } 
   }
   // TODO: Send Sensor Data: Voltage & Actuator positions
-  if (VescUartGetValue(measuredValues,1)) {
-    SerialPrint(measuredValues);
-  } else { Serial.println("Failed to read VESC!"); }
+//  if (VescUartGetValue(measuredValues,1)) {
+//    SerialPrint(measuredValues);
+//  } 
+//  else { Serial.println("Failed to read VESC!"); }
+//  delay(1000);
 }
